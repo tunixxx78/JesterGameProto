@@ -10,6 +10,13 @@ public class PlayerMovementGrid : MonoBehaviour
     public LayerMask stopsMovement;
     bool isActive = false;
 
+    PlayerPointManager playerPointManager;
+
+    private void Awake()
+    {
+        playerPointManager = FindObjectOfType<PlayerPointManager>();
+    }
+
     private void Start()
     {
         movepoint.parent = null;
@@ -18,7 +25,7 @@ public class PlayerMovementGrid : MonoBehaviour
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
-        if(isActive == true)
+        if(isActive == true && PlayerPointManager.playerPoints >= 1)
         {
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
@@ -27,6 +34,8 @@ public class PlayerMovementGrid : MonoBehaviour
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, stopsMovement))
                     {
                         movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                        PlayerPointManager.playerPoints -= 1;
+                        PlayerPointManager.playerTwoPoints -= 1;
                     }
 
                 }
@@ -35,6 +44,8 @@ public class PlayerMovementGrid : MonoBehaviour
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, stopsMovement))
                     {
                         movepoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                        PlayerPointManager.playerPoints -= 1;
+                        PlayerPointManager.playerTwoPoints -= 1;
                     }
 
                 }
@@ -45,7 +56,13 @@ public class PlayerMovementGrid : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        playerPointManager.ResetPlayerPoints();
         pLRPanel.SetActive(true);
         isActive = true;
+
+    }
+    public void IsActiveToFalse()
+    {
+        isActive = false;
     }
 }
