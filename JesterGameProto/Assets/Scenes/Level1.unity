@@ -1689,7 +1689,7 @@ RectTransform:
   - {fileID: 831530530}
   - {fileID: 1247206875}
   m_Father: {fileID: 1330048336}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2003,8 +2003,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 960955734}
   - {fileID: 2032937062}
+  - {fileID: 960955734}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2616,7 +2616,7 @@ GameObject:
   - component: {fileID: 2032937061}
   - component: {fileID: 2032937060}
   m_Layer: 5
-  m_Name: Player2Panel
+  m_Name: PlayerTwoPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2675,7 +2675,7 @@ RectTransform:
   - {fileID: 1993908416}
   - {fileID: 1577769761}
   m_Father: {fileID: 1330048336}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2757,6 +2757,10 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7952938932904060801, guid: aaf3a554169b4415c9d974f40387431b, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7952938932904060801, guid: aaf3a554169b4415c9d974f40387431b, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7952938932904060802, guid: aaf3a554169b4415c9d974f40387431b, type: 3}
