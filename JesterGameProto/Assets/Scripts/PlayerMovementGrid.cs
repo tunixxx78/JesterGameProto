@@ -21,6 +21,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
     [SerializeField] GameObject ammoPrefab;
     [SerializeField] Transform ammoSpawnPoint;
+
+    BattleSystem battleSystem;
     private void Awake()
     {
         playerUnit = player.GetComponent<Unit>();
@@ -31,6 +33,8 @@ public class PlayerMovementGrid : MonoBehaviour
         playerHp = wantedHP;
 
         playerName.text = playerUnit.unitName;
+
+        battleSystem = FindObjectOfType<BattleSystem>();
     }
 
     private void Start()
@@ -45,6 +49,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
         if(playerHp <= 0)
         {
+            battleSystem.CountingPlayers();
             Destroy(this.gameObject);
         }
         

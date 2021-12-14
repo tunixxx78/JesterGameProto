@@ -14,7 +14,7 @@ public class EnemyProto : MonoBehaviour
 
     [SerializeField] TMP_Text enemyHPText;
 
-    BattleState state;
+    BattleSystem battleSystem;
 
     GameManager gameManager;
 
@@ -26,13 +26,18 @@ public class EnemyProto : MonoBehaviour
         enemyHPText.text = enemyHealth.ToString();
 
         gameManager = FindObjectOfType<GameManager>();
+
+        battleSystem = FindObjectOfType<BattleSystem>();
     }
 
     private void Update()
     {
         if(enemyHealth <= 0)
         {
+            battleSystem.CountingEnemys();
+
             Destroy(this.gameObject);
+            
         }
 
         enemyHPText.text = enemyHealth.ToString();
@@ -62,7 +67,7 @@ public class EnemyProto : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         var randomDirection = Random.Range(0, moveDirections.Length);
-        //transform.position = Vector3.MoveTowards(transform.position, moveDirections[randomDirection].position, 2f);
+        //transform.position = Vector3.MoveTowards(transform.position, moveDirections[randomDirection].position, 1f);
 
         yield return new WaitForSeconds(1f);
 

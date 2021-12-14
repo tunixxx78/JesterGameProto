@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -35,5 +36,10 @@ public class GameManager : MonoBehaviour
     public void EnemyTurn()
     {
         FindObjectOfType<BattleSystem>().EnemyTurn();
+    }
+
+    public void TryAgain()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
