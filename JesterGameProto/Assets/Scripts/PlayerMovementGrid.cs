@@ -5,7 +5,7 @@ using TMPro;
 
 public class PlayerMovementGrid : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f;
     [SerializeField] GameObject pLRPanel;
     public Transform movepoint;
     public LayerMask stopsMovement;
@@ -84,7 +84,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, stopsMovement))
                     {
-                        movepoint.position += new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f);
+                        movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
                         PlayerPoints--;
                         
 
