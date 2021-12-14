@@ -42,6 +42,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Backround
+    uniqueID: 1330715461
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
