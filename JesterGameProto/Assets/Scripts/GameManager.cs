@@ -30,6 +30,10 @@ public class GameManager : MonoBehaviour
 
     public void PlayerAttack()
     {
-        FindObjectOfType<PlayerMovementGrid>().Attack();
+        //FindObjectOfType<PlayerMovementGrid>().Attack();
+    }
+    public void EnemyTurn()
+    {
+        FindObjectOfType<BattleSystem>().EnemyTurn();
     }
 }

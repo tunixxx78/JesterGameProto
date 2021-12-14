@@ -10,7 +10,7 @@ public class PlayerMovementGrid : MonoBehaviour
     public Transform movepoint;
     public LayerMask stopsMovement;
     bool isActive = false;
-    [SerializeField] int PlayerPoints, playerStartPoints, pointsForAttack;
+    [SerializeField] int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
     [SerializeField] GameObject player;
 
     PlayerPointManager playerPointManager;
@@ -27,6 +27,9 @@ public class PlayerMovementGrid : MonoBehaviour
         playerStartPoints = playerUnit.playerActionPoints;
         playerPointsText.text = PlayerPoints.ToString();
 
+        wantedHP = playerUnit.maxHP;
+        playerHp = wantedHP;
+
         playerName.text = playerUnit.unitName;
     }
 
@@ -39,6 +42,11 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         PlayerActions();
         playerPointsText.text = PlayerPoints.ToString();
+
+        if(playerHp <= 0)
+        {
+            Destroy(this.gameObject);
+        }
         
     }
     private void OnMouseDown()
@@ -102,14 +110,13 @@ public class PlayerMovementGrid : MonoBehaviour
 
     }
 
-   public void Attack()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (PlayerPoints >= pointsForAttack && isActive == true)
+        if (collision.collider.CompareTag("EnemyBullet"))
         {
-            
+            playerHp--;
         }
-            
     }
 
-    
+
 }
