@@ -100,7 +100,7 @@ TextureImporter:
     second: Healthbar_Friendly_fill
   - first:
       213: 7400936850822480369
-    second: Healthbar_Friendly
+    second: Healthbar_Friendly_backround
   - first:
       213: -2320512606222381458
     second: Seeker_Kippo
@@ -119,6 +119,18 @@ TextureImporter:
   - first:
       213: 8428274255978893032
     second: Shadow
+  - first:
+      213: 5977986467404530707
+    second: Selected Player_icon
+  - first:
+      213: -5412974975751855158
+    second: Enemy Target Icon
+  - first:
+      213: -4660885065534757006
+    second: Actionpoint_Backround
+  - first:
+      213: 8881262161468840569
+    second: Crystal
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -391,10 +403,10 @@ TextureImporter:
       name: Healthbar_Enemy_Backround
       rect:
         serializedVersion: 2
-        x: 574
-        y: 1858
-        width: 109
-        height: 24
+        x: 592
+        y: 1857
+        width: 75
+        height: 25
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -412,10 +424,10 @@ TextureImporter:
       name: Healthbar_Fill
       rect:
         serializedVersion: 2
-        x: 577
+        x: 596
         y: 1839
-        width: 103
-        height: 18
+        width: 67
+        height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -874,10 +886,10 @@ TextureImporter:
       name: Healthbar_Friendly_fill
       rect:
         serializedVersion: 2
-        x: 577
+        x: 596
         y: 1885
-        width: 105
-        height: 18
+        width: 67
+        height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -892,13 +904,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Healthbar_Friendly
+      name: Healthbar_Friendly_backround
       rect:
         serializedVersion: 2
-        x: 574
-        y: 1904
-        width: 109
-        height: 24
+        x: 592
+        y: 1903
+        width: 75
+        height: 25
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1026,7 +1038,7 @@ TextureImporter:
         width: 87
         height: 61
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1034,6 +1046,90 @@ TextureImporter:
       bones: []
       spriteID: 8ee0139e7ce37f470800000000000000
       internalID: 8428274255978893032
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Selected Player_icon
+      rect:
+        serializedVersion: 2
+        x: 290
+        y: 1739
+        width: 139
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3144db5f40316f250800000000000000
+      internalID: 5977986467404530707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Enemy Target Icon
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 1739
+        width: 140
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac36b3050ff31e4b0800000000000000
+      internalID: -5412974975751855158
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Actionpoint_Backround
+      rect:
+        serializedVersion: 2
+        x: 673
+        y: 1879
+        width: 36
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 277a0e13ab5315fb0800000000000000
+      internalID: -4660885065534757006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Crystal
+      rect:
+        serializedVersion: 2
+        x: 781
+        y: 0
+        width: 32
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 97ad77381e4904b70800000000000000
+      internalID: 8881262161468840569
       vertices: []
       indices: 
       edges: []
