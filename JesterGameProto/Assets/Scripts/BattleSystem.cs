@@ -9,7 +9,7 @@ public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
     [SerializeField] TMP_Text instructionsText, resultText;
-    [SerializeField] GameObject playerOne, playerTwo, enemyOne, resultPanel;
+    [SerializeField] GameObject playerOne, playerTwo, enemyOne, resultPanel, KippoAvatar, OgamiAvatar;
 
     Unit playerOneUnit;
     Unit playerTwoUnit;
@@ -48,6 +48,16 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.LOST;
             MatchLost();
         }
+        if (!GameObject.FindGameObjectWithTag("Player"))
+        {
+            KippoAvatar.SetActive(true);
+        }
+        else { KippoAvatar.SetActive(false); }
+        if (!GameObject.FindGameObjectWithTag("Player2"))
+        {
+            OgamiAvatar.SetActive(true);
+        }
+        else { OgamiAvatar.SetActive(false); }
     }
 
     void SetupBattle()

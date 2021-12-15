@@ -19,5 +19,13 @@ public class EnemyBullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-    
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if(collider.gameObject.tag == "Shield")
+        {
+            Debug.Log("EI SAISI OSUA");
+            Destroy(this.gameObject);
+        }
+    }
+
 }
