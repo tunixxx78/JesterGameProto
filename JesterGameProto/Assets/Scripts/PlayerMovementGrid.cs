@@ -5,7 +5,7 @@ using TMPro;
 
 public class PlayerMovementGrid : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f;
+    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f;
     [SerializeField] GameObject pLRPanel;
     public Transform movepoint;
     public LayerMask stopsMovement;
@@ -15,7 +15,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
     PlayerPointManager playerPointManager;
 
-    [SerializeField] TMP_Text playerPointsText, playerName;
+    [SerializeField] TMP_Text playerPointsText, playerName, playerHealtText, playerNameText;
 
     Unit playerUnit;
 
@@ -32,7 +32,10 @@ public class PlayerMovementGrid : MonoBehaviour
         wantedHP = playerUnit.maxHP;
         playerHp = wantedHP;
 
+        playerHealtText.text = playerHp.ToString();
+
         playerName.text = playerUnit.unitName;
+        playerNameText.text = playerUnit.unitName;
 
         battleSystem = FindObjectOfType<BattleSystem>();
     }
@@ -46,8 +49,9 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         PlayerActions();
         playerPointsText.text = PlayerPoints.ToString();
+        playerHealtText.text = playerHp.ToString();
 
-        if(playerHp <= 0)
+        if (playerHp <= 0)
         {
             battleSystem.CountingPlayers();
             Destroy(this.gameObject);
@@ -85,7 +89,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, stopsMovement))
                     {
-                        movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f);
+                        movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
                         PlayerPoints--;
                         
 
