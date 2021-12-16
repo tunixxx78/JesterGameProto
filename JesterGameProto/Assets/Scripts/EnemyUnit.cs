@@ -5,5 +5,5 @@ using UnityEngine;
 public class EnemyUnit : MonoBehaviour
 {
     public string enemyName;
-    public int enemyHP;
+    public int enemyHP, damage;
 }
