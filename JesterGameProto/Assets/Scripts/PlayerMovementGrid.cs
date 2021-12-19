@@ -8,14 +8,14 @@ public class PlayerMovementGrid : MonoBehaviour
     [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f;
     [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX;
     public Transform movepoint;
-    public LayerMask stopsMovement, enemy;
+    public LayerMask stopsMovement, enemyMask;
     bool isActive = false;
     [SerializeField] int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
-    [SerializeField] GameObject player, player2;
+    [SerializeField] GameObject player, player2, enemyOne;
 
     PlayerPointManager playerPointManager;
 
-    [SerializeField] TMP_Text playerPointsText, playerName, playerHealtText, playerNameText;
+    [SerializeField] TMP_Text playerPointsText, playerName, playerHealtText, playerNameText, teamPointsText;
 
     Unit playerUnit;
 
@@ -26,12 +26,16 @@ public class PlayerMovementGrid : MonoBehaviour
 
     [SerializeField] HealthBar healthBar;
 
+    EnemyProto enemyProto;
+
     private void Awake()
     {
         playerUnit = player.GetComponent<Unit>();
-        playerStartPoints = playerUnit.playerActionPoints;
+        //playerStartPoints = playerUnit.playerActionPoints;
         playerPointsText.text = PlayerPoints.ToString();
-
+        battleSystem = FindObjectOfType<BattleSystem>();
+        teamPointsText.text = battleSystem.TeamActionPoints.ToString();
+        playerStartPoints = battleSystem.TeamActionPoints;
         wantedHP = playerUnit.maxHP;
         playerHp = wantedHP;
 
@@ -40,8 +44,8 @@ public class PlayerMovementGrid : MonoBehaviour
         playerName.text = playerUnit.unitName;
         //playerNameText.text = playerUnit.unitName;
 
-        battleSystem = FindObjectOfType<BattleSystem>();
         
+
     }
 
     private void Start()
@@ -56,6 +60,7 @@ public class PlayerMovementGrid : MonoBehaviour
         PlayerActions();
         playerPointsText.text = PlayerPoints.ToString();
         playerHealtText.text = playerHp.ToString();
+        
 
         if (playerHp <= 0)
         {
@@ -68,17 +73,34 @@ public class PlayerMovementGrid : MonoBehaviour
             PlayerPoints = 0;
             selectedPlayerIcon.SetActive(false);
         }
+        if(isActive == true)
+        {
+            EnemyProto notSellectedEnemy = enemyOne.GetComponent<EnemyProto>();
+            notSellectedEnemy.inTargetIcon.SetActive(false);
+
+            RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
+            EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
+
+            if (enemy != null)
+            {
+                enemy.inTargetIcon.SetActive(true);
+            }
+            
+        }
         
     }
     private void OnMouseDown()
     {
+        IsActiveToFalse();
         ResetPlayerPoints();
         pLRPanel.SetActive(true);
         selectedPlayerIcon.SetActive(true);
         
         isActive = true;
-        
 
+        
+        
+        
     }
     public void IsActiveToFalse()
     {
@@ -132,7 +154,7 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         if(isActive == true && PlayerPoints >= pointsForAttack && Input.GetKeyDown(KeyCode.Space))
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemy);
+            RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
             if (hitInfo)
             {
                 Debug.Log(hitInfo.transform.name);
@@ -163,6 +185,31 @@ public class PlayerMovementGrid : MonoBehaviour
             playerHp--;
             healthBar.SetHealth(playerHp);
         }
+    }
+    public void PlayerOneAttack()
+    {
+        if(isActive == true && PlayerPoints >= pointsForAttack)
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
+            EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
+            enemy.inTargetIcon.SetActive(true);
+
+            if (hitInfo)
+            {
+                Debug.Log(hitInfo.transform.name);
+                
+                if (enemy != null)
+                {
+                    
+                    enemy.TakeDamage(playerUnit.damage);
+                }
+            }
+            GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
+            Destroy(shootingParticles, 1f);
+
+            PlayerPoints -= pointsForAttack;
+        }
+        
     }
 
 

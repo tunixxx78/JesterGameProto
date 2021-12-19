@@ -7,6 +7,7 @@ public class EnemyProto : MonoBehaviour
 {
     [SerializeField] int enemyHealth, enemyStartHealt;
     [SerializeField] GameObject enemy, bulletPrefab, enemyAttackFX;
+    public GameObject inTargetIcon;
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform[] moveDirections;
     [SerializeField] float enemySpeed;
@@ -72,6 +73,7 @@ public class EnemyProto : MonoBehaviour
         Debug.Log("VIHOLLINEN HY?KK??");
         StartCoroutine(EnemyAttack());
     }
+
 
     IEnumerator EnemyAttack()
     {

@@ -11,6 +11,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] TMP_Text instructionsText, resultText;
     [SerializeField] GameObject playerOne, playerTwo, enemyOne, resultPanel, KippoAvatar, OgamiAvatar;
 
+    public int TeamActionPoints = 10;
+
     Unit playerOneUnit;
     Unit playerTwoUnit;
     EnemyUnit enemyOneUnit;
