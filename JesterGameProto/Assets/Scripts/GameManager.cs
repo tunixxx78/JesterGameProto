@@ -9,9 +9,11 @@ public class GameManager : MonoBehaviour
     PlayerMovementGrid playerMovementGrid;
 
     BattleState state;
+    BattleSystem battleSystem;
 
     private void Awake()
     {
+        battleSystem = FindObjectOfType<BattleSystem>();
         playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
     }
 
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
     public void FromPTwoToPOne()
     {
         FindObjectOfType<BattleSystem>().PlayerOneTurn();
+        
     }
 
     public void PlayerAttack()
