@@ -28,6 +28,12 @@ public class PlayerMovementGrid : MonoBehaviour
 
     EnemyProto enemyProto;
 
+    // These are for mobile swipe control system
+
+    Vector2 startTouchPosition, currentPosition, endTouchPosition;
+    bool stopTouch = false;
+    public float swipeRange, tapRange;
+
     private void Awake()
     {
         playerUnit = player.GetComponent<Unit>();
@@ -59,7 +65,12 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void Update()
     {
-        PlayerActions();
+        //PlayerActions();
+
+        PlayerMoveDown();
+
+        Swipe();  // related to swipe controls
+
         //playerPointsText.text = PlayerPoints.ToString();
         playerHealtText.text = playerHp.ToString();
 
@@ -90,7 +101,68 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         
     }
-    private void OnMouseDown()
+
+    public void Swipe()
+    {
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            startTouchPosition = Input.GetTouch(0).position;
+        }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)
+        {
+            currentPosition = Input.GetTouch(0).position;
+            Vector2 distance = currentPosition - startTouchPosition;
+
+            if(!stopTouch)
+            {
+                if(distance.x < -swipeRange)
+                {
+                    PlayerMoveLeft();
+                    Debug.Log("Left");
+                    stopTouch = true;
+                }
+                else if (distance.x > swipeRange)
+                {
+                    PlayerMoveRight();
+                    Debug.Log("Right");
+                    stopTouch = true;
+                }
+                else if (distance.y > swipeRange)
+                {
+                    PlayerMoveUp();
+                    Debug.Log("Up");
+                    stopTouch = true;
+                }
+                else if (distance.y < -swipeRange)
+                {
+                    PlayerMoveDown();
+                    Debug.Log("Down");
+                    stopTouch = true;
+                }
+            }
+
+        }
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+        {
+            stopTouch = false;
+
+            endTouchPosition = Input.GetTouch(0).position;
+
+            Vector2 distance = endTouchPosition - startTouchPosition;
+            if(Mathf.Abs(distance.x) < tapRange && Mathf.Abs(distance.y) < tapRange)
+            {
+                Debug.Log("TAPPED!");
+                IsActiveToFalse();
+                ResetPlayerPoints();
+                pLRPanel.SetActive(true);
+                selectedPlayerIcon.SetActive(true);
+
+                isActive = true;
+            }
+        }
+    }
+
+    /*private void OnMouseDown()
     {
         IsActiveToFalse();
         ResetPlayerPoints();
@@ -102,7 +174,7 @@ public class PlayerMovementGrid : MonoBehaviour
         
         
         
-    }
+    }*/
     public void IsActiveToFalse()
     {
         if (!GameObject.FindGameObjectWithTag("Player"))
@@ -135,12 +207,97 @@ public class PlayerMovementGrid : MonoBehaviour
         
     }
 
-    private void PlayerActions()
+    private void PlayerMoveLeft()
+    {
+        
+        transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
+
+        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        {
+            
+            if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
+            {
+                
+                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(-1f, 0f, 0f), .2f, stopsMovement))
+                {
+                    Debug.Log("T????L???? OLLAAAAAN");
+                    movepoint.position += new Vector3(-1f * horizontzlGridMultiplier, 0f, 0f);
+                    battleSystem.TeamActionPoints--;
+                    isActive = true;
+                }
+            }
+        }
+    }
+
+    private void PlayerMoveRight()
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
-        
+
         if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        {
+
+            if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
+
+                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(1f, 0f, 0f), .2f, stopsMovement))
+                {
+                    Debug.Log("T????L???? OLLAAAAAN");
+                    movepoint.position += new Vector3(1f * horizontzlGridMultiplier, 0f, 0f);
+                    battleSystem.TeamActionPoints--;
+                    isActive = true;
+                }
+            }
+        }
+    }
+
+    private void PlayerMoveUp()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
+
+        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        {
+
+            if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
+            {
+
+                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, 1f, 0f), .2f, stopsMovement))
+                {
+                    Debug.Log("T????L???? OLLAAAAAN");
+                    movepoint.position += new Vector3(0f, 1f * verticalGridSizeMultiplier, 0f);
+                    battleSystem.TeamActionPoints--;
+                    isActive = true;
+                }
+            }
+        }
+    }
+
+    private void PlayerMoveDown()
+    {
+        transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
+
+        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        {
+
+            if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
+            {
+
+                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, -1f, 0f), .2f, stopsMovement))
+                {
+                    Debug.Log("T????L???? OLLAAAAAN");
+                    movepoint.position += new Vector3(0f, -1f * verticalGridSizeMultiplier, 0f);
+                    battleSystem.TeamActionPoints--;
+                    isActive = true;
+                }
+            }
+        }
+    }
+
+    private void PlayerActions()
+    {   
+        transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
+
+        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        {
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
                 if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
@@ -149,7 +306,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     {
                         movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
                         battleSystem.TeamActionPoints--;
-                        
+
 
                         isActive = true;
                     }
@@ -161,7 +318,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     {
                         movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
                         battleSystem.TeamActionPoints--;
-                        
+
 
                         isActive = true;
                     }
@@ -169,7 +326,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 }
             }
         }
-        if(isActive == true && battleSystem.TeamActionPoints >= pointsForAttack && Input.GetKeyDown(KeyCode.Space))
+        if (isActive == true && battleSystem.TeamActionPoints >= pointsForAttack && Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
             if (hitInfo)
