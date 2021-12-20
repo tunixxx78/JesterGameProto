@@ -31,7 +31,7 @@ TextureImporter:
     second: Healthbar_Enemy_Backround
   - first:
       213: -8009842742701334697
-    second: Healthbar_Fill
+    second: Healthbar_enemy_Fill
   - first:
       213: 3661307175701754522
     second: Pinetree
@@ -161,7 +161,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 2
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -172,7 +172,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 200
@@ -404,12 +404,12 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 592
-        y: 1857
+        y: 1860
         width: 75
         height: 25
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 8, y: 1, z: 7, w: 1}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -421,12 +421,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Healthbar_Fill
+      name: Healthbar_enemy_Fill
       rect:
         serializedVersion: 2
-        x: 596
-        y: 1839
-        width: 67
+        x: 595
+        y: 1842
+        width: 69
         height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -886,9 +886,9 @@ TextureImporter:
       name: Healthbar_Friendly_fill
       rect:
         serializedVersion: 2
-        x: 596
-        y: 1885
-        width: 67
+        x: 595
+        y: 1886
+        width: 69
         height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -908,7 +908,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 592
-        y: 1903
+        y: 1904
         width: 75
         height: 25
       alignment: 0
@@ -1122,7 +1122,7 @@ TextureImporter:
         width: 32
         height: 76
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
