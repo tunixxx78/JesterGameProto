@@ -28,6 +28,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
     EnemyProto enemyProto;
 
+    [SerializeField] Animator playerAnimator;
+
     // These are for mobile swipe control system
 
     Vector2 startTouchPosition, currentPosition, endTouchPosition;
@@ -65,9 +67,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void Update()
     {
-        //PlayerActions();
-
-        PlayerMoveDown();
+        PlayerActions();
 
         Swipe();  // related to swipe controls
 
@@ -149,7 +149,10 @@ public class PlayerMovementGrid : MonoBehaviour
             endTouchPosition = Input.GetTouch(0).position;
 
             Vector2 distance = endTouchPosition - startTouchPosition;
-            if(Mathf.Abs(distance.x) < tapRange && Mathf.Abs(distance.y) < tapRange)
+
+            
+            
+            /*if(Mathf.Abs(distance.x) < tapRange && Mathf.Abs(distance.y) < tapRange)
             {
                 Debug.Log("TAPPED!");
                 IsActiveToFalse();
@@ -158,13 +161,14 @@ public class PlayerMovementGrid : MonoBehaviour
                 selectedPlayerIcon.SetActive(true);
 
                 isActive = true;
-            }
+            }*/
         }
     }
 
-    /*private void OnMouseDown()
+    private void OnMouseDown()
     {
         IsActiveToFalse();
+        //StartCoroutine(SellectPlayer());
         ResetPlayerPoints();
         pLRPanel.SetActive(true);
         selectedPlayerIcon.SetActive(true);
@@ -174,20 +178,26 @@ public class PlayerMovementGrid : MonoBehaviour
         
         
         
-    }*/
+    }
     public void IsActiveToFalse()
     {
+        
+
         if (!GameObject.FindGameObjectWithTag("Player"))
         {
             var p2 = player2.GetComponent<PlayerMovementGrid>();
             p2.selectedPlayerIcon.SetActive(false);
+            p2.pLRPanel.SetActive(false);
             p2.isActive = false;
+            
         }
         if (!GameObject.FindGameObjectWithTag("Player2"))
         {
             var p1 = player.GetComponent<PlayerMovementGrid>();
             p1.selectedPlayerIcon.SetActive(false);
+            p1.pLRPanel.SetActive(false);
             p1.isActive = false;
+            
         }
         else
         {
@@ -195,9 +205,13 @@ public class PlayerMovementGrid : MonoBehaviour
             var p2_2 = player2.GetComponent<PlayerMovementGrid>();
             p1_1.selectedPlayerIcon.SetActive(false);
             p2_2.selectedPlayerIcon.SetActive(false);
+            p1_1.pLRPanel.SetActive(false);
+            p2_2.pLRPanel.SetActive(false);
 
             p1_1.isActive = false;
             p2_2.isActive = false;
+
+            
         }
         
     }
@@ -222,11 +236,14 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     Debug.Log("T????L???? OLLAAAAAN");
                     movepoint.position += new Vector3(-1f * horizontzlGridMultiplier, 0f, 0f);
+                    playerAnimator.SetBool("isWalking", true);
                     battleSystem.TeamActionPoints--;
                     isActive = true;
+                    StartCoroutine(KillWalkingAnimation());
                 }
             }
         }
+        //playerAnimator.SetBool("isWalking", false);
     }
 
     private void PlayerMoveRight()
@@ -360,6 +377,17 @@ public class PlayerMovementGrid : MonoBehaviour
             healthBar.SetHealth(playerHp);
         }
     }
+
+    public void PlayerStartAttack()
+    {
+        playerAnimator.SetBool("isShooting", true);
+    }
+
+    public void StopAttacking()
+    {
+        playerAnimator.SetBool("isShooting", false);
+    }
+
     public void PlayerOneAttack()
     {
 
@@ -384,9 +412,17 @@ public class PlayerMovementGrid : MonoBehaviour
             Destroy(shootingParticles, 1f);
 
             battleSystem.TeamActionPoints -= pointsForAttack;
+
+            
         }
         
         
+    }
+    IEnumerator KillWalkingAnimation()
+    {
+        yield return new WaitForSeconds(.5f);
+
+        playerAnimator.SetBool("isWalking", false);
     }
     
 

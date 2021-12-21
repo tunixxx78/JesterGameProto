@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class DefenceTile : MonoBehaviour
 {
-    [SerializeField] GameObject shield;
+    [SerializeField] GameObject shield, instructionsPanel;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if(collider.gameObject.tag == "Player" || collider.gameObject.tag == "Player2")
         {
+            instructionsPanel.SetActive(true);
             shield.SetActive(true);
+            
         }
     }
     private void OnTriggerExit2D(Collider2D collider)
@@ -19,5 +21,12 @@ public class DefenceTile : MonoBehaviour
         {
             shield.SetActive(false);
         }
+    }
+
+
+    public void ClosePanel()
+    {
+        instructionsPanel.SetActive(false);
+        
     }
 }

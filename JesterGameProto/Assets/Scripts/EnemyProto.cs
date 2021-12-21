@@ -93,8 +93,22 @@ public class EnemyProto : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
+
         var randomDirection = Random.Range(0, moveDirections.Length);
-        //transform.position = Vector3.MoveTowards(transform.position, moveDirections[randomDirection].position, 1f);
+
+        if(transform.position.x <= -1.05)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, moveDirections[0].position, 1f);
+        }
+        if (transform.position.x >= 1.05)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, moveDirections[1].position, 1f);
+        }
+        else
+        {
+            transform.position = Vector3.MoveTowards(transform.position, moveDirections[randomDirection].position, 1f);
+        }
+        
 
         yield return new WaitForSeconds(1f);
 
