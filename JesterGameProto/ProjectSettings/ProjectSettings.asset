@@ -238,8 +238,8 @@ PlayerSettings:
   AndroidTargetArchitectures: 1
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: /Volumes/Projects/AndroidTests/user.keystore
-  AndroidKeyaliasName: turo
+  AndroidKeystoreName: '{inproject}: user.keystore'
+  AndroidKeyaliasName: tatu
   AndroidBuildApkPerCpuArchitecture: 0
   AndroidTVCompatibility: 0
   AndroidIsGame: 1
