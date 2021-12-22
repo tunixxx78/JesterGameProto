@@ -8,20 +8,26 @@ public enum BattleState { START, PLAYERTURN, PLAYERTWOTURN, ENEMYTURN, WON, LOST
 public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
-    [SerializeField] TMP_Text instructionsText, resultText;
+    [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
     [SerializeField] GameObject playerOne, playerTwo, enemyOne, resultPanel, KippoAvatar, OgamiAvatar;
+
+    public int TeamActionPoints, teamWantedActionPoints;
 
     Unit playerOneUnit;
     Unit playerTwoUnit;
     EnemyUnit enemyOneUnit;
 
     EnemyProto enemyProto;
+    PlayerMovementGrid playerMovementGrid;
 
     [SerializeField] int enemyCount, playerCount;
 
     private void Awake()
     {
+        playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
+        TeamActionPoints = teamWantedActionPoints;
         enemyProto = FindObjectOfType<EnemyProto>();
+        teamActionPointsText.text = TeamActionPoints.ToString();
     }
 
     // Start is called before the first frame update
@@ -33,6 +39,8 @@ public class BattleSystem : MonoBehaviour
 
     private void Update()
     {
+        teamActionPointsText.text = TeamActionPoints.ToString();
+
         if (state == BattleState.ENEMYTURN)
         {
             //enemyProto.EnemyAction();
@@ -58,6 +66,14 @@ public class BattleSystem : MonoBehaviour
             OgamiAvatar.SetActive(true);
         }
         else { OgamiAvatar.SetActive(false); }
+
+        if(TeamActionPoints == 0)
+        {
+            state = BattleState.ENEMYTURN;
+            EnemyTurn();
+            TeamActionPoints = teamWantedActionPoints;
+            playerMovementGrid.IsActiveToFalse();
+        }
     }
 
     void SetupBattle()
