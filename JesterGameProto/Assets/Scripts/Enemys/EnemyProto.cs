@@ -75,6 +75,8 @@ public class EnemyProto : MonoBehaviour
     }
 
 
+    // Enemy "AI" functionality
+
     IEnumerator EnemyAttack()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(bulletSpawnPoint.position, -bulletSpawnPoint.up);

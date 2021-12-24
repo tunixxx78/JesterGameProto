@@ -102,6 +102,8 @@ public class PlayerMovementGrid : MonoBehaviour
         
     }
 
+    // player movement controls with swipe system
+
     public void Swipe()
     {
         if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
@@ -179,6 +181,8 @@ public class PlayerMovementGrid : MonoBehaviour
         
         
     }
+
+
     public void IsActiveToFalse()
     {
         
@@ -221,6 +225,7 @@ public class PlayerMovementGrid : MonoBehaviour
         
     }
 
+    // player movements functionality with swipe system
     private void PlayerMoveLeft()
     {
         
@@ -246,6 +251,7 @@ public class PlayerMovementGrid : MonoBehaviour
         //playerAnimator.SetBool("isWalking", false);
     }
 
+    // player movements functionality with swipe system
     private void PlayerMoveRight()
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
@@ -260,6 +266,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     Debug.Log("T????L???? OLLAAAAAN");
                     movepoint.position += new Vector3(1f * horizontzlGridMultiplier, 0f, 0f);
+                    playerAnimator.SetBool("isWalking", true);
                     battleSystem.TeamActionPoints--;
                     isActive = true;
                 }
@@ -267,6 +274,7 @@ public class PlayerMovementGrid : MonoBehaviour
         }
     }
 
+    // player movements functionality with swipe system
     private void PlayerMoveUp()
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
@@ -281,6 +289,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     Debug.Log("T????L???? OLLAAAAAN");
                     movepoint.position += new Vector3(0f, 1f * verticalGridSizeMultiplier, 0f);
+                    playerAnimator.SetBool("isWalking", true);
                     battleSystem.TeamActionPoints--;
                     isActive = true;
                 }
@@ -288,6 +297,7 @@ public class PlayerMovementGrid : MonoBehaviour
         }
     }
 
+    // player movements functionality with swipe system
     private void PlayerMoveDown()
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
@@ -302,12 +312,15 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     Debug.Log("T????L???? OLLAAAAAN");
                     movepoint.position += new Vector3(0f, -1f * verticalGridSizeMultiplier, 0f);
+                    playerAnimator.SetBool("isWalking", true);
                     battleSystem.TeamActionPoints--;
                     isActive = true;
                 }
             }
         }
     }
+
+    //Player movements with keyboard commands
 
     private void PlayerActions()
     {   
@@ -387,6 +400,8 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         playerAnimator.SetBool("isShooting", false);
     }
+
+    // Shooting / ability finctionalitys
 
     public void PlayerOneAttack()
     {
