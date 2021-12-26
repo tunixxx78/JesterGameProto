@@ -46,7 +46,7 @@ public class EnemyProto : MonoBehaviour
         {
             battleSystem.CountingEnemys();
 
-            Destroy(this.gameObject, .5f);
+            Destroy(this.gameObject);
             
         }
 

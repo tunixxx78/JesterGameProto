@@ -9,7 +9,7 @@ public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
     [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
-    [SerializeField] GameObject playerOne, playerTwo, enemyOne, resultPanel, KippoAvatar, OgamiAvatar;
+    [SerializeField] GameObject playerOne, playerTwo, enemyOne, enemyTwo, resultPanel, KippoAvatar, OgamiAvatar;
     public int attackOneDamage = 1;
 
     Unit playerOneUnit;
