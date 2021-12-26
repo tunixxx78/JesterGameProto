@@ -21,6 +21,8 @@ public class EnemyProto : MonoBehaviour
 
     [SerializeField] HealthBar enemyHealthBar;
 
+
+
     private void Awake()
     {
         enemyUnit = enemy.GetComponent<EnemyUnit>();
@@ -114,7 +116,7 @@ public class EnemyProto : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
 
-
+        
         gameManager.FromPTwoToPOne();
     }
 }

@@ -10,12 +10,12 @@ public class PlayerMovementGrid : MonoBehaviour
     public Transform movepoint;
     public LayerMask stopsMovement, enemyMask;
     bool isActive = false;
-    [SerializeField] int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
+    public int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
     [SerializeField] GameObject player, player2, enemyOne;
 
     PlayerPointManager playerPointManager;
 
-    [SerializeField] TMP_Text playerPointsText, playerName, playerHealtText, playerNameText;
+    [SerializeField] TMP_Text playerPointsText, playerName, playerHealtText, playerAttackCostText;
 
     Unit playerUnit;
 
@@ -39,7 +39,10 @@ public class PlayerMovementGrid : MonoBehaviour
     private void Awake()
     {
         playerUnit = player.GetComponent<Unit>();
-        //playerStartPoints = playerUnit.playerActionPoints;
+
+        playerStartPoints = playerUnit.playerActionPoints;
+        PlayerPoints = playerStartPoints;
+
         playerPointsText.text = PlayerPoints.ToString();
         battleSystem = FindObjectOfType<BattleSystem>();
         
@@ -51,7 +54,7 @@ public class PlayerMovementGrid : MonoBehaviour
         //playerHealtText.text = playerHp.ToString();
 
         playerName.text = playerUnit.unitName;
-        //playerNameText.text = playerUnit.unitName;
+        playerAttackCostText.text = pointsForAttack.ToString();
 
         
 
@@ -71,7 +74,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
         Swipe();  // related to swipe controls
 
-        //playerPointsText.text = PlayerPoints.ToString();
+        playerPointsText.text = PlayerPoints.ToString();
         playerHealtText.text = playerHp.ToString();
 
         if (playerHp <= 0)
@@ -99,6 +102,7 @@ public class PlayerMovementGrid : MonoBehaviour
             }
             
         }
+        
         
     }
 
@@ -220,9 +224,9 @@ public class PlayerMovementGrid : MonoBehaviour
         
     }
 
-    void ResetPlayerPoints()
+    public void ResetPlayerPoints()
     {
-        
+        PlayerPoints = playerStartPoints;
     }
 
     // player movements functionality with swipe system
@@ -231,7 +235,7 @@ public class PlayerMovementGrid : MonoBehaviour
         
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
 
-        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        if (isActive == true && PlayerPoints >= 1)
         {
             
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
@@ -242,8 +246,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     Debug.Log("T????L???? OLLAAAAAN");
                     movepoint.position += new Vector3(-1f * horizontzlGridMultiplier, 0f, 0f);
                     playerAnimator.SetBool("isWalking", true);
-                    battleSystem.TeamActionPoints--;
-                    isActive = true;
+                    PlayerPoints--;
                     StartCoroutine(KillWalkingAnimation());
                 }
             }
@@ -256,7 +259,7 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
 
-        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        if (isActive == true && PlayerPoints >= 1)
         {
 
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
@@ -267,7 +270,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     Debug.Log("T????L???? OLLAAAAAN");
                     movepoint.position += new Vector3(1f * horizontzlGridMultiplier, 0f, 0f);
                     playerAnimator.SetBool("isWalking", true);
-                    battleSystem.TeamActionPoints--;
+                    PlayerPoints--;
                     isActive = true;
                 }
             }
@@ -279,7 +282,7 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
 
-        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        if (isActive == true && PlayerPoints >= 1)
         {
 
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
@@ -290,7 +293,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     Debug.Log("T????L???? OLLAAAAAN");
                     movepoint.position += new Vector3(0f, 1f * verticalGridSizeMultiplier, 0f);
                     playerAnimator.SetBool("isWalking", true);
-                    battleSystem.TeamActionPoints--;
+                    PlayerPoints--;
                     isActive = true;
                 }
             }
@@ -302,7 +305,7 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
 
-        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        if (isActive == true && PlayerPoints >= 1)
         {
 
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
@@ -313,7 +316,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     Debug.Log("T????L???? OLLAAAAAN");
                     movepoint.position += new Vector3(0f, -1f * verticalGridSizeMultiplier, 0f);
                     playerAnimator.SetBool("isWalking", true);
-                    battleSystem.TeamActionPoints--;
+                    PlayerPoints--;
                     isActive = true;
                 }
             }
@@ -326,7 +329,7 @@ public class PlayerMovementGrid : MonoBehaviour
     {   
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
 
-        if (isActive == true && battleSystem.TeamActionPoints >= 1)
+        if (isActive == true && PlayerPoints >= 1)
         {
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
@@ -335,7 +338,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, stopsMovement))
                     {
                         movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
-                        battleSystem.TeamActionPoints--;
+                        PlayerPoints--;
 
 
                         isActive = true;
@@ -347,7 +350,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, stopsMovement))
                     {
                         movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
-                        battleSystem.TeamActionPoints--;
+                        PlayerPoints--;
 
 
                         isActive = true;
@@ -356,7 +359,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 }
             }
         }
-        if (isActive == true && battleSystem.TeamActionPoints >= pointsForAttack && Input.GetKeyDown(KeyCode.Space))
+        if (isActive == true && PlayerPoints >= pointsForAttack && Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
             if (hitInfo)
@@ -372,7 +375,7 @@ public class PlayerMovementGrid : MonoBehaviour
             GameObject shootingParticles =  Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
             Destroy(shootingParticles, 1f);
 
-            battleSystem.TeamActionPoints -= pointsForAttack;
+            PlayerPoints -= pointsForAttack;
         }
 
     }
@@ -406,7 +409,7 @@ public class PlayerMovementGrid : MonoBehaviour
     public void PlayerOneAttack()
     {
 
-        if (isActive == true && battleSystem.TeamActionPoints >= pointsForAttack)
+        if (isActive == true && PlayerPoints >= pointsForAttack)
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
             
@@ -426,7 +429,7 @@ public class PlayerMovementGrid : MonoBehaviour
             GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
             Destroy(shootingParticles, 1f);
 
-            battleSystem.TeamActionPoints -= pointsForAttack;
+            PlayerPoints -= pointsForAttack;
 
             
         }

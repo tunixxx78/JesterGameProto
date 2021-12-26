@@ -11,23 +11,27 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
     [SerializeField] GameObject playerOne, playerTwo, enemyOne, resultPanel, KippoAvatar, OgamiAvatar;
 
-    public int TeamActionPoints, teamWantedActionPoints;
 
     Unit playerOneUnit;
     Unit playerTwoUnit;
+
     EnemyUnit enemyOneUnit;
 
     EnemyProto enemyProto;
+
     PlayerMovementGrid playerMovementGrid;
+
+    PlayerMovementGrid playerOnemovement, playerTwoMovement;
 
     [SerializeField] int enemyCount, playerCount;
 
     private void Awake()
     {
         playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
-        TeamActionPoints = teamWantedActionPoints;
         enemyProto = FindObjectOfType<EnemyProto>();
-        teamActionPointsText.text = TeamActionPoints.ToString();
+
+        playerOnemovement = playerOne.GetComponent<PlayerMovementGrid>();
+        playerTwoMovement = playerTwo.GetComponent<PlayerMovementGrid>();
     }
 
     // Start is called before the first frame update
@@ -39,7 +43,6 @@ public class BattleSystem : MonoBehaviour
 
     private void Update()
     {
-        teamActionPointsText.text = TeamActionPoints.ToString();
 
         if (state == BattleState.ENEMYTURN)
         {
@@ -67,11 +70,10 @@ public class BattleSystem : MonoBehaviour
         }
         else { OgamiAvatar.SetActive(false); }
 
-        if(TeamActionPoints == 0)
+        if(playerOnemovement.PlayerPoints == 0 && playerTwoMovement.PlayerPoints == 0)
         {
             state = BattleState.ENEMYTURN;
             EnemyTurn();
-            TeamActionPoints = teamWantedActionPoints;
             playerMovementGrid.IsActiveToFalse();
         }
     }
@@ -112,6 +114,8 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.ENEMYTURN;
         instructionsText.text = enemyOneUnit.enemyName;
         enemyProto.EnemyAction();
+        playerOnemovement.ResetPlayerPoints();
+        playerTwoMovement.ResetPlayerPoints();
     }
 
     public void MatchWon()
