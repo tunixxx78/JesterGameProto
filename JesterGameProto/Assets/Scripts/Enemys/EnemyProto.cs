@@ -21,7 +21,7 @@ public class EnemyProto : MonoBehaviour
 
     [SerializeField] HealthBar enemyHealthBar;
 
-
+    //public Animator enemyAnimator;
 
     private void Awake()
     {
@@ -66,10 +66,20 @@ public class EnemyProto : MonoBehaviour
     {
         if (collision.collider.CompareTag("Bullet"))
         {
-            enemyHealth--;
+            //enemyHealth--;
+            TakeDamage(battleSystem.attackOneDamage);
+            Debug.Log("OSUMA TULI!");
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Bullet")
+        {
+            TakeDamage(battleSystem.attackOneDamage);
+            Debug.Log("OSUMA TULI!");
+        }
+    }
     public void EnemyAction()
     {
         Debug.Log("VIHOLLINEN HY?KK??");

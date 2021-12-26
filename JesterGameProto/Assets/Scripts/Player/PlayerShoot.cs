@@ -17,6 +17,12 @@ public class PlayerShoot : MonoBehaviour
         plr.PlayerOneAttack();
     }
 
+    public void AlternativeShooting()
+    {
+        var plr = player.GetComponent<PlayerMovementGrid>();
+        plr.PlayerTwoAttack();
+    }
+
     public void StopShooting()
     {
         var plr = player.GetComponent<PlayerMovementGrid>();

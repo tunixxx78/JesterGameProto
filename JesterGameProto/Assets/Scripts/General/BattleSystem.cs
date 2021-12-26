@@ -10,7 +10,7 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
     [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
     [SerializeField] GameObject playerOne, playerTwo, enemyOne, resultPanel, KippoAvatar, OgamiAvatar;
-
+    public int attackOneDamage = 1;
 
     Unit playerOneUnit;
     Unit playerTwoUnit;
@@ -23,7 +23,9 @@ public class BattleSystem : MonoBehaviour
 
     PlayerMovementGrid playerOnemovement, playerTwoMovement;
 
-    [SerializeField] int enemyCount, playerCount;
+    public int enemyCount, playerCount;
+
+    bool battleHasEnded = false;
 
     private void Awake()
     {
@@ -39,6 +41,7 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.START;
         SetupBattle();
+        
     }
 
     private void Update()
@@ -62,15 +65,17 @@ public class BattleSystem : MonoBehaviour
         if (!GameObject.FindGameObjectWithTag("Player"))
         {
             KippoAvatar.SetActive(true);
+            playerOnemovement.PlayerPoints = 0;
         }
         else { KippoAvatar.SetActive(false); }
         if (!GameObject.FindGameObjectWithTag("Player2"))
         {
             OgamiAvatar.SetActive(true);
+            playerTwoMovement.PlayerPoints = 0;
         }
         else { OgamiAvatar.SetActive(false); }
 
-        if(playerOnemovement.PlayerPoints == 0 && playerTwoMovement.PlayerPoints == 0)
+        if(playerOnemovement.PlayerPoints == 0 && playerTwoMovement.PlayerPoints == 0 && battleHasEnded == false)
         {
             state = BattleState.ENEMYTURN;
             EnemyTurn();
@@ -92,9 +97,9 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.PLAYERTURN;
         instructionsText.text = playerOneUnit.unitName;
-        if (!GameObject.FindGameObjectWithTag("Player"))
+        if (!GameObject.FindGameObjectWithTag("Player") && !GameObject.FindGameObjectWithTag("Player2"))
         {
-            PlayerTwoTurn();
+            MatchLost();
         }
         
     }
@@ -105,12 +110,13 @@ public class BattleSystem : MonoBehaviour
         instructionsText.text = playerTwoUnit.unitName;
         if (!GameObject.FindGameObjectWithTag("Player2"))
         {
-            EnemyTurn();
+           EnemyTurn();
         }
     }
 
     public void EnemyTurn()
     {
+
         state = BattleState.ENEMYTURN;
         instructionsText.text = enemyOneUnit.enemyName;
         enemyProto.EnemyAction();
@@ -122,12 +128,15 @@ public class BattleSystem : MonoBehaviour
     {
         resultPanel.SetActive(true);
         resultText.text = "You Won This Match!";
+        battleHasEnded = true;
+        
     }
 
     public void MatchLost()
     {
         resultPanel.SetActive(true);
         resultText.text = "You Lost This Match!";
+        battleHasEnded = true;
     }
 
     public void CountingEnemys()

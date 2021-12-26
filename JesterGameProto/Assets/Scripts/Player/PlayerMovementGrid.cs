@@ -38,7 +38,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void Awake()
     {
-        playerUnit = player.GetComponent<Unit>();
+        playerUnit = GetComponent<Unit>();
 
         playerStartPoints = playerUnit.playerActionPoints;
         PlayerPoints = playerStartPoints;
@@ -88,7 +88,7 @@ public class PlayerMovementGrid : MonoBehaviour
             //teamPoints = 0;
             selectedPlayerIcon.SetActive(false);
         }
-        if(isActive == true)
+        if(isActive == true && battleSystem.enemyCount != 0)
         {
             EnemyProto notSellectedEnemy = enemyOne.GetComponent<EnemyProto>();
             notSellectedEnemy.inTargetIcon.SetActive(false);
@@ -173,9 +173,11 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void OnMouseDown()
     {
+       
+
         IsActiveToFalse();
         //StartCoroutine(SellectPlayer());
-        ResetPlayerPoints();
+        //ResetPlayerPoints();
         pLRPanel.SetActive(true);
         selectedPlayerIcon.SetActive(true);
         
@@ -193,18 +195,20 @@ public class PlayerMovementGrid : MonoBehaviour
 
         if (!GameObject.FindGameObjectWithTag("Player"))
         {
+            player = null;
             var p2 = player2.GetComponent<PlayerMovementGrid>();
-            p2.selectedPlayerIcon.SetActive(false);
-            p2.pLRPanel.SetActive(false);
-            p2.isActive = false;
+            p2.selectedPlayerIcon.SetActive(true);
+            p2.pLRPanel.SetActive(true);
+            p2.isActive = true;
             
         }
         if (!GameObject.FindGameObjectWithTag("Player2"))
         {
+            player2 = null;
             var p1 = player.GetComponent<PlayerMovementGrid>();
-            p1.selectedPlayerIcon.SetActive(false);
-            p1.pLRPanel.SetActive(false);
-            p1.isActive = false;
+            p1.selectedPlayerIcon.SetActive(true);
+            p1.pLRPanel.SetActive(true);
+            p1.isActive = true;
             
         }
         else
@@ -272,6 +276,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
                     isActive = true;
+                    StartCoroutine(KillWalkingAnimation());
                 }
             }
         }
@@ -295,6 +300,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
                     isActive = true;
+                    StartCoroutine(KillWalkingAnimation());
                 }
             }
         }
@@ -318,6 +324,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
                     isActive = true;
+                    StartCoroutine(KillWalkingAnimation());
                 }
             }
         }
@@ -396,7 +403,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void PlayerStartAttack()
     {
-        playerAnimator.SetBool("isShooting", true);
+        playerAnimator.SetTrigger("isShooting");
+        //playerAnimator.SetBool("isShooting", true);
     }
 
     public void StopAttacking()
@@ -404,7 +412,7 @@ public class PlayerMovementGrid : MonoBehaviour
         playerAnimator.SetBool("isShooting", false);
     }
 
-    // Shooting / ability finctionalitys
+    // Shooting / ability functionalitys
 
     public void PlayerOneAttack()
     {
@@ -423,11 +431,12 @@ public class PlayerMovementGrid : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.inTargetIcon.SetActive(true);
-                    enemy.TakeDamage(playerUnit.damage);
+                    //enemy.TakeDamage(playerUnit.damage);
                 }
             }
-            GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
-            Destroy(shootingParticles, 1f);
+            //GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
+            //Destroy(shootingParticles, 1f);
+            Instantiate(ammoPrefab, ammoSpawnPoint.position, Quaternion.identity);
 
             PlayerPoints -= pointsForAttack;
 
@@ -435,6 +444,35 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         
         
+    }
+
+    public void PlayerTwoAttack()
+    {
+        if (isActive == true && PlayerPoints >= pointsForAttack)
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
+
+
+
+            if (hitInfo)
+            {
+                EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
+                Debug.Log(hitInfo.transform.name);
+
+                if (enemy != null)
+                {
+                    enemy.inTargetIcon.SetActive(true);
+                    enemy.TakeDamage(playerUnit.damage);
+                }
+            }
+            GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
+            Destroy(shootingParticles, 1f);
+            
+
+            PlayerPoints -= pointsForAttack;
+
+
+        }
     }
     IEnumerator KillWalkingAnimation()
     {
