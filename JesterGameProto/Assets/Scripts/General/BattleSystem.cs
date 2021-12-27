@@ -9,13 +9,14 @@ public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
     [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
-    [SerializeField] GameObject playerOne, playerTwo, enemyOne, enemyTwo, resultPanel, KippoAvatar, OgamiAvatar;
+    [SerializeField] GameObject playerOne, playerTwo, resultPanel, KippoAvatar, OgamiAvatar;
+    [SerializeField] GameObject[] enemys;
     public int attackOneDamage = 1;
 
     Unit playerOneUnit;
     Unit playerTwoUnit;
 
-    EnemyUnit enemyOneUnit;
+    EnemyUnit enemyOneUnit, enemyTwoUnit;
 
     EnemyProto enemyProto;
 
@@ -34,6 +35,8 @@ public class BattleSystem : MonoBehaviour
 
         playerOnemovement = playerOne.GetComponent<PlayerMovementGrid>();
         playerTwoMovement = playerTwo.GetComponent<PlayerMovementGrid>();
+
+        enemyCount = enemys.Length;
     }
 
     // Start is called before the first frame update
@@ -88,7 +91,9 @@ public class BattleSystem : MonoBehaviour
         playerOneUnit = playerOne.GetComponent<Unit>();
         playerTwoUnit = playerTwo.GetComponent<Unit>();
 
-        enemyOneUnit = enemyOne.GetComponent<EnemyUnit>();
+        enemyOneUnit = enemys[0].GetComponent<EnemyUnit>();
+        //enemyTwoUnit = enemys[1].GetComponent<EnemyUnit>();
+
         state = BattleState.PLAYERTURN;
         PlayerOneTurn();
     }
