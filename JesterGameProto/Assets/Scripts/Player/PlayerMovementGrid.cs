@@ -88,7 +88,7 @@ public class PlayerMovementGrid : MonoBehaviour
             //teamPoints = 0;
             selectedPlayerIcon.SetActive(false);
         }
-        if(isActive == true && battleSystem.enemyCount != 0)
+        if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true && player2.GetComponent<PlayerMovementGrid>().isActive == false)
         {
             EnemyProto notSellectedEnemy = enemyOne.GetComponent<EnemyProto>();
             notSellectedEnemy.inTargetIcon.SetActive(false);
@@ -101,6 +101,14 @@ public class PlayerMovementGrid : MonoBehaviour
                 enemy.inTargetIcon.SetActive(true);
             }
             
+        }
+        if(player2.GetComponent<PlayerMovementGrid>().isActive == true)
+        {
+            player2.GetComponent<AOEAttack>().ShowTargetIcon();
+        }
+        if(player2.GetComponent<PlayerMovementGrid>().isActive == false)
+        {
+            player2.GetComponent<AOEAttack>().HideTargetIcon();
         }
         
         
@@ -287,7 +295,7 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
 
-        if (isActive == true && PlayerPoints >= 1)
+        if (isActive == true && PlayerPoints >= 1 && transform.position.y <= -1)
         {
 
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
@@ -436,8 +444,8 @@ public class PlayerMovementGrid : MonoBehaviour
             }
             //GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
             //Destroy(shootingParticles, 1f);
-            Instantiate(ammoPrefab, ammoSpawnPoint.position, Quaternion.identity);
-
+            //Instantiate(ammoPrefab, ammoSpawnPoint.position, Quaternion.identity);
+            player.GetComponent<SingleTargetAttack>().PlayerSingleTargetAttack();
             PlayerPoints -= pointsForAttack;
 
             
@@ -450,7 +458,7 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         if (isActive == true && PlayerPoints >= pointsForAttack)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
+            /*RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, 10f, enemyMask);
 
 
 
@@ -465,9 +473,11 @@ public class PlayerMovementGrid : MonoBehaviour
                     enemy.TakeDamage(playerUnit.damage);
                 }
             }
+            
             GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
             Destroy(shootingParticles, 1f);
-            
+            */
+            player2.GetComponent<AOEAttack>().PlayerAOEAttack();
 
             PlayerPoints -= pointsForAttack;
 

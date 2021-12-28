@@ -9,8 +9,8 @@ public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
     [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
-    [SerializeField] GameObject playerOne, playerTwo, resultPanel, KippoAvatar, OgamiAvatar;
-    [SerializeField] GameObject[] enemys;
+    [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, KippoAvatar, OgamiAvatar;
+    [SerializeField] GameObject[] enemys, players;
     public int attackOneDamage = 1;
 
     Unit playerOneUnit;
@@ -18,7 +18,7 @@ public class BattleSystem : MonoBehaviour
 
     EnemyUnit enemyOneUnit, enemyTwoUnit;
 
-    EnemyProto enemyProto;
+    EnemyProto enemyProto, enemyTwoProto;
 
     PlayerMovementGrid playerMovementGrid;
 
@@ -31,12 +31,16 @@ public class BattleSystem : MonoBehaviour
     private void Awake()
     {
         playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
-        enemyProto = FindObjectOfType<EnemyProto>();
+        
+        //enemyProto = FindObjectOfType<EnemyProto>();
+        
+        
 
-        playerOnemovement = playerOne.GetComponent<PlayerMovementGrid>();
-        playerTwoMovement = playerTwo.GetComponent<PlayerMovementGrid>();
+        playerOnemovement = players[0].GetComponent<PlayerMovementGrid>();
+        playerTwoMovement = players[1].GetComponent<PlayerMovementGrid>();
 
         enemyCount = enemys.Length;
+        playerCount = players.Length;
     }
 
     // Start is called before the first frame update
@@ -88,11 +92,14 @@ public class BattleSystem : MonoBehaviour
 
     void SetupBattle()
     {
-        playerOneUnit = playerOne.GetComponent<Unit>();
-        playerTwoUnit = playerTwo.GetComponent<Unit>();
+        playerOneUnit = players[0].GetComponent<Unit>();
+        playerTwoUnit = players[1].GetComponent<Unit>();
 
         enemyOneUnit = enemys[0].GetComponent<EnemyUnit>();
         //enemyTwoUnit = enemys[1].GetComponent<EnemyUnit>();
+
+        enemyProto = enemys[0].GetComponent<EnemyProto>();
+        //enemyTwoProto = enemys[1].GetComponent<EnemyProto>();
 
         state = BattleState.PLAYERTURN;
         PlayerOneTurn();
@@ -124,7 +131,12 @@ public class BattleSystem : MonoBehaviour
 
         state = BattleState.ENEMYTURN;
         instructionsText.text = enemyOneUnit.enemyName;
+        
+            
         enemyProto.EnemyAction();
+        //enemyTwoProto.EnemyAction();
+        
+        
         playerOnemovement.ResetPlayerPoints();
         playerTwoMovement.ResetPlayerPoints();
     }

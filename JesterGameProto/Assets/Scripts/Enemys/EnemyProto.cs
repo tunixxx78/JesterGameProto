@@ -110,11 +110,11 @@ public class EnemyProto : MonoBehaviour
 
         var randomDirection = Random.Range(0, moveDirections.Length);
 
-        if(transform.position.x <= -1.05)
+        if(transform.position.x <= -.9)
         {
             transform.position = Vector3.MoveTowards(transform.position, moveDirections[0].position, 1f);
         }
-        if (transform.position.x >= 1.05)
+        if (transform.position.x >= .9)
         {
             transform.position = Vector3.MoveTowards(transform.position, moveDirections[1].position, 1f);
         }
