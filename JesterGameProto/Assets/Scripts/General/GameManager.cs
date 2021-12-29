@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     BattleState state;
     BattleSystem battleSystem;
 
+
     private void Awake()
     {
         battleSystem = FindObjectOfType<BattleSystem>();
@@ -44,5 +45,10 @@ public class GameManager : MonoBehaviour
     public void TryAgain()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void GoToScene(string toScene)
+    {
+        SceneManager.LoadScene(toScene);
     }
 }

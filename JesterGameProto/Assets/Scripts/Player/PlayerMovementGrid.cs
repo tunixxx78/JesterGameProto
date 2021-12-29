@@ -238,7 +238,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void ResetPlayerPoints()
     {
-        PlayerPoints = playerStartPoints;
+        GetComponent<Unit>().newActionPoints += 1;
+        PlayerPoints = GetComponent<Unit>().newActionPoints;
     }
 
     // player movements functionality with swipe system

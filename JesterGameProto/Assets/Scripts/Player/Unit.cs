@@ -5,7 +5,7 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     public string unitName;
-    public int unitLevel, damage, maxHP, currentHp, playerActionPoints;
+    public int unitLevel, damage, maxHP, currentHp, playerActionPoints, newActionPoints;
 
     
 }
