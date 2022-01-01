@@ -6,21 +6,40 @@ public class testprojectile : MonoBehaviour
 {
     Vector3 startPos;
     Vector3 endPos;
+    SingleTargetAttack singleTargetAttack;
 
     public GameObject onHitParticle;
-    
+    [SerializeField] float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
 
+    public float delta = 0.15f; //BulletSpeed
 
-    public float delta = 0.15f;
+    private void Awake()
+    {
+        singleTargetAttack = FindObjectOfType<SingleTargetAttack>();
+    }
+
     private void Start()
     {
         startPos = this.transform.position;
         endPos = new Vector3(startPos.x, startPos.y + 20, 0);
+
+        // setting up bullet SpeedUp.
+        minSpeed = currentSpeed;
+        time = 0;
+
+        // values from SingleTargetAttack script.
+        minSpeed = singleTargetAttack.minSpeed;
+        maxSpeed = singleTargetAttack.maxSpeed;
+        accelerationTime = singleTargetAttack.accelerationTime;
     }
     void Update()
     {
-        Vector3 movement = Vector3.MoveTowards(this.transform.position, endPos, delta);
-        this.transform.position = movement;
+        currentSpeed = Mathf.SmoothStep(minSpeed, maxSpeed, time / accelerationTime);
+        transform.position += transform.up * currentSpeed * Time.deltaTime;
+        time += Time.deltaTime;
+
+        //Vector3 movement = Vector3.MoveTowards(this.transform.position, endPos, delta);
+        //this.transform.position = movement;
         
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -34,6 +53,11 @@ public class testprojectile : MonoBehaviour
             this.enabled = false;
             this.GetComponent<SpriteRenderer>().enabled = false;
             Destroy(this.gameObject, 2);
+        }
+
+        if(collision.gameObject.CompareTag("BulletDestroyer"))
+        {
+            Destroy(this.gameObject);
         }
     }
 }

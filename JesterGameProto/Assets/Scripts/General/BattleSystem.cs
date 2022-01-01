@@ -9,7 +9,7 @@ public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
     [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
-    [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, KippoAvatar, OgamiAvatar;
+    [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, KippoAvatar, OgamiAvatar, MoveOnButton;
     [SerializeField] GameObject[] enemys, players;
     public int attackOneDamage = 1;
 
@@ -28,6 +28,7 @@ public class BattleSystem : MonoBehaviour
 
     bool battleHasEnded = false;
 
+
     private void Awake()
     {
         playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
@@ -41,6 +42,7 @@ public class BattleSystem : MonoBehaviour
 
         enemyCount = enemys.Length;
         playerCount = players.Length;
+
     }
 
     // Start is called before the first frame update
@@ -88,6 +90,8 @@ public class BattleSystem : MonoBehaviour
             EnemyTurn();
             playerMovementGrid.IsActiveToFalse();
         }
+
+        attackOneDamage = playerOneUnit.damage;
     }
 
     void SetupBattle()
@@ -144,8 +148,10 @@ public class BattleSystem : MonoBehaviour
     public void MatchWon()
     {
         resultPanel.SetActive(true);
+        MoveOnButton.SetActive(true);
         resultText.text = "You Won This Match!";
         battleHasEnded = true;
+
         
     }
 

@@ -146,7 +146,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onHitParticle: {fileID: 5726654659438760972, guid: f6a9cd2ce8f0fa34a9a03881bb20b575, type: 3}
-  delta: 0.15
+  currentSpeed: 0
+  maxSpeed: 20
+  minSpeed: 0.01
+  accelerationTime: 0.5
+  time: 0
+  delta: 0
 --- !u!1001 &2734209306580421299
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,7 +5,7 @@ using TMPro;
 
 public class PlayerMovementGrid : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f;
+    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f, ammoRange;
     [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX;
     public Transform movepoint;
     public LayerMask stopsMovement, enemyMask;
@@ -19,8 +19,10 @@ public class PlayerMovementGrid : MonoBehaviour
 
     Unit playerUnit;
 
+    SingleTargetAttack singleTargetAttack;
+
     [SerializeField] GameObject ammoPrefab;
-    [SerializeField] Transform ammoSpawnPoint;
+    [SerializeField] Transform ammoSpawnPoint, bulletTargetRange;
 
     BattleSystem battleSystem;
 
@@ -56,7 +58,9 @@ public class PlayerMovementGrid : MonoBehaviour
         playerName.text = playerUnit.unitName;
         playerAttackCostText.text = pointsForAttack.ToString();
 
-        
+        singleTargetAttack = FindObjectOfType<SingleTargetAttack>();
+
+        ammoRange = singleTargetAttack.bulletRange / 2;
 
     }
 
@@ -66,6 +70,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
         healthBar.SetMaxValue(wantedHP);
 
+        bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, ammoRange, 0);
     }
 
     private void Update()
@@ -410,6 +415,24 @@ public class PlayerMovementGrid : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "AttackBoost")
+        {
+            playerUnit.InCreaseAttackPower();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "AttackBoost")
+        {
+            playerUnit.DeCreaseAttackPower();
+        }
+    }
+
+
+
     public void PlayerStartAttack()
     {
         playerAnimator.SetTrigger("isShooting");
@@ -485,6 +508,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
         }
     }
+
     IEnumerator KillWalkingAnimation()
     {
         yield return new WaitForSeconds(.5f);
