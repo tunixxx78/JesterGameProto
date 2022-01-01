@@ -12,6 +12,8 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, KippoAvatar, OgamiAvatar, MoveOnButton;
     [SerializeField] GameObject[] enemys, players;
     public int attackOneDamage = 1;
+    public int allPlayerPoints;
+    int playersStats;
 
     Unit playerOneUnit;
     Unit playerTwoUnit;
@@ -32,13 +34,20 @@ public class BattleSystem : MonoBehaviour
     private void Awake()
     {
         playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
-        
-        //enemyProto = FindObjectOfType<EnemyProto>();
-        
-        
 
-        playerOnemovement = players[0].GetComponent<PlayerMovementGrid>();
-        playerTwoMovement = players[1].GetComponent<PlayerMovementGrid>();
+        //enemyProto = FindObjectOfType<EnemyProto>();
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            playersStats = players[i].GetComponent<PlayerMovementGrid>().PlayerPoints;
+            Debug.Log(playersStats);
+
+            allPlayerPoints += playersStats; 
+        }
+
+
+        //playerOnemovement = players[0].GetComponent<PlayerMovementGrid>();
+        //playerTwoMovement = players[1].GetComponent<PlayerMovementGrid>();
 
         enemyCount = enemys.Length;
         playerCount = players.Length;
@@ -48,6 +57,8 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+
         state = BattleState.START;
         SetupBattle();
         
@@ -55,6 +66,7 @@ public class BattleSystem : MonoBehaviour
 
     private void Update()
     {
+        
 
         if (state == BattleState.ENEMYTURN)
         {
@@ -84,12 +96,18 @@ public class BattleSystem : MonoBehaviour
         }
         else { OgamiAvatar.SetActive(false); }
 
-        if(playerOnemovement.PlayerPoints == 0 && playerTwoMovement.PlayerPoints == 0 && battleHasEnded == false)
+        if(allPlayerPoints == 0 && battleHasEnded == false)
         {
             state = BattleState.ENEMYTURN;
             EnemyTurn();
             playerMovementGrid.IsActiveToFalse();
         }
+        /*if(playerOnemovement.PlayerPoints == 0 && playerTwoMovement.PlayerPoints == 0 && battleHasEnded == false)
+        {
+            state = BattleState.ENEMYTURN;
+            EnemyTurn();
+            playerMovementGrid.IsActiveToFalse();
+        }*/
 
         attackOneDamage = playerOneUnit.damage;
     }
@@ -139,10 +157,21 @@ public class BattleSystem : MonoBehaviour
             
         enemyProto.EnemyAction();
         //enemyTwoProto.EnemyAction();
-        
-        
-        playerOnemovement.ResetPlayerPoints();
-        playerTwoMovement.ResetPlayerPoints();
+
+
+        //playerOnemovement.ResetPlayerPoints();
+        //playerTwoMovement.ResetPlayerPoints();
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            players[i].GetComponent<PlayerMovementGrid>().ResetPlayerPoints();
+
+            playersStats = players[i].GetComponent<Unit>().newActionPoints;
+            Debug.Log(playersStats);
+            
+
+            allPlayerPoints += playersStats;
+        }
     }
 
     public void MatchWon()

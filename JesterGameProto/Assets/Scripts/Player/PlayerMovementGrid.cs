@@ -265,6 +265,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     movepoint.position += new Vector3(-1f * horizontzlGridMultiplier, 0f, 0f);
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
+                    battleSystem.allPlayerPoints--;
                     StartCoroutine(KillWalkingAnimation());
                 }
             }
@@ -289,6 +290,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     movepoint.position += new Vector3(1f * horizontzlGridMultiplier, 0f, 0f);
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
+                    battleSystem.allPlayerPoints--;
                     isActive = true;
                     StartCoroutine(KillWalkingAnimation());
                 }
@@ -313,6 +315,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     movepoint.position += new Vector3(0f, 1f * verticalGridSizeMultiplier, 0f);
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
+                    battleSystem.allPlayerPoints--;
                     isActive = true;
                     StartCoroutine(KillWalkingAnimation());
                 }
@@ -337,6 +340,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     movepoint.position += new Vector3(0f, -1f * verticalGridSizeMultiplier, 0f);
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
+                    battleSystem.allPlayerPoints--;
                     isActive = true;
                     StartCoroutine(KillWalkingAnimation());
                 }
@@ -360,7 +364,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     {
                         movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
                         PlayerPoints--;
-
+                        battleSystem.allPlayerPoints--;
 
                         isActive = true;
                     }
@@ -372,7 +376,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     {
                         movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
                         PlayerPoints--;
-
+                        battleSystem.allPlayerPoints--;
 
                         isActive = true;
                     }
@@ -397,6 +401,7 @@ public class PlayerMovementGrid : MonoBehaviour
             Destroy(shootingParticles, 1f);
 
             PlayerPoints -= pointsForAttack;
+            battleSystem.allPlayerPoints -= pointsForAttack;
         }
 
     }
@@ -471,6 +476,7 @@ public class PlayerMovementGrid : MonoBehaviour
             //Instantiate(ammoPrefab, ammoSpawnPoint.position, Quaternion.identity);
             player.GetComponent<SingleTargetAttack>().PlayerSingleTargetAttack();
             PlayerPoints -= pointsForAttack;
+            battleSystem.allPlayerPoints -= pointsForAttack;
 
             
         }
@@ -504,6 +510,7 @@ public class PlayerMovementGrid : MonoBehaviour
             player2.GetComponent<AOEAttack>().PlayerAOEAttack();
 
             PlayerPoints -= pointsForAttack;
+            battleSystem.allPlayerPoints -= pointsForAttack;
 
 
         }
