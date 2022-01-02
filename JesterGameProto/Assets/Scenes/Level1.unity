@@ -200,10 +200,11 @@ MonoBehaviour:
   - {fileID: 2636509309749226878}
   players:
   - {fileID: 7952938933541788367}
+  - {fileID: 6008522580906163323}
   attackOneDamage: 1
   allPlayerPoints: 0
   enemyCount: 1
-  playerCount: 1
+  playerCount: 2
 --- !u!4 &84388460
 Transform:
   m_ObjectHideFlags: 0
@@ -8876,7 +8877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122942383994395886, guid: b89dd4755b2bc4e0da8c1a5d356e7b52, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4122942383994395886, guid: b89dd4755b2bc4e0da8c1a5d356e7b52, type: 3}
       propertyPath: m_TagString
@@ -8920,11 +8921,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072922957781605380, guid: b89dd4755b2bc4e0da8c1a5d356e7b52, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7072922957781605380, guid: b89dd4755b2bc4e0da8c1a5d356e7b52, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9194169615337638580, guid: b89dd4755b2bc4e0da8c1a5d356e7b52, type: 3}
       propertyPath: m_IsActive

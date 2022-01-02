@@ -10,8 +10,8 @@ public class BattleSystem : MonoBehaviour
     public BattleState state;
     [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
     [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, KippoAvatar, OgamiAvatar, MoveOnButton;
-    public GameObject[] enemys, players;
-    //public List<PlayerList> players = new List<PlayerList>();
+    public GameObject[] enemys; //players;
+    public List<GameObject> players = new List<GameObject>();
     public int attackOneDamage = 1;
     public int allPlayerPoints;
     int playersStats;
@@ -40,7 +40,7 @@ public class BattleSystem : MonoBehaviour
 
         //enemyProto = FindObjectOfType<EnemyProto>();
 
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             playersStats = players[i].GetComponent<PlayerMovementGrid>().PlayerPoints;
             Debug.Log(playersStats);
@@ -53,7 +53,7 @@ public class BattleSystem : MonoBehaviour
         //playerTwoMovement = players[1].GetComponent<PlayerMovementGrid>();
 
         enemyCount = enemys.Length;
-        playerCount = players.Length;
+        playerCount = players.Count;
 
        
     }
@@ -204,7 +204,7 @@ public class BattleSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        for (int i = 0; i < players.Length; i++)
+        for (int i = 0; i < players.Count; i++)
         {
             players[i].GetComponent<PlayerMovementGrid>().ResetPlayerPoints();
 

@@ -88,7 +88,7 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             battleSystem.CountingPlayers();
 
-            
+            battleSystem.players.Remove(this.gameObject);
 
             Destroy(this.gameObject);
         }
