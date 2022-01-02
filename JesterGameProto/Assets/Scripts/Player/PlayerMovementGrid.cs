@@ -11,13 +11,16 @@ public class PlayerMovementGrid : MonoBehaviour
     public LayerMask stopsMovement, enemyMask;
     bool isActive = false;
     public int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
+    int enemySingleShotDamage;
     [SerializeField] GameObject player, player2, enemyOne;
 
     PlayerPointManager playerPointManager;
 
-    [SerializeField] TMP_Text playerPointsText, playerName, playerHealtText, playerAttackCostText;
+    [SerializeField] TMP_Text playerPointsText, playerAttackCostText;
 
     Unit playerUnit;
+
+    SFXManager sFXManager;
 
     SingleTargetAttack singleTargetAttack;
 
@@ -53,15 +56,15 @@ public class PlayerMovementGrid : MonoBehaviour
         wantedHP = playerUnit.maxHP;
         playerHp = wantedHP;
 
-        //playerHealtText.text = playerHp.ToString();
-
-        playerName.text = playerUnit.unitName;
         playerAttackCostText.text = pointsForAttack.ToString();
 
         singleTargetAttack = FindObjectOfType<SingleTargetAttack>();
 
         ammoRange = singleTargetAttack.bulletRange / 2;
 
+        enemySingleShotDamage = FindObjectOfType<EnemySingleShoot>().bulletDamage;
+
+        sFXManager = FindObjectOfType<SFXManager>();
     }
 
     private void Start()
@@ -80,11 +83,13 @@ public class PlayerMovementGrid : MonoBehaviour
         Swipe();  // related to swipe controls
 
         playerPointsText.text = PlayerPoints.ToString();
-        playerHealtText.text = playerHp.ToString();
 
         if (playerHp <= 0)
         {
             battleSystem.CountingPlayers();
+
+            
+
             Destroy(this.gameObject);
         }
 
@@ -93,7 +98,7 @@ public class PlayerMovementGrid : MonoBehaviour
             //teamPoints = 0;
             selectedPlayerIcon.SetActive(false);
         }
-        if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true && player2.GetComponent<PlayerMovementGrid>().isActive == false)
+        /*if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true && player2.GetComponent<PlayerMovementGrid>().isActive == false)
         {
             EnemyProto notSellectedEnemy = enemyOne.GetComponent<EnemyProto>();
             notSellectedEnemy.inTargetIcon.SetActive(false);
@@ -106,15 +111,19 @@ public class PlayerMovementGrid : MonoBehaviour
                 enemy.inTargetIcon.SetActive(true);
             }
             
-        }
-        if(player2.GetComponent<PlayerMovementGrid>().isActive == true)
+        }*/
+        if (GameObject.Find("Player2"))
         {
-            player2.GetComponent<AOEAttack>().ShowTargetIcon();
+            if (player2.GetComponent<PlayerMovementGrid>().isActive == true)
+            {
+                player2.GetComponent<AOEAttack>().ShowTargetIcon();
+            }
+            if (player2.GetComponent<PlayerMovementGrid>().isActive == false)
+            {
+                player2.GetComponent<AOEAttack>().HideTargetIcon();
+            }
         }
-        if(player2.GetComponent<PlayerMovementGrid>().isActive == false)
-        {
-            player2.GetComponent<AOEAttack>().HideTargetIcon();
-        }
+        
         
         
     }
@@ -266,6 +275,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
                     battleSystem.allPlayerPoints--;
+                    sFXManager.playerMoving.Play();
                     StartCoroutine(KillWalkingAnimation());
                 }
             }
@@ -291,6 +301,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
                     battleSystem.allPlayerPoints--;
+                    sFXManager.playerMoving.Play();
                     isActive = true;
                     StartCoroutine(KillWalkingAnimation());
                 }
@@ -316,6 +327,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
                     battleSystem.allPlayerPoints--;
+                    sFXManager.playerMoving.Play();
                     isActive = true;
                     StartCoroutine(KillWalkingAnimation());
                 }
@@ -341,6 +353,7 @@ public class PlayerMovementGrid : MonoBehaviour
                     playerAnimator.SetBool("isWalking", true);
                     PlayerPoints--;
                     battleSystem.allPlayerPoints--;
+                    sFXManager.playerMoving.Play();
                     isActive = true;
                     StartCoroutine(KillWalkingAnimation());
                 }
@@ -365,6 +378,7 @@ public class PlayerMovementGrid : MonoBehaviour
                         movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
                         PlayerPoints--;
                         battleSystem.allPlayerPoints--;
+                        sFXManager.playerMoving.Play();
 
                         isActive = true;
                     }
@@ -377,6 +391,7 @@ public class PlayerMovementGrid : MonoBehaviour
                         movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
                         PlayerPoints--;
                         battleSystem.allPlayerPoints--;
+                        sFXManager.playerMoving.Play();
 
                         isActive = true;
                     }
@@ -426,6 +441,10 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             playerUnit.InCreaseAttackPower();
         }
+        if(collision.gameObject.tag == "EnemyBullet")
+        {
+            PlayerTakeDamage(enemySingleShotDamage);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -440,8 +459,13 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void PlayerStartAttack()
     {
-        playerAnimator.SetTrigger("isShooting");
-        //playerAnimator.SetBool("isShooting", true);
+        if (isActive == true && PlayerPoints >= pointsForAttack)
+        {
+            playerAnimator.SetTrigger("isShooting");
+            sFXManager.playerPreShoot.Play();
+            //playerAnimator.SetBool("isShooting", true);
+        }
+
     }
 
     public void StopAttacking()

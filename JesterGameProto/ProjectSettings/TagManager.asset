@@ -12,6 +12,8 @@ TagManager:
   - DefenceTile
   - Shield
   - AttackBoost
+  - Seeker
+  - Obstacle
   layers:
   - Default
   - TransparentFX

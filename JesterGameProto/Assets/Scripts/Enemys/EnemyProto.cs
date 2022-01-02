@@ -6,20 +6,22 @@ using TMPro;
 public class EnemyProto : MonoBehaviour
 {
     [SerializeField] int enemyHealth, enemyStartHealt;
-    [SerializeField] GameObject enemy, bulletPrefab, enemyAttackFX;
+    [SerializeField] GameObject enemy; //bulletPrefab, enemyAttackFX;
     public GameObject inTargetIcon;
-    [SerializeField] Transform bulletSpawnPoint;
+    //[SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform[] moveDirections;
     [SerializeField] float enemySpeed;
     EnemyUnit enemyUnit;
 
-    [SerializeField] TMP_Text enemyHPText;
+    //[SerializeField] TMP_Text enemyHPText;
 
     BattleSystem battleSystem;
 
     GameManager gameManager;
 
     [SerializeField] HealthBar enemyHealthBar;
+
+    SFXManager sFXManager;
 
     //public Animator enemyAnimator;
 
@@ -28,16 +30,20 @@ public class EnemyProto : MonoBehaviour
         enemyUnit = enemy.GetComponent<EnemyUnit>();
         enemyStartHealt = enemyUnit.enemyHP;
         enemyHealth = enemyStartHealt;
-        enemyHPText.text = enemyHealth.ToString();
+        //enemyHPText.text = enemyHealth.ToString();
 
         gameManager = FindObjectOfType<GameManager>();
 
         battleSystem = FindObjectOfType<BattleSystem>();
+
+        sFXManager = FindObjectOfType<SFXManager>();
     }
 
     private void Start()
     {
         enemyHealthBar.SetMaxValue(enemyStartHealt);
+
+        sFXManager.enemyBounce.Play();
     }
 
     private void Update()
@@ -50,7 +56,7 @@ public class EnemyProto : MonoBehaviour
             
         }
 
-        enemyHPText.text = enemyHealth.ToString();
+        //enemyHPText.text = enemyHealth.ToString();
 
         
         
@@ -83,13 +89,14 @@ public class EnemyProto : MonoBehaviour
     public void EnemyAction()
     {
         Debug.Log("VIHOLLINEN HY?KK??");
-        StartCoroutine(EnemyAttack());
+        GetComponent<EnemySingleShoot>().EnemySingleShootAction();
+        //StartCoroutine(EnemyAttack());
     }
 
 
     // Enemy "AI" functionality
 
-    IEnumerator EnemyAttack()
+    /*IEnumerator EnemyAttack()
     {
         RaycastHit2D hitInfo = Physics2D.Raycast(bulletSpawnPoint.position, -bulletSpawnPoint.up);
         if (hitInfo)
@@ -129,4 +136,5 @@ public class EnemyProto : MonoBehaviour
         
         gameManager.FromPTwoToPOne();
     }
+    */
 }

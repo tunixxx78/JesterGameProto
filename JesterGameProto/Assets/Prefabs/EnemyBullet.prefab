@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8501067502083498123}
   - component: {fileID: 8501067502083498122}
-  - component: {fileID: 8501067502083498121}
   - component: {fileID: 8501067502083498120}
   - component: {fileID: 5824946691449675281}
+  - component: {fileID: -1697924766240637107}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: EnemyBullet
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 0.41611814, b: 0, a: 1}
+  m_Sprite: {fileID: -6170347484922395669, guid: 2a2ca757573abb643aed2ed7b893c98e, type: 3}
+  m_Color: {r: 1, g: 0.29354292, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,22 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8501067502083498121
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8501067502083498164}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.49999997
 --- !u!50 &8501067502083498120
 Rigidbody2D:
   serializedVersion: 4
@@ -136,3 +120,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammoRB: {fileID: 8501067502083498120}
   ammoSpeed: 200
+  hitParticle: {fileID: 5726654659438760972, guid: f6a9cd2ce8f0fa34a9a03881bb20b575, type: 3}
+--- !u!61 &-1697924766240637107
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8501067502083498164}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.34, y: 0.92}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.34, y: 0.92}
+  m_EdgeRadius: 0

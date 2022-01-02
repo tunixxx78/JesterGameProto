@@ -5,15 +5,18 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     [SerializeField] GameObject player;
+    SFXManager sFXManager;
 
     private void Awake()
     {
         var plr = player.GetComponent<PlayerMovementGrid>();
+        sFXManager = FindObjectOfType<SFXManager>();
     }
 
     public void StartShooting()
     {
         var plr = player.GetComponent<PlayerMovementGrid>();
+        sFXManager.playerShoot.Play();
         plr.PlayerOneAttack();
     }
 

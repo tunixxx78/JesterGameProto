@@ -8,6 +8,8 @@ public class testprojectile : MonoBehaviour
     Vector3 endPos;
     SingleTargetAttack singleTargetAttack;
 
+    SFXManager sFXManager;
+
     public GameObject onHitParticle;
     [SerializeField] float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
 
@@ -16,6 +18,7 @@ public class testprojectile : MonoBehaviour
     private void Awake()
     {
         singleTargetAttack = FindObjectOfType<SingleTargetAttack>();
+        sFXManager = FindObjectOfType<SFXManager>();
     }
 
     private void Start()
@@ -48,6 +51,7 @@ public class testprojectile : MonoBehaviour
         {
             Instantiate(onHitParticle, collision.transform.position, Quaternion.identity);
             collision.gameObject.GetComponent<Animator>().SetTrigger("TakeDmg");
+            sFXManager.hitFromBullet.Play();
 
             //disable projectile on hit and hide Sprite
             this.enabled = false;
@@ -57,6 +61,13 @@ public class testprojectile : MonoBehaviour
 
         if(collision.gameObject.CompareTag("BulletDestroyer"))
         {
+            Instantiate(onHitParticle, collision.transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+
+        if(collision.gameObject.tag == "Obstacle")
+        {
+            Instantiate(onHitParticle, collision.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
