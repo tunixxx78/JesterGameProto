@@ -131,6 +131,9 @@ TextureImporter:
   - first:
       213: 8881262161468840569
     second: Crystal
+  - first:
+      213: -1017210697235314440
+    second: Sign_Attack_Active
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -310,10 +313,10 @@ TextureImporter:
       name: Sign_Defence
       rect:
         serializedVersion: 2
-        x: 289
-        y: 1947
-        width: 139
-        height: 98
+        x: 288
+        y: 1946
+        width: 141
+        height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,10 +334,10 @@ TextureImporter:
       name: Sign_Attack
       rect:
         serializedVersion: 2
-        x: 430
-        y: 1947
-        width: 139
-        height: 98
+        x: 429
+        y: 1946
+        width: 141
+        height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,10 +355,10 @@ TextureImporter:
       name: Sign_AbilityPoint
       rect:
         serializedVersion: 2
-        x: 430
-        y: 1846
-        width: 139
-        height: 98
+        x: 429
+        y: 1844
+        width: 141
+        height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -373,10 +376,10 @@ TextureImporter:
       name: Sign_Health
       rect:
         serializedVersion: 2
-        x: 289
-        y: 1846
-        width: 138
-        height: 98
+        x: 288
+        y: 1844
+        width: 141
+        height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1142,6 +1145,27 @@ TextureImporter:
       bones: []
       spriteID: 97ad77381e4904b70800000000000000
       internalID: 8881262161468840569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sign_Attack_Active
+      rect:
+        serializedVersion: 2
+        x: 580
+        y: 1724
+        width: 157
+        height: 117
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f8cf81a24422e1f0800000000000000
+      internalID: -1017210697235314440
       vertices: []
       indices: 
       edges: []
