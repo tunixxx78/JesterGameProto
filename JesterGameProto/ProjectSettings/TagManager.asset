@@ -14,6 +14,7 @@ TagManager:
   - AttackBoost
   - Seeker
   - Obstacle
+  - EnemyBulletDestroyer
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - UI
   - NotGo
   - enemy
-  - 
+  - Player
   - 
   - 
   - 

@@ -10,6 +10,9 @@ public class EnemySingleShoot : MonoBehaviour
 
     SFXManager sFXManager;
 
+    public float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
+    public float bulletRange; // Variable for bullet range in singleshot attack.
+
     private void Awake()
     {
         sFXManager = FindObjectOfType<SFXManager>();

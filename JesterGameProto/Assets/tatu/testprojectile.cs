@@ -11,7 +11,8 @@ public class testprojectile : MonoBehaviour
     SFXManager sFXManager;
 
     public GameObject onHitParticle;
-    [SerializeField] float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
+    //[SerializeField]
+    float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
 
     public float delta = 0.15f; //BulletSpeed
 
@@ -23,8 +24,8 @@ public class testprojectile : MonoBehaviour
 
     private void Start()
     {
-        startPos = this.transform.position;
-        endPos = new Vector3(startPos.x, startPos.y + 20, 0);
+        //startPos = this.transform.position;
+        //endPos = new Vector3(startPos.x, startPos.y + 20, 0);
 
         // setting up bullet SpeedUp.
         minSpeed = currentSpeed;
@@ -62,13 +63,17 @@ public class testprojectile : MonoBehaviour
         if(collision.gameObject.CompareTag("BulletDestroyer"))
         {
             Instantiate(onHitParticle, collision.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            this.enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this.gameObject, 2);
         }
 
         if(collision.gameObject.tag == "Obstacle")
         {
             Instantiate(onHitParticle, collision.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            this.enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this.gameObject, 2);
         }
     }
 }

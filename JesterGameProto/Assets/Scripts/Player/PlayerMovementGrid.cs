@@ -205,7 +205,7 @@ public class PlayerMovementGrid : MonoBehaviour
         
         isActive = true;
 
-        
+        sFXManager.button.Play();
         
         
     }
@@ -252,7 +252,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void ResetPlayerPoints()
     {
-        GetComponent<Unit>().newActionPoints += 1;
+        //GetComponent<Unit>().newActionPoints += 1;
         PlayerPoints = GetComponent<Unit>().newActionPoints;
     }
 

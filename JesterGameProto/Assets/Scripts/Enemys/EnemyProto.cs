@@ -10,7 +10,10 @@ public class EnemyProto : MonoBehaviour
     public GameObject inTargetIcon;
     //[SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform[] moveDirections;
-    [SerializeField] float enemySpeed;
+    [SerializeField] float enemySpeed, ammoRange;
+
+    [SerializeField] Transform bulletTargetRange;
+
     EnemyUnit enemyUnit;
 
     //[SerializeField] TMP_Text enemyHPText;
@@ -22,6 +25,8 @@ public class EnemyProto : MonoBehaviour
     [SerializeField] HealthBar enemyHealthBar;
 
     SFXManager sFXManager;
+
+    EnemySingleShoot enemySingleShoot;
 
     //public Animator enemyAnimator;
 
@@ -37,6 +42,10 @@ public class EnemyProto : MonoBehaviour
         battleSystem = FindObjectOfType<BattleSystem>();
 
         sFXManager = FindObjectOfType<SFXManager>();
+
+        enemySingleShoot = FindObjectOfType<EnemySingleShoot>();
+
+        ammoRange = enemySingleShoot.bulletRange / 2;
     }
 
     private void Start()
@@ -44,6 +53,8 @@ public class EnemyProto : MonoBehaviour
         enemyHealthBar.SetMaxValue(enemyStartHealt);
 
         sFXManager.enemyBounce.Play();
+
+        bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, -ammoRange, 0);
     }
 
     private void Update()

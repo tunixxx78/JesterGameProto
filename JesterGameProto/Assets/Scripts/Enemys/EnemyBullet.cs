@@ -4,13 +4,37 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
-    [SerializeField] Rigidbody2D ammoRB;
-    [SerializeField] float ammoSpeed = 5f;
     [SerializeField] GameObject hitParticle;
+
+    float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
+    float bulletRange; // Variable for bullet range in singleshot attack.
+
+    EnemySingleShoot enemySingleShoot;
+
+    private void Awake()
+    {
+        enemySingleShoot = FindObjectOfType<EnemySingleShoot>();
+    }
+
+    private void Start()
+    {
+        // setting up bullet SpeedUp.
+        minSpeed = currentSpeed;
+        time = 0;
+
+        // values from SingleTargetAttack script.
+        minSpeed = enemySingleShoot.minSpeed;
+        maxSpeed = enemySingleShoot.maxSpeed;
+        accelerationTime = enemySingleShoot.accelerationTime;
+    }
 
     private void Update()
     {
-        ammoRB.velocity = transform.up * -ammoSpeed * Time.deltaTime;
+        currentSpeed = Mathf.SmoothStep(minSpeed, maxSpeed, time / accelerationTime);
+        transform.position += -transform.up * currentSpeed * Time.deltaTime;
+        time += Time.deltaTime;
+
+        //ammoRB.velocity = transform.up * -ammoSpeed * Time.deltaTime;
     }
 
     /*private void OnCollisionEnter2D(Collision2D collision)
@@ -31,6 +55,12 @@ public class EnemyBullet : MonoBehaviour
         }
         if(collision.gameObject.tag == "BulletDestroyer")
         {
+            Destroy(this.gameObject);
+        }
+
+        if(collision.gameObject.tag == "EnemyBulletDestroyer")
+        {
+            Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
