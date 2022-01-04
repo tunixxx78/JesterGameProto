@@ -9,7 +9,7 @@ public class Dataholder : MonoBehaviour
 {
     public static Dataholder dataInstance;
 
-    public bool levelOne, levelTwo;
+    public bool levelOne, levelTwo, levelThree;
 
     private void Awake()
     {
@@ -31,6 +31,7 @@ public class Dataholder : MonoBehaviour
         {
             levelOne = false;
             levelTwo = false;
+            levelThree = false;
 
             SaveData();
         }
@@ -44,6 +45,7 @@ public class Dataholder : MonoBehaviour
 
         data.levelOne = levelOne;
         data.levelTwo = levelTwo;
+        data.levelThree = levelThree;
 
         bf.Serialize(file, data);
         file.Close();
@@ -59,6 +61,7 @@ public class Dataholder : MonoBehaviour
 
             levelOne = data.levelOne;
             levelTwo = data.levelTwo;
+            levelThree = data.levelThree;
 
         }
     }
@@ -69,5 +72,5 @@ public class Dataholder : MonoBehaviour
 
 class LevelData
 {
-    public bool levelOne, levelTwo;
+    public bool levelOne, levelTwo, levelThree;
 }

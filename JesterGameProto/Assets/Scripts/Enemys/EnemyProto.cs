@@ -100,7 +100,7 @@ public class EnemyProto : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             TakeDamage(battleSystem.attackOneDamage);
-            Debug.Log("OSUMA TULI!");
+            Debug.Log("DAMAGEEEEEEEEE" + battleSystem.attackOneDamage);
         }
         if(collision.gameObject.tag == "Bullet2")
         {

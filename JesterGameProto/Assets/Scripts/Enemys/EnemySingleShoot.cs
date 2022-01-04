@@ -7,6 +7,7 @@ public class EnemySingleShoot : MonoBehaviour
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] GameObject enemyBullet;
     public int bulletDamage;
+    [SerializeField] Animator cannonAnimator;
 
     SFXManager sFXManager;
 
@@ -35,9 +36,10 @@ public class EnemySingleShoot : MonoBehaviour
         Destroy(enemyShootingParticle, 1f);
          */
 
-        GameObject enemyBulletPrefab = Instantiate(enemyBullet, bulletSpawnPoint.position, Quaternion.identity);
+        //GameObject enemyBulletPrefab = Instantiate(enemyBullet, bulletSpawnPoint.position, Quaternion.identity);
 
-        sFXManager.enemyShoot.Play();
-        
+        //sFXManager.enemyShoot.Play();
+
+        cannonAnimator.SetTrigger("Shoot");
     }
 }

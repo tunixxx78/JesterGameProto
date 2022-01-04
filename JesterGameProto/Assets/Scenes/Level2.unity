@@ -1319,6 +1319,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTwoLockedImage: {fileID: 0}
   levelTwoButton: {fileID: 0}
+  levelThreeLockedImage: {fileID: 0}
+  levelThreeButton: {fileID: 0}
 --- !u!4 &273147699
 Transform:
   m_ObjectHideFlags: 0
@@ -3656,6 +3658,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 942909159}
   enemyBullet: {fileID: 9166999713506837262, guid: a0209e5c5ae96a24d977e10e6522f0c2, type: 3}
   bulletDamage: 1
+  cannonAnimator: {fileID: 0}
   currentSpeed: 0
   maxSpeed: 0
   minSpeed: 0
@@ -5264,6 +5267,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3041140573010878204, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041140573010878204, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3358737105324486686, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: m_RootOrder
       value: 27
@@ -5594,7 +5605,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1759177493}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025265451
 GameObject:
@@ -5799,7 +5810,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 571023112}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1122824894
 GameObject:
@@ -6370,6 +6381,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3041140573010878204, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041140573010878204, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3358737105324486686, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -7461,7 +7480,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 571023112}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1438416116 stripped
 GameObject:
@@ -7483,6 +7502,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 1165626431}
   enemyBullet: {fileID: 9166999713506837262, guid: a0209e5c5ae96a24d977e10e6522f0c2, type: 3}
   bulletDamage: 1
+  cannonAnimator: {fileID: 0}
   currentSpeed: 0
   maxSpeed: 0
   minSpeed: 0
@@ -7900,6 +7920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelOne: 0
   levelTwo: 0
+  levelThree: 0
 --- !u!4 &1522585227
 Transform:
   m_ObjectHideFlags: 0
@@ -8381,6 +8402,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 883705017427996956, guid: d1a50b1da626f4e5a9d601806670126f, type: 3}
+      propertyPath: damage
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 883705017427996956, guid: d1a50b1da626f4e5a9d601806670126f, type: 3}
+      propertyPath: startDamage
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1221686406782676192, guid: d1a50b1da626f4e5a9d601806670126f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -8720,6 +8749,7 @@ MonoBehaviour:
   bulletSpawnPoint: {fileID: 311439660}
   enemyBullet: {fileID: 9166999713506837262, guid: a0209e5c5ae96a24d977e10e6522f0c2, type: 3}
   bulletDamage: 1
+  cannonAnimator: {fileID: 0}
   currentSpeed: 0
   maxSpeed: 0
   minSpeed: 0
@@ -8867,7 +8897,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1759177493}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1834127764
 GameObject:
@@ -8984,7 +9014,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1438416119}
-  m_RootOrder: 6
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1909098317
 GameObject:
@@ -9322,6 +9352,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3041140573010878204, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041140573010878204, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3358737105324486686, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: m_RootOrder
       value: 28
@@ -9832,7 +9870,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1438416119}
-  m_RootOrder: 5
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2114685110
 GameObject:

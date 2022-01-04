@@ -741,6 +741,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelTwoLockedImage: {fileID: 720456755}
   levelTwoButton: {fileID: 1505729070}
+  levelThreeLockedImage: {fileID: 1801208875}
+  levelThreeButton: {fileID: 1775947874}
 --- !u!4 &437480932
 Transform:
   m_ObjectHideFlags: 0
@@ -2696,6 +2698,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelOne: 0
   levelTwo: 0
+  levelThree: 0
 --- !u!4 &1338010636
 Transform:
   m_ObjectHideFlags: 0
