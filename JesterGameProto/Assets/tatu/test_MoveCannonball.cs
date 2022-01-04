@@ -7,6 +7,7 @@ public class test_MoveCannonball : MonoBehaviour
     Vector3 startpos;
     Vector3 endPos;
     public float delta = 1f;
+    [SerializeField] GameObject hitParticle;
 
     private void Start()
     {
@@ -20,5 +21,26 @@ public class test_MoveCannonball : MonoBehaviour
         //this.transform.position = targetPos;
         transform.Translate(Vector2.down * delta * Time.deltaTime, Space.World);
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2" || collision.gameObject.tag == "DummuObstacle")
+        {
+            Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
+
+            this.enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this.gameObject, 2);
+        }
+        /*if (collision.gameObject.tag == "BulletDestroyer")
+        {
+            Destroy(this.gameObject);
+        }*/
+
+        if (collision.gameObject.tag == "EnemyBulletDestroyer")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

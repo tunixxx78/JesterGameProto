@@ -8,15 +8,16 @@ public enum BattleState { START, PLAYERTURN, PLAYERTWOTURN, ENEMYTURN, WON, LOST
 public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
-    [SerializeField] TMP_Text instructionsText, resultText, teamActionPointsText;
+    [SerializeField] TMP_Text resultText, teamActionPointsText;
     [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, KippoAvatar, OgamiAvatar, MoveOnButton;
-    public GameObject[] enemys; //players;
+    //public GameObject[] enemys; //players;
+    public List<GameObject> enemys = new List<GameObject>();
     public List<GameObject> players = new List<GameObject>();
-    public int attackOneDamage = 1;
+    public int attackOneDamage = 1, attackTwoDamage;
     public int allPlayerPoints;
     int playersStats;
-    
 
+    Unit playerUnit;
     Unit playerOneUnit;
     Unit playerTwoUnit;
 
@@ -52,7 +53,7 @@ public class BattleSystem : MonoBehaviour
         //playerOnemovement = players[0].GetComponent<PlayerMovementGrid>();
         //playerTwoMovement = players[1].GetComponent<PlayerMovementGrid>();
 
-        enemyCount = enemys.Length;
+        enemyCount = enemys.Count;
         playerCount = players.Count;
 
        
@@ -116,12 +117,17 @@ public class BattleSystem : MonoBehaviour
 
         
 
-        attackOneDamage = playerOneUnit.damage;
+        attackOneDamage = playerUnit.damage;
     }
 
     void SetupBattle()
     {
-        playerOneUnit = players[0].GetComponent<Unit>();
+        for (int i = 0; i < players.Count; i++)
+        {
+            playerUnit = players[0].GetComponent<Unit>();
+        }
+
+        //playerOneUnit = players[0].GetComponent<Unit>();
         //playerTwoUnit = players[1].GetComponent<Unit>();
 
         enemyOneUnit = enemys[0].GetComponent<EnemyUnit>();
@@ -161,8 +167,11 @@ public class BattleSystem : MonoBehaviour
         //state = BattleState.ENEMYTURN;
         //instructionsText.text = enemyOneUnit.enemyName;
         
-            
-        enemyProto.EnemyAction();
+        for (int i = 0; i < enemys.Count; i++)
+        {
+            enemys[i].GetComponent<EnemyProto>().EnemyAction();
+        }    
+        //enemyProto.EnemyAction();
         //enemyTwoProto.EnemyAction();
 
 
@@ -176,19 +185,14 @@ public class BattleSystem : MonoBehaviour
 
     public void MatchWon()
     {
-        resultPanel.SetActive(true);
-        MoveOnButton.SetActive(true);
-        resultText.text = "You Won This Match!";
-        battleHasEnded = true;
 
+        StartCoroutine(Won());
         
     }
 
     public void MatchLost()
     {
-        resultPanel.SetActive(true);
-        resultText.text = "You Lost This Match!";
-        battleHasEnded = true;
+        StartCoroutine(Lost());
     }
 
     public void CountingEnemys()
@@ -224,6 +228,25 @@ public class BattleSystem : MonoBehaviour
 
         EnemyTurn();
         
+    }
+
+    IEnumerator Won()
+    {
+        yield return new WaitForSeconds(2);
+
+        resultPanel.SetActive(true);
+        MoveOnButton.SetActive(true);
+        resultText.text = "You Won This Match!";
+        battleHasEnded = true;
+    }
+
+    IEnumerator Lost()
+    {
+        yield return new WaitForSeconds(2);
+
+        resultPanel.SetActive(true);
+        resultText.text = "You Lost This Match!";
+        battleHasEnded = true;
     }
 
     

@@ -53,10 +53,10 @@ public class EnemyBullet : MonoBehaviour
             Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
-        if(collision.gameObject.tag == "BulletDestroyer")
+        /*if(collision.gameObject.tag == "BulletDestroyer")
         {
             Destroy(this.gameObject);
-        }
+        }*/
 
         if(collision.gameObject.tag == "EnemyBulletDestroyer")
         {

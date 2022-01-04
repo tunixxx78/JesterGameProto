@@ -23,12 +23,20 @@ public class Unit : MonoBehaviour
     public void InCreaseAttackPower()
     {
         damage = damage + attackTile.damageMultiplier;
-        staticObstacle.DamagePointsUp();
+        if (GameObject.Find("Chest"))
+        {
+            staticObstacle.DamagePointsUp();
+        }
+        
     }
     public void DeCreaseAttackPower()
     {
         damage = startDamage;
-        staticObstacle.realAttackDamage = 1;
-        staticObstacle.playerDamage = 0;
+        if (GameObject.Find("Chest"))
+        {
+            staticObstacle.realAttackDamage = 1;
+            staticObstacle.playerDamage = 0;
+        }
+            
     }
 }
