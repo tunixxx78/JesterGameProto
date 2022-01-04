@@ -134,6 +134,9 @@ TextureImporter:
   - first:
       213: -1017210697235314440
     second: Sign_Attack_Active
+  - first:
+      213: -9133422767000042809
+    second: Wood_Fence
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1166,6 +1169,27 @@ TextureImporter:
       bones: []
       spriteID: 8f8cf81a24422e1f0800000000000000
       internalID: -1017210697235314440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wood_Fence
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 1231
+        width: 152
+        height: 96
+      alignment: 9
+      pivot: {x: 0.48184344, y: 0.16940689}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c24f7562609f3180800000000000000
+      internalID: -9133422767000042809
       vertices: []
       indices: 
       edges: []
