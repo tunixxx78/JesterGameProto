@@ -46,6 +46,10 @@ public class EnemyProto : MonoBehaviour
         enemySingleShoot = FindObjectOfType<EnemySingleShoot>();
 
         ammoRange = enemySingleShoot.bulletRange / 2;
+        
+        
+        
+        
     }
 
     private void Start()
@@ -62,6 +66,8 @@ public class EnemyProto : MonoBehaviour
         if(enemyHealth <= 0)
         {
             battleSystem.CountingEnemys();
+
+            battleSystem.enemys.Remove(this.gameObject);
 
             Destroy(this.gameObject);
             
@@ -95,6 +101,10 @@ public class EnemyProto : MonoBehaviour
         {
             TakeDamage(battleSystem.attackOneDamage);
             Debug.Log("OSUMA TULI!");
+        }
+        if(collision.gameObject.tag == "Bullet2")
+        {
+            TakeDamage(battleSystem.attackTwoDamage);
         }
     }
     public void EnemyAction()

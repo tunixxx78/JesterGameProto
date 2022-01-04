@@ -62,7 +62,11 @@ public class PlayerMovementGrid : MonoBehaviour
 
         ammoRange = singleTargetAttack.bulletRange / 2;
 
-        enemySingleShotDamage = FindObjectOfType<EnemySingleShoot>().bulletDamage;
+        if (FindObjectOfType<EnemySingleShoot>().enabled)
+        {
+            enemySingleShotDamage = FindObjectOfType<EnemySingleShoot>().bulletDamage;
+        }
+        
 
         sFXManager = FindObjectOfType<SFXManager>();
     }
@@ -98,20 +102,26 @@ public class PlayerMovementGrid : MonoBehaviour
             //teamPoints = 0;
             selectedPlayerIcon.SetActive(false);
         }
-        /*if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true && player2.GetComponent<PlayerMovementGrid>().isActive == false)
+        //if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true && player2.GetComponent<PlayerMovementGrid>().isActive == false)
+        if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true)
         {
-            EnemyProto notSellectedEnemy = enemyOne.GetComponent<EnemyProto>();
-            notSellectedEnemy.inTargetIcon.SetActive(false);
-
-            RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
-            EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
-
-            if (enemy != null)
+            for (int i = 0; i < battleSystem.enemys.Count; i++)
             {
-                enemy.inTargetIcon.SetActive(true);
+                //EnemyProto notSellectedEnemy = enemyOne.GetComponent<EnemyProto>();
+                var notSellectedEnemy = battleSystem.enemys[i].GetComponent<EnemyProto>();
+                notSellectedEnemy.inTargetIcon.SetActive(false);
+
+                RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
+                EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
+
+                if (enemy != null)
+                {
+                    enemy.inTargetIcon.SetActive(true);
+                }
             }
             
-        }*/
+            
+        }
         if (GameObject.Find("Player2"))
         {
             if (player2.GetComponent<PlayerMovementGrid>().isActive == true)
