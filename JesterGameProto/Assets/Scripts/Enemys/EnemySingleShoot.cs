@@ -9,6 +9,8 @@ public class EnemySingleShoot : MonoBehaviour
     public int bulletDamage;
     [SerializeField] Animator cannonAnimator;
 
+    [SerializeField] bool enemyTypeOne = false, enemyTypeTwo = false;
+
     SFXManager sFXManager;
 
     public float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
@@ -39,7 +41,15 @@ public class EnemySingleShoot : MonoBehaviour
         //GameObject enemyBulletPrefab = Instantiate(enemyBullet, bulletSpawnPoint.position, Quaternion.identity);
 
         //sFXManager.enemyShoot.Play();
+        if (enemyTypeOne)
+        {
+            cannonAnimator.SetTrigger("Shoot");
+        }
+        
 
-        cannonAnimator.SetTrigger("Shoot");
+        if (enemyTypeTwo)
+        {
+            cannonAnimator.SetTrigger("Attack");
+        }
     }
 }

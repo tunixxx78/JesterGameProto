@@ -5,7 +5,7 @@ using UnityEngine;
 public class DataHandler : MonoBehaviour
 {
     Dataholder dataholder;
-    [SerializeField] GameObject levelTwoLockedImage, levelTwoButton, levelThreeLockedImage, levelThreeButton;
+    [SerializeField] GameObject levelTwoLockedImage, levelTwoButton, levelThreeLockedImage, levelThreeButton, levelFourLockedImage, levelFourButton;
 
     private void Awake()
     {
@@ -24,6 +24,11 @@ public class DataHandler : MonoBehaviour
             levelThreeLockedImage.SetActive(false);
             levelThreeButton.SetActive(true);
         }
+        if(dataholder.levelThree == true)
+        {
+            levelFourLockedImage.SetActive(false);
+            levelFourButton.SetActive(true);
+        }
     }
 
     public void LevelOneDone()
@@ -34,6 +39,11 @@ public class DataHandler : MonoBehaviour
     public void LevelTwoDone()
     {
         dataholder.levelTwo = true;
+        dataholder.SaveData();
+    }
+    public void LevelThreeDone()
+    {
+        dataholder.levelThree = true;
         dataholder.SaveData();
     }
 }

@@ -9,6 +9,13 @@ public class test_MoveCannonball : MonoBehaviour
     public float delta = 1f;
     [SerializeField] GameObject hitParticle;
 
+    SFXManager sFXManager;
+
+    private void Awake()
+    {
+        sFXManager = FindObjectOfType<SFXManager>();
+    }
+
     private void Start()
     {
         startpos = this.transform.position;
@@ -28,6 +35,7 @@ public class test_MoveCannonball : MonoBehaviour
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2" || collision.gameObject.tag == "DummuObstacle")
         {
             Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
+            sFXManager.hitFromBullet.Play();
 
             this.enabled = false;
             this.GetComponent<SpriteRenderer>().enabled = false;

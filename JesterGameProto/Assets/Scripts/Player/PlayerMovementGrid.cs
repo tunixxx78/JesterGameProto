@@ -450,6 +450,7 @@ public class PlayerMovementGrid : MonoBehaviour
         if(collision.gameObject.tag == "AttackBoost")
         {
             playerUnit.InCreaseAttackPower();
+            sFXManager.attackTile.Play();
         }
         if(collision.gameObject.tag == "EnemyBullet")
         {

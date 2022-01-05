@@ -34,15 +34,18 @@ public class StaticObstacle : MonoBehaviour
 
     private void Update()
     {
-        //playerDamage = battleSystem.boosteddamages;
+        //playerDamage = battleSystem.attackOneDamage;
 
         //damageBoost = playerDamage;
 
-        playerDamage = damageBoost;
+        //playerDamage = damageBoost;
+        realAttackDamage = playerDamage;
 
         if (obstacleHealt <= 0)
         {
+            Debug.Log("HAISTA PASKA!!");
             Destroy(this.gameObject);
+            players[0].GetComponent<Unit>().fenses.Remove(this.gameObject);
         }
     }
 

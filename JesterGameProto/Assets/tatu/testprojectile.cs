@@ -57,7 +57,7 @@ public class testprojectile : MonoBehaviour
             //disable projectile on hit and hide Sprite
             this.enabled = false;
             this.GetComponent<SpriteRenderer>().enabled = false;
-            Destroy(this.gameObject, 2);
+            Destroy(this.gameObject);
         }
 
         if(collision.gameObject.CompareTag("BulletDestroyer"))

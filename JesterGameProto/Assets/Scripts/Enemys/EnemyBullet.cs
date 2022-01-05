@@ -11,9 +11,12 @@ public class EnemyBullet : MonoBehaviour
 
     EnemySingleShoot enemySingleShoot;
 
+    SFXManager sFXManager;
+
     private void Awake()
     {
         enemySingleShoot = FindObjectOfType<EnemySingleShoot>();
+        sFXManager = FindObjectOfType<SFXManager>();
     }
 
     private void Start()
@@ -51,7 +54,12 @@ public class EnemyBullet : MonoBehaviour
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
         {
             Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            sFXManager.hitFromBullet.Play();
+
+            this.enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this.gameObject, 2);
+            Destroy(this.hitParticle, 2f);
         }
         /*if(collision.gameObject.tag == "BulletDestroyer")
         {

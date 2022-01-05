@@ -7,7 +7,9 @@ public class Unit : MonoBehaviour
     public string unitName;
     public int unitLevel, damage, maxHP, currentHp, playerActionPoints, newActionPoints;
 
-    public int startDamage; 
+    public int startDamage;
+
+    public List<GameObject> fenses = new List<GameObject>();
 
     AttackTile attackTile;
     StaticObstacle staticObstacle;
@@ -23,20 +25,29 @@ public class Unit : MonoBehaviour
     public void InCreaseAttackPower()
     {
         damage = damage + attackTile.damageMultiplier;
-        if (GameObject.Find("Chest"))
+
+        for (int i = 0; i < fenses.Count; i++)
         {
-            staticObstacle.DamagePointsUp();
+            fenses[i].GetComponent<StaticObstacle>().playerDamage = damage;
+
         }
+        
         
     }
     public void DeCreaseAttackPower()
     {
         damage = startDamage;
-        if (GameObject.Find("Chest"))
+
+        for (int i = 0; i < fenses.Count; i++)
+        {
+            fenses[i].GetComponent<StaticObstacle>().playerDamage = damage;
+
+        }
+        /*if (GameObject.Find("Chest"))
         {
             staticObstacle.realAttackDamage = 1;
             staticObstacle.playerDamage = 0;
-        }
+        }*/
             
     }
 }

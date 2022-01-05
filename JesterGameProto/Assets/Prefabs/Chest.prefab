@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4062831163080866881, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
+  m_Sprite: {fileID: -9133422767000042809, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,18 +98,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.015070021, y: 0.072961956}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.635, y: 0.575}
+    pivot: {x: 0.48184344, y: 0.16940689}
+    oldSize: {x: 0.76, y: 0.48}
     newSize: {x: 0.635, y: 0.575}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.635, y: 0.575}
+  m_Size: {x: 0.7254199, y: 0.49689072}
   m_EdgeRadius: 0
 --- !u!114 &8423486431196408157
 MonoBehaviour:
@@ -123,12 +123,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941abc6445b1c44ca9f665717db150ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerDamage: 0
+  realAttackDamage: 0
   obstacle: {fileID: 8423486431196408153}
   obstacleHealthbar: {fileID: 772845324702789792}
   obstacleHealt: 10
   obstacleStartHealth: 100
   normalHitDamage: 1
   boostedHitDamage: 100
+  players:
+  - {fileID: 0}
 --- !u!1001 &8423486431271542704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,6 +140,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8423486431196408159}
     m_Modifications:
+    - target: {fileID: 296255984778106307, guid: 3a59356352215439da2c8d0cfc49f754, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 62.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1571032516296481984, guid: 3a59356352215439da2c8d0cfc49f754, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1
@@ -222,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1571032516296481986, guid: 3a59356352215439da2c8d0cfc49f754, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.368
+      value: 0.482
       objectReference: {fileID: 0}
     - target: {fileID: 1571032516296481986, guid: 3a59356352215439da2c8d0cfc49f754, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
