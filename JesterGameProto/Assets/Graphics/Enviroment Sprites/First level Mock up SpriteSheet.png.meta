@@ -137,6 +137,9 @@ TextureImporter:
   - first:
       213: -9133422767000042809
     second: Wood_Fence
+  - first:
+      213: -3155099342502212811
+    second: Rock_Block
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1190,6 +1193,27 @@ TextureImporter:
       bones: []
       spriteID: 7c24f7562609f3180800000000000000
       internalID: -9133422767000042809
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock_Block
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 1235
+        width: 119
+        height: 121
+      alignment: 9
+      pivot: {x: 0.50556934, y: 0.111176305}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 53b461b4dd5d634d0800000000000000
+      internalID: -3155099342502212811
       vertices: []
       indices: 
       edges: []

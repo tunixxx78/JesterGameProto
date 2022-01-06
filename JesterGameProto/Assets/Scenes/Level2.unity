@@ -1133,6 +1133,8 @@ MonoBehaviour:
   levelThreeButton: {fileID: 0}
   levelFourLockedImage: {fileID: 0}
   levelFourButton: {fileID: 0}
+  levelFiveLockedImage: {fileID: 0}
+  levelFifeButton: {fileID: 0}
 --- !u!4 &273147699
 Transform:
   m_ObjectHideFlags: 0
@@ -1210,7 +1212,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5113814681302834237, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
+  m_Sprite: {fileID: -3155099342502212811, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1229,8 +1231,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 299990231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.034, y: -2.2377, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.7319611, z: 0.8}
+  m_LocalPosition: {x: -1.034, y: -2.387, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 28
@@ -1251,8 +1253,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.88, y: 0.655}
+    pivot: {x: 0.50556934, y: 0.111176305}
+    oldSize: {x: 0.595, y: 0.605}
     newSize: {x: 0.88, y: 0.655}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
