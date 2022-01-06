@@ -11,11 +11,13 @@ public class GameManager : MonoBehaviour
     BattleState state;
     BattleSystem battleSystem;
 
+    SFXManager sFXManager;
 
     private void Awake()
     {
         battleSystem = FindObjectOfType<BattleSystem>();
         playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
+        sFXManager = FindObjectOfType<SFXManager>();
     }
 
     public void EndOfTurn()
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
 
     public void TryAgain()
     {
+        sFXManager.button.Play();
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 

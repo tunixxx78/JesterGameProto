@@ -28,6 +28,8 @@ public class EnemyProto : MonoBehaviour
 
     EnemySingleShoot enemySingleShoot;
 
+    [SerializeField] bool hasMovementScript = false;
+
     //public Animator enemyAnimator;
 
     private void Awake()
@@ -111,7 +113,17 @@ public class EnemyProto : MonoBehaviour
     {
         Debug.Log("VIHOLLINEN HY?KK??");
         GetComponent<EnemySingleShoot>().EnemySingleShootAction();
+        if(hasMovementScript)
+        {
+            StartCoroutine(MoveDumbEnemy());
+        }
         //StartCoroutine(EnemyAttack());
+    }
+    IEnumerator MoveDumbEnemy()
+    {
+        yield return new WaitForSeconds(2);
+
+        FindObjectOfType<EnemyDumbMovement>().DumbEnemyMovement();
     }
 
 

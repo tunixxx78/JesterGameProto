@@ -385,6 +385,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, stopsMovement))
                     {
+                        //playerRB.MovePosition(movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f));
                         movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
                         PlayerPoints--;
                         battleSystem.allPlayerPoints--;
@@ -398,6 +399,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, stopsMovement))
                     {
+                        //playerRB.MovePosition(movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f));
                         movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
                         PlayerPoints--;
                         battleSystem.allPlayerPoints--;
@@ -409,6 +411,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 }
             }
         }
+
         if (isActive == true && PlayerPoints >= pointsForAttack && Input.GetKeyDown(KeyCode.Space))
         {
             RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);

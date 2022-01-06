@@ -14,6 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyTwoBullet: {fileID: 2312003949619393783, guid: 7d438e048a409c4419a4ba6e68a2a982, type: 3}
   spawnPoint: {fileID: 8035158252901205295}
+--- !u!114 &8182896966704632130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3762228839370230809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29364d2168f2942a8bb0d41f0d203bfe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveDirections:
+  - {fileID: 1198199453437766750}
+  - {fileID: 1198199452605391418}
 --- !u!1001 &8035158253132322457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -39,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 3762228839370230808}
     - target: {fileID: 6608050493961050752, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
       propertyPath: m_Name
-      value: EnemyWithAnimation_Original
+      value: EnemyWithAnimation_Variant
       objectReference: {fileID: 0}
     - target: {fileID: 6608050493961050756, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
       propertyPath: m_RootOrder
@@ -95,6 +110,16 @@ GameObject:
 --- !u!95 &3762228839370230808 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6608050493961050753, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
+  m_PrefabInstance: {fileID: 8035158253132322457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1198199453437766750 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9160956979541818055, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
+  m_PrefabInstance: {fileID: 8035158253132322457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1198199452605391418 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9160956980320056483, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
   m_PrefabInstance: {fileID: 8035158253132322457}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8035158252901205295 stripped
