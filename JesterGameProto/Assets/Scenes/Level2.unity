@@ -1133,6 +1133,8 @@ MonoBehaviour:
   levelThreeButton: {fileID: 0}
   levelFourLockedImage: {fileID: 0}
   levelFourButton: {fileID: 0}
+  levelFiveLockedImage: {fileID: 0}
+  levelFifeButton: {fileID: 0}
 --- !u!4 &273147699
 Transform:
   m_ObjectHideFlags: 0
@@ -5818,6 +5820,10 @@ PrefabInstance:
     - target: {fileID: 7141196061345805692, guid: d1a50b1da626f4e5a9d601806670126f, type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9003081104550320597, guid: d1a50b1da626f4e5a9d601806670126f, type: 3}
+      propertyPath: maxSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d1a50b1da626f4e5a9d601806670126f, type: 3}
