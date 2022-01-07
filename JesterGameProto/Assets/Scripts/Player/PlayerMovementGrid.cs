@@ -6,10 +6,10 @@ using TMPro;
 public class PlayerMovementGrid : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f, ammoRange;
-    [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX;
+    [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX, attackRangeIndicator;
     public Transform movepoint;
     public LayerMask stopsMovement, enemyMask;
-    bool isActive = false;
+    bool isActive = false, firstClickDone = false;
     public int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
     int enemySingleShotDamage;
     //[SerializeField] GameObject player, player2, enemyOne;
@@ -128,6 +128,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
             }
         }
+
+       
         
         /*if (GameObject.Find("Player2"))
         {
@@ -143,6 +145,10 @@ public class PlayerMovementGrid : MonoBehaviour
         */
         
         
+    }
+    private void LateUpdate()
+    {
+        playerPointsText.text = battleSystem.allPlayerPoints.ToString();
     }
 
     // player movement controls with swipe system
@@ -225,6 +231,13 @@ public class PlayerMovementGrid : MonoBehaviour
         sFXManager.button.Play();
         
         
+    }
+
+    public void EndCurrentTurn()
+    {
+        battleSystem.allPlayerPoints = 0;
+        playerPointsText.text = battleSystem.allPlayerPoints.ToString();
+        sFXManager.button.Play();
     }
 
 
@@ -483,7 +496,24 @@ public class PlayerMovementGrid : MonoBehaviour
         }
     }
 
+    public void PlayerAttackPositions()
+    {
+        attackRangeIndicator.SetActive(true);
+        
 
+        if (firstClickDone)
+        {
+            PlayerStartAttack();
+            firstClickDone = false;
+            attackRangeIndicator.SetActive(false);
+        }
+
+        else if(firstClickDone == false)
+        {
+            firstClickDone = true;
+        }
+        
+    }
 
     public void PlayerStartAttack()
     {
