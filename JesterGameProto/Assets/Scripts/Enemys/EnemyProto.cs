@@ -113,6 +113,7 @@ public class EnemyProto : MonoBehaviour
     {
         Debug.Log("VIHOLLINEN HY?KK??");
         GetComponent<EnemySingleShoot>().EnemySingleShootAction();
+
         if(hasMovementScript)
         {
             StartCoroutine(MoveDumbEnemy());
