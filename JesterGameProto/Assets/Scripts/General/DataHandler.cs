@@ -14,7 +14,7 @@ public class DataHandler : MonoBehaviour
     private void Awake()
     {
         dataholder = FindObjectOfType<Dataholder>();
-        sFXManager = FindObjectOfType<SFXManager>();
+        
     }
 
     private void Update()
@@ -41,28 +41,5 @@ public class DataHandler : MonoBehaviour
         }
     }
 
-    public void LevelOneDone()
-    {
-        sFXManager.button.Play();
-        dataholder.levelOne = true;
-        dataholder.SaveData();
-    }
-    public void LevelTwoDone()
-    {
-        sFXManager.button.Play();
-        dataholder.levelTwo = true;
-        dataholder.SaveData();
-    }
-    public void LevelThreeDone()
-    {
-        sFXManager.button.Play();
-        dataholder.levelThree = true;
-        dataholder.SaveData();
-    }
-    public void LevelFourDone()
-    {
-        sFXManager.button.Play();
-        dataholder.levelFour = true;
-        dataholder.SaveData();
-    }
+    
 }

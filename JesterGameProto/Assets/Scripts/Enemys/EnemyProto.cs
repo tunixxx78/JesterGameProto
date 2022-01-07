@@ -28,7 +28,7 @@ public class EnemyProto : MonoBehaviour
 
     EnemySingleShoot enemySingleShoot;
 
-    [SerializeField] bool hasMovementScript = false;
+    [SerializeField] bool hasMovementScript = false, friendlyFire = false;
 
     //public Animator enemyAnimator;
 
@@ -108,6 +108,14 @@ public class EnemyProto : MonoBehaviour
         {
             TakeDamage(battleSystem.attackTwoDamage);
         }
+        if (friendlyFire)
+        {
+            if (collision.gameObject.tag == "EnemyBullet")
+            {
+                TakeDamage(battleSystem.attackTwoDamage);
+            }
+        }
+        
     }
     public void EnemyAction()
     {
