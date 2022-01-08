@@ -8,13 +8,13 @@ public class PlayerMovementGrid : MonoBehaviour
     [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f, ammoRange;
     [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX, attackRangeIndicator;
     public Transform movepoint;
-    public LayerMask stopsMovement, enemyMask;
-    bool isActive = false, firstClickDone = false;
+    public LayerMask stopsMovement, enemyMask, playerMask;
+    public bool isActive = false, firstClickDone = false;
     public int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
     int enemySingleShotDamage;
     //[SerializeField] GameObject player, player2, enemyOne;
 
-    [SerializeField] List<GameObject> players = new List<GameObject>();
+    public List<GameObject> playeers = new List<GameObject>();
 
     PlayerPointManager playerPointManager;
 
@@ -106,9 +106,11 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         //if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true && player2.GetComponent<PlayerMovementGrid>().isActive == false)
 
-        for(int i = 0; i < players.Count; i++)
+        for(int i = 0; i < playeers.Count; i++)
         {
-            if (isActive == true && battleSystem.enemyCount != 0 && players[i].GetComponent<PlayerMovementGrid>().isActive == true)
+            this.GetComponent<PlayerMovementGrid>();
+
+            if (isActive == true && battleSystem.enemyCount != 0 && playeers[i].GetComponent<PlayerMovementGrid>().isActive == true)
             {
                 for (int e = 0; e < battleSystem.enemys.Count; e++)
                 {
@@ -129,8 +131,8 @@ public class PlayerMovementGrid : MonoBehaviour
             }
         }
 
-       
-        
+
+
         /*if (GameObject.Find("Player2"))
         {
             if (player2.GetComponent<PlayerMovementGrid>().isActive == true)
@@ -143,12 +145,15 @@ public class PlayerMovementGrid : MonoBehaviour
             }
         }
         */
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            IsActiveToFalse();
+        }
     }
     private void LateUpdate()
     {
-        playerPointsText.text = battleSystem.allPlayerPoints.ToString();
+        playerPointsText.text = PlayerPoints.ToString();
     }
 
     // player movement controls with swipe system
@@ -218,37 +223,58 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void OnMouseDown()
     {
-       
 
-        IsActiveToFalse();
-        //StartCoroutine(SellectPlayer());
-        //ResetPlayerPoints();
+        for (int i = 0; i < playeers.Count; i++)
+        {
+            this.GetComponent<PlayerMovementGrid>();
+            this.IsActiveToFalse();
+            //StartCoroutine(SellectPlayer());
+            //ResetPlayerPoints();
+            sFXManager.button.Play();
+
+            this.StartCoroutine(SellectNewPlayer());
+        }
+        
+        
+        
+    }
+    IEnumerator SellectNewPlayer()
+    {
+        yield return new WaitForSeconds(.2f);
+
         pLRPanel.SetActive(true);
         selectedPlayerIcon.SetActive(true);
-        
-        isActive = true;
 
-        sFXManager.button.Play();
-        
-        
+        isActive = true;
     }
 
     public void EndCurrentTurn()
     {
-        battleSystem.allPlayerPoints = 0;
-        playerPointsText.text = battleSystem.allPlayerPoints.ToString();
-        sFXManager.button.Play();
+        for (int i = 0; i < playeers.Count; i++)
+        {
+            this.GetComponent<PlayerMovementGrid>();
+
+            battleSystem.allPlayerPoints -= this.PlayerPoints;
+            this.PlayerPoints = 0;
+
+            playerPointsText.text = PlayerPoints.ToString();
+            sFXManager.button.Play();
+        }
+        
+        
+        
     }
 
 
     public void IsActiveToFalse()
     {
 
-        for(int i = 0; i < players.Count; i++)
+        for(int i = 0; i < playeers.Count; i++)
         {
-            GetComponent<PlayerMovementGrid>().isActive = false;
-            selectedPlayerIcon.SetActive(false);
-            pLRPanel.SetActive(false);
+            //players[i].GetComponent<PlayerMovementGrid>();
+            playeers[i].GetComponent<PlayerMovementGrid>().isActive = false;
+            playeers[i].GetComponent<PlayerMovementGrid>().selectedPlayerIcon.SetActive(false);
+            playeers[i].GetComponent<PlayerMovementGrid>().pLRPanel.SetActive(false);
 
         }
         /*
@@ -307,13 +333,19 @@ public class PlayerMovementGrid : MonoBehaviour
                 
                 if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(-1f, 0f, 0f), .2f, stopsMovement))
                 {
-                    Debug.Log("T????L???? OLLAAAAAN");
-                    movepoint.position += new Vector3(-1f * horizontzlGridMultiplier, 0f, 0f);
-                    playerAnimator.SetBool("isWalking", true);
-                    PlayerPoints--;
-                    battleSystem.allPlayerPoints--;
-                    sFXManager.playerMoving.Play();
-                    StartCoroutine(KillWalkingAnimation());
+                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(-1f, 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
+
+                    if (!hit.collider)
+                    {
+                        Debug.Log("T????L???? OLLAAAAAN");
+                        movepoint.position += new Vector3(-1f * horizontzlGridMultiplier, 0f, 0f);
+                        playerAnimator.SetBool("isWalking", true);
+                        PlayerPoints--;
+                        battleSystem.allPlayerPoints--;
+                        sFXManager.playerMoving.Play();
+                        StartCoroutine(KillWalkingAnimation());
+                    }
+                    
                 }
             }
         }
@@ -333,14 +365,20 @@ public class PlayerMovementGrid : MonoBehaviour
 
                 if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(1f, 0f, 0f), .2f, stopsMovement))
                 {
-                    Debug.Log("T????L???? OLLAAAAAN");
-                    movepoint.position += new Vector3(1f * horizontzlGridMultiplier, 0f, 0f);
-                    playerAnimator.SetBool("isWalking", true);
-                    PlayerPoints--;
-                    battleSystem.allPlayerPoints--;
-                    sFXManager.playerMoving.Play();
-                    isActive = true;
-                    StartCoroutine(KillWalkingAnimation());
+                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(1f, 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
+
+                    if (!hit.collider)
+                    {
+                        Debug.Log("T????L???? OLLAAAAAN");
+                        movepoint.position += new Vector3(1f * horizontzlGridMultiplier, 0f, 0f);
+                        playerAnimator.SetBool("isWalking", true);
+                        PlayerPoints--;
+                        battleSystem.allPlayerPoints--;
+                        sFXManager.playerMoving.Play();
+                        isActive = true;
+                        StartCoroutine(KillWalkingAnimation());
+                    }
+                    
                 }
             }
         }
@@ -359,14 +397,20 @@ public class PlayerMovementGrid : MonoBehaviour
 
                 if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, 1f, 0f), .2f, stopsMovement))
                 {
-                    Debug.Log("T????L???? OLLAAAAAN");
-                    movepoint.position += new Vector3(0f, 1f * verticalGridSizeMultiplier, 0f);
-                    playerAnimator.SetBool("isWalking", true);
-                    PlayerPoints--;
-                    battleSystem.allPlayerPoints--;
-                    sFXManager.playerMoving.Play();
-                    isActive = true;
-                    StartCoroutine(KillWalkingAnimation());
+                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, 1f, 0f), 0.0001f, Vector3.zero, Mathf.Infinity, (playerMask));
+
+                    if (!hit.collider)
+                    {
+                        Debug.Log("T????L???? OLLAAAAAN");
+                        movepoint.position += new Vector3(0f, 1f * verticalGridSizeMultiplier, 0f);
+                        playerAnimator.SetBool("isWalking", true);
+                        PlayerPoints--;
+                        battleSystem.allPlayerPoints--;
+                        sFXManager.playerMoving.Play();
+                        isActive = true;
+                        StartCoroutine(KillWalkingAnimation());
+                    }
+                    
                 }
             }
         }
@@ -385,14 +429,20 @@ public class PlayerMovementGrid : MonoBehaviour
 
                 if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, -1f, 0f), .2f, stopsMovement))
                 {
-                    Debug.Log("T????L???? OLLAAAAAN");
-                    movepoint.position += new Vector3(0f, -1f * verticalGridSizeMultiplier, 0f);
-                    playerAnimator.SetBool("isWalking", true);
-                    PlayerPoints--;
-                    battleSystem.allPlayerPoints--;
-                    sFXManager.playerMoving.Play();
-                    isActive = true;
-                    StartCoroutine(KillWalkingAnimation());
+                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, -1f, 0f), 0.0001f, Vector3.zero, Mathf.Infinity, (playerMask));
+
+                    if (!hit.collider)
+                    {
+                        Debug.Log("T????L???? OLLAAAAAN");
+                        movepoint.position += new Vector3(0f, -1f * verticalGridSizeMultiplier, 0f);
+                        playerAnimator.SetBool("isWalking", true);
+                        PlayerPoints--;
+                        battleSystem.allPlayerPoints--;
+                        sFXManager.playerMoving.Play();
+                        isActive = true;
+                        StartCoroutine(KillWalkingAnimation());
+                    }
+                    
                 }
             }
         }
@@ -412,13 +462,19 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, stopsMovement))
                     {
-                        //playerRB.MovePosition(movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f));
-                        movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
-                        PlayerPoints--;
-                        battleSystem.allPlayerPoints--;
-                        sFXManager.playerMoving.Play();
+                        var hit = Physics2D.CircleCast(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
 
-                        isActive = true;
+                        if (!hit.collider)
+                        {
+                            //playerRB.MovePosition(movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f));
+                            movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
+                            PlayerPoints--;
+                            battleSystem.allPlayerPoints--;
+                            sFXManager.playerMoving.Play();
+
+                            isActive = true;
+                        }
+                        
                     }
 
                 }
@@ -426,13 +482,19 @@ public class PlayerMovementGrid : MonoBehaviour
                 {
                     if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, stopsMovement))
                     {
-                        //playerRB.MovePosition(movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f));
-                        movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
-                        PlayerPoints--;
-                        battleSystem.allPlayerPoints--;
-                        sFXManager.playerMoving.Play();
+                        var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), 0.00011f, Vector3.zero, Mathf.Infinity, (playerMask));
 
-                        isActive = true;
+                        if (!hit.collider)
+                        {
+                            //playerRB.MovePosition(movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f));
+                            movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
+                            PlayerPoints--;
+                            battleSystem.allPlayerPoints--;
+                            sFXManager.playerMoving.Play();
+
+                            isActive = true;
+                        }
+                        
                     }
 
                 }
@@ -498,31 +560,39 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void PlayerAttackPositions()
     {
-        attackRangeIndicator.SetActive(true);
+       
+                attackRangeIndicator.SetActive(true);
+
+
+                if (firstClickDone)
+                {
+                    PlayerStartAttack();
+                    firstClickDone = false;
+                    attackRangeIndicator.SetActive(false);
+                }
+
+                else if (firstClickDone == false)
+                {
+                    firstClickDone = true;
+                }
         
-
-        if (firstClickDone)
-        {
-            PlayerStartAttack();
-            firstClickDone = false;
-            attackRangeIndicator.SetActive(false);
-        }
-
-        else if(firstClickDone == false)
-        {
-            firstClickDone = true;
-        }
+        
         
     }
 
     public void PlayerStartAttack()
     {
-        if (isActive == true && PlayerPoints >= pointsForAttack)
+        for (int i = 0; i < playeers.Count; i++)
         {
-            playerAnimator.SetTrigger("isShooting");
-            sFXManager.playerPreShoot.Play();
-            //playerAnimator.SetBool("isShooting", true);
+            if (isActive == true && PlayerPoints >= pointsForAttack)
+            {
+                
+                playerAnimator.SetTrigger("isShooting");
+                sFXManager.playerPreShoot.Play();
+                //playerAnimator.SetBool("isShooting", true);
+            }
         }
+        
 
     }
 
@@ -535,38 +605,49 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void PlayerOneAttack()
     {
-
-        if (isActive == true && PlayerPoints >= pointsForAttack)
+        for (int i = 0; i < playeers.Count; i++)
         {
-            RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
-            
-            
-
-            if (hitInfo)
+            if(this.playeers[i].GetComponent<PlayerMovementGrid>().isActive == true)
             {
-                EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
-                Debug.Log(hitInfo.transform.name);
-                
-                if (enemy != null)
+                if (/*isActive == true && */PlayerPoints >= pointsForAttack)
                 {
-                    enemy.inTargetIcon.SetActive(true);
-                    //enemy.TakeDamage(playerUnit.damage);
+                    RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
+
+
+
+                    if (hitInfo)
+                    {
+                        EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
+                        Debug.Log(hitInfo.transform.name);
+
+                        if (enemy != null)
+                        {
+                            enemy.inTargetIcon.SetActive(true);
+                            //enemy.TakeDamage(playerUnit.damage);
+                        }
+                    }
+                    //GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
+                    //Destroy(shootingParticles, 1f);
+                    //Instantiate(ammoPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                    //for (int a = 0; a < playeers.Count; a++)
+                    //{
+                        //if(this.playeers[i].GetComponent<PlayerMovementGrid>().isActive == true)
+                        //{
+                            this.playeers[i].GetComponent<SingleTargetAttack>().PlayerSingleTargetAttack();
+                            PlayerPoints -= pointsForAttack;
+                            battleSystem.allPlayerPoints -= pointsForAttack;
+                        //}
+                        
+                    //}
+
+
+
+
                 }
             }
-            //GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
-            //Destroy(shootingParticles, 1f);
-            //Instantiate(ammoPrefab, ammoSpawnPoint.position, Quaternion.identity);
-            for (int i = 0; i <players.Count; i++)
-            {
-                players[i].GetComponent<SingleTargetAttack>().PlayerSingleTargetAttack();
-                PlayerPoints -= pointsForAttack;
-                battleSystem.allPlayerPoints -= pointsForAttack;
-            }
-
-            
-
             
         }
+        
         
         
     }

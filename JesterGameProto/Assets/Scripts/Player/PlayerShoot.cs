@@ -7,17 +7,23 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] GameObject player;
     SFXManager sFXManager;
 
+
+
     private void Awake()
     {
-        var plr = player.GetComponent<PlayerMovementGrid>();
+        var plr = this.player.GetComponent<PlayerMovementGrid>();
         sFXManager = FindObjectOfType<SFXManager>();
     }
 
     public void StartShooting()
     {
-        var plr = player.GetComponent<PlayerMovementGrid>();
-        sFXManager.playerShoot.Play();
-        plr.PlayerOneAttack();
+       
+            var plr = this.player.GetComponent<PlayerMovementGrid>();
+
+            sFXManager.playerShoot.Play();
+
+            plr.PlayerOneAttack();
+
     }
 
     public void AlternativeShooting()
