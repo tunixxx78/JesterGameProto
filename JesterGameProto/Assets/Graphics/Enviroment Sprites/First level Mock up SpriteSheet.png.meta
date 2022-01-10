@@ -140,6 +140,27 @@ TextureImporter:
   - first:
       213: -3155099342502212811
     second: Rock_Block
+  - first:
+      213: -3086342891865089629
+    second: Attack_Icon
+  - first:
+      213: -2618694275847332593
+    second: Actionpoint_Icon
+  - first:
+      213: -6819841404420292794
+    second: Shield_icon
+  - first:
+      213: 6697527420555300309
+    second: Range_Icon
+  - first:
+      213: -7386826681703096240
+    second: positive_icon
+  - first:
+      213: -2390906742762498470
+    second: negative_Icon
+  - first:
+      213: 8384306238384781487
+    second: white_tile
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1214,6 +1235,153 @@ TextureImporter:
       bones: []
       spriteID: 53b461b4dd5d634d0800000000000000
       internalID: -3155099342502212811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Attack_Icon
+      rect:
+        serializedVersion: 2
+        x: 579
+        y: 492
+        width: 74
+        height: 91
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a95453fd7b1b25d0800000000000000
+      internalID: -3086342891865089629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Actionpoint_Icon
+      rect:
+        serializedVersion: 2
+        x: 663
+        y: 489
+        width: 64
+        height: 74
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0d55c83e6788abd0800000000000000
+      internalID: -2618694275847332593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shield_icon
+      rect:
+        serializedVersion: 2
+        x: 668
+        y: 403
+        width: 97
+        height: 83
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64ff601306e0b51a0800000000000000
+      internalID: -6819841404420292794
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Range_Icon
+      rect:
+        serializedVersion: 2
+        x: 567
+        y: 394
+        width: 97
+        height: 93
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5dd03a734b562fc50800000000000000
+      internalID: 6697527420555300309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: positive_icon
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 575
+        width: 35
+        height: 40
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 050a5b32548bc7990800000000000000
+      internalID: -7386826681703096240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: negative_Icon
+      rect:
+        serializedVersion: 2
+        x: 539
+        y: 539
+        width: 38
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a561e8a2cfac1ded0800000000000000
+      internalID: -2390906742762498470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_tile
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 590
+        width: 140
+        height: 100
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa834031a1a0b5470800000000000000
+      internalID: 8384306238384781487
       vertices: []
       indices: 
       edges: []

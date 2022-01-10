@@ -1333,6 +1333,7 @@ MonoBehaviour:
   pLRPanel: {fileID: 6094058124072814778}
   selectedPlayerIcon: {fileID: 7396815006943953231}
   seeker_AttackFX: {fileID: 8322785093088199830, guid: 83489161cb5166a48a8a41d078ce8098, type: 3}
+  attackRangeIndicator: {fileID: 0}
   movepoint: {fileID: 9132877457042916913}
   stopsMovement:
     serializedVersion: 2
@@ -1340,14 +1341,17 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 128
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  isActive: 0
+  firstClickDone: 0
   PlayerPoints: 0
   playerStartPoints: 0
   pointsForAttack: 3
   wantedHP: 0
   playerHp: 0
-  player: {fileID: 9132877457987646066}
-  player2: {fileID: 0}
-  enemyOne: {fileID: 0}
+  playeers: []
   playerPointsText: {fileID: 1084027280439518517}
   playerAttackCostText: {fileID: 1084027280652806427}
   ammoPrefab: {fileID: 202230878098506816, guid: 021091c24a4d1d74aacf2983236950f6, type: 3}
