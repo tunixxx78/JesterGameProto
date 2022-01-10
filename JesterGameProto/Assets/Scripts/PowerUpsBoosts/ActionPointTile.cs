@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefenceTile : MonoBehaviour
+public class ActionPointTile : MonoBehaviour
 {
-    public int armourAmount;
+    public int extraActionPoints;
+
+    [SerializeField] bool cantBeUsedMultipleTimes = false;
 
     [SerializeField] Animator attackTileAnimator;
 
@@ -20,6 +22,11 @@ public class DefenceTile : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             attackTileAnimator.SetBool("isActive", false);
+        }
+
+        if(collision.gameObject.tag == "Player" && cantBeUsedMultipleTimes)
+        {
+            Destroy(this.gameObject, 1f);
         }
     }
 }

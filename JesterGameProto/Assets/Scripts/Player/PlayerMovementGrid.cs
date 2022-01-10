@@ -88,6 +88,10 @@ public class PlayerMovementGrid : MonoBehaviour
 
         Swipe();  // related to swipe controls
 
+        ammoRange = singleTargetAttack.bulletRange / 2;
+
+        
+
         playerPointsText.text = PlayerPoints.ToString();
 
         if (playerHp <= 0)
@@ -256,6 +260,9 @@ public class PlayerMovementGrid : MonoBehaviour
 
             battleSystem.allPlayerPoints -= this.PlayerPoints;
             this.PlayerPoints = 0;
+
+            firstClickDone = false;
+            attackRangeIndicator.SetActive(false);
 
             playerPointsText.text = PlayerPoints.ToString();
             sFXManager.button.Play();
@@ -548,6 +555,20 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             PlayerTakeDamage(enemySingleShotDamage);
         }
+        if(collision.gameObject.tag == "DefenceTile")
+        {
+            enemySingleShotDamage = enemySingleShotDamage / FindObjectOfType<DefenceTile>().armourAmount;
+        }
+        if(collision.gameObject.tag == "RangeTile")
+        {
+            singleTargetAttack.bulletRange = singleTargetAttack.bulletRange * FindObjectOfType<RangeTile>().rangeAmount;
+            bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, ammoRange, 0);
+        }
+        if(collision.gameObject.tag == "ActionPointTile")
+        {
+            PlayerPoints = PlayerPoints + FindObjectOfType<ActionPointTile>().extraActionPoints;
+            battleSystem.allPlayerPoints = battleSystem.allPlayerPoints + FindObjectOfType<ActionPointTile>().extraActionPoints;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -556,7 +577,18 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             playerUnit.DeCreaseAttackPower();
         }
+        if (collision.gameObject.tag == "DefenceTile")
+        {
+            enemySingleShotDamage = FindObjectOfType<EnemySingleShoot>().bulletDamage;
+        }
+        if (collision.gameObject.tag == "RangeTile")
+        {
+            singleTargetAttack.bulletRange = FindObjectOfType<RangeTile>().starBulletRange;
+            bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, ammoRange / 2, 0);
+        }
     }
+
+    // Player attack button doubleClick funktionality.
 
     public void PlayerAttackPositions()
     {
@@ -579,6 +611,8 @@ public class PlayerMovementGrid : MonoBehaviour
         
         
     }
+
+    // Player attack itself
 
     public void PlayerStartAttack()
     {

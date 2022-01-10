@@ -170,6 +170,15 @@ public class BattleSystem : MonoBehaviour
         for (int i = 0; i < enemys.Count; i++)
         {
             enemys[i].GetComponent<EnemyProto>().EnemyAction();
+            if(enemys[i].GetComponent<EnemySingleShoot>().attackDelay > 0)
+            {
+                enemys[i].GetComponent<EnemySingleShoot>().attackDelay -= 1;
+            }
+            else if(enemys[i].GetComponent<EnemySingleShoot>().attackDelay <= 0)
+            {
+                enemys[i].GetComponent<EnemySingleShoot>().attackDelay = enemys[i].GetComponent<EnemySingleShoot>().startAttackDealy;
+            }
+            
         }    
         //enemyProto.EnemyAction();
         //enemyTwoProto.EnemyAction();
