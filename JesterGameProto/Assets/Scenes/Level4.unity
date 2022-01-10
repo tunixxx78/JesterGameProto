@@ -1033,6 +1033,7 @@ GameObject:
   m_Component:
   - component: {fileID: 237683999}
   - component: {fileID: 237683998}
+  - component: {fileID: 237684000}
   m_Layer: 7
   m_Name: Rock_Block
   m_TagString: Untagged
@@ -1099,12 +1100,38 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 237683997}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36541808, y: 2.0704918, z: 0}
+  m_LocalPosition: {x: 1.063, y: 2.0704918, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &237684000
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237683997}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.00007387996, y: 0.2386255}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.50556934, y: 0.111176305}
+    oldSize: {x: 0.595, y: 0.605}
+    newSize: {x: 0.595, y: 0.605}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.58822507, y: 0.59822506}
+  m_EdgeRadius: 0
 --- !u!1 &243961544
 GameObject:
   m_ObjectHideFlags: 0
@@ -4653,6 +4680,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1319822711}
   - component: {fileID: 1319822710}
+  - component: {fileID: 1319822712}
   m_Layer: 7
   m_Name: Rock_Block (1)
   m_TagString: Untagged
@@ -4725,6 +4753,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &1319822712
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319822709}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.003313601, y: 0.23523802}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.50556934, y: 0.111176305}
+    oldSize: {x: 0.595, y: 0.605}
+    newSize: {x: 0.595, y: 0.605}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.595, y: 0.605}
+  m_EdgeRadius: 0
 --- !u!1 &1325434709
 GameObject:
   m_ObjectHideFlags: 0
@@ -5105,6 +5159,10 @@ PrefabInstance:
     - target: {fileID: 5588518334756993363, guid: 72882f2b436a8414789db2bd0b40abef, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5588518334756993388, guid: 72882f2b436a8414789db2bd0b40abef, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -9.14856
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72882f2b436a8414789db2bd0b40abef, type: 3}
