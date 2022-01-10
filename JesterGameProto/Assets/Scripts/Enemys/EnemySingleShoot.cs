@@ -6,10 +6,11 @@ public class EnemySingleShoot : MonoBehaviour
 {
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] GameObject enemyBullet;
-    public int bulletDamage;
+    public int bulletDamage, attackDelay, startAttackDealy;
     [SerializeField] Animator cannonAnimator;
 
-    [SerializeField] bool enemyTypeOne = false, enemyTypeTwo = false;
+
+    [SerializeField] bool enemyTypeOne = false, enemyTypeTwo = false, hasAttackDelay = false;
 
     SFXManager sFXManager;
 
@@ -41,15 +42,32 @@ public class EnemySingleShoot : MonoBehaviour
         //GameObject enemyBulletPrefab = Instantiate(enemyBullet, bulletSpawnPoint.position, Quaternion.identity);
 
         //sFXManager.enemyShoot.Play();
-        if (enemyTypeOne)
+        if(attackDelay <= 0 && hasAttackDelay)
         {
-            cannonAnimator.SetTrigger("Shoot");
+            if (enemyTypeOne)
+            {
+                cannonAnimator.SetTrigger("Shoot");
+            }
+
+
+            if (enemyTypeTwo)
+            {
+                cannonAnimator.SetTrigger("Attack");
+            }
+        }
+        else if(hasAttackDelay == false)
+        {
+            if (enemyTypeOne)
+            {
+                cannonAnimator.SetTrigger("Shoot");
+            }
+
+
+            if (enemyTypeTwo)
+            {
+                cannonAnimator.SetTrigger("Attack");
+            }
         }
         
-
-        if (enemyTypeTwo)
-        {
-            cannonAnimator.SetTrigger("Attack");
-        }
     }
 }

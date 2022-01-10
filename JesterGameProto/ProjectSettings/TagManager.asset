@@ -17,6 +17,8 @@ TagManager:
   - EnemyBulletDestroyer
   - Bullet2
   - DummuObstacle
+  - RangeTile
+  - ActionPointTile
   layers:
   - Default
   - TransparentFX

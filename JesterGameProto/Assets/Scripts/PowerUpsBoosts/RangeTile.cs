@@ -2,11 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DefenceTile : MonoBehaviour
+public class RangeTile : MonoBehaviour
 {
-    public int armourAmount;
+    public int rangeAmount;
+    public float starBulletRange;
 
     [SerializeField] Animator attackTileAnimator;
+
+    private void Awake()
+    {
+        starBulletRange = FindObjectOfType<SingleTargetAttack>().bulletRange;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
