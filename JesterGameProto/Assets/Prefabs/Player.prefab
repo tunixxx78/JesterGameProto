@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -317209914827117106, guid: 705db18065960d643b0fce7d17aee644, type: 3}
+  m_Sprite: {fileID: -5412974975751855158, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -388,9 +388,21 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0.326
       objectReference: {fileID: 0}
+    - target: {fileID: 1290120058515715606, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
+      propertyPath: maxHP
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2943372086117557495, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429417064676916288, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 3429417064676916288, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21
       objectReference: {fileID: 0}
     - target: {fileID: 4144055408146326787, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -410,7 +422,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7013721743448153823, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
       propertyPath: maxSpeed
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7013721743448153823, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
       propertyPath: bulletRange
@@ -426,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9132877457987646064, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: 1.08
       objectReference: {fileID: 0}
     - target: {fileID: 9132877457987646064, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -469,6 +481,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3853978482908308477}
     - target: {fileID: 9132877457987646065, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
+      propertyPath: playerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132877457987646065, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
+      propertyPath: playeers.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9132877457987646065, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
       propertyPath: attackRangeIndicator
       value: 
       objectReference: {fileID: 1898909737347825844}
@@ -476,18 +496,27 @@ PrefabInstance:
       propertyPath: stopsMovement.m_Bits
       value: 64
       objectReference: {fileID: 0}
+    - target: {fileID: 9132877457987646065, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
+      propertyPath: playeers.Array.data[1]
+      value: 
+      objectReference: {fileID: 7141196061345805688}
     - target: {fileID: 9132877457987646066, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
       propertyPath: m_Name
-      value: Player
+      value: Player (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
+--- !u!1 &7141196061345805688 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9132877457987646066, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
+  m_PrefabInstance: {fileID: 2136078773041874698}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7141196061345805691 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9132877457987646065, guid: 13cdc320081f54915b0ac38305c658b5, type: 3}
   m_PrefabInstance: {fileID: 2136078773041874698}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 7141196061345805688}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15539fd5cb828459fb084b1886de7466, type: 3}
