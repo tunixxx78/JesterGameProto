@@ -11,6 +11,9 @@ TextureImporter:
   - first:
       213: -4385796744733132169
     second: CannonBall
+  - first:
+      213: -616982333985679621
+    second: Cannon_Destroyed
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -132,7 +135,7 @@ TextureImporter:
         width: 62
         height: 112
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,7 +156,7 @@ TextureImporter:
         width: 118
         height: 96
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,7 +177,7 @@ TextureImporter:
         width: 57
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,6 +185,27 @@ TextureImporter:
       bones: []
       spriteID: 77afd1df8158223c0800000000000000
       internalID: -4385796744733132169
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cannon_Destroyed
+      rect:
+        serializedVersion: 2
+        x: 121
+        y: 8
+        width: 125
+        height: 116
+      alignment: 9
+      pivot: {x: 0.4754983, y: 0.26898015}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf6971e06d90077f0800000000000000
+      internalID: -616982333985679621
       vertices: []
       indices: 
       edges: []

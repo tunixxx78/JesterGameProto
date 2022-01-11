@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: 1049613075910855002
     second: Mana-Icon
+  - first:
+      213: -8913434448016108618
+    second: attack_button_generic_pressed
+  - first:
+      213: 7646522203999962527
+    second: End_turn_button_pressed
+  - first:
+      213: 4840107279058467061
+    second: End_Turn_Button
+  - first:
+      213: -5687803378267806180
+    second: attack_button_generic_Highlight
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -152,7 +164,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2
-        y: 704
+        y: 695
         width: 52
         height: 56
       alignment: 0
@@ -206,6 +218,90 @@ TextureImporter:
       bones: []
       spriteID: a59854d0889f09e00800000000000000
       internalID: 1049613075910855002
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack_button_generic_pressed
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 757
+        width: 263
+        height: 263
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b3154d489e1d4480800000000000000
+      internalID: -8913434448016108618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: End_turn_button_pressed
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 386
+        width: 330
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f950e887e67ed1a60800000000000000
+      internalID: 7646522203999962527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: End_Turn_Button
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 235
+        width: 330
+        height: 148
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f8ff032de38b2340800000000000000
+      internalID: 4840107279058467061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: attack_button_generic_Highlight
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 757
+        width: 263
+        height: 263
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c16a41676fcd011b0800000000000000
+      internalID: -5687803378267806180
       vertices: []
       indices: 
       edges: []
