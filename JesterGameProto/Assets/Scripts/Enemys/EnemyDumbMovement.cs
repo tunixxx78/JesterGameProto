@@ -10,6 +10,7 @@ public class EnemyDumbMovement : MonoBehaviour
 
     public void DumbEnemyMovement()
     {
+
         var randomDirection = Random.Range(0, moveDirections.Length);
         var hit1 = Physics2D.CircleCast(moveDirections[0].position, 0.05f, Vector3.zero, Mathf.Infinity, enemyMask);
         var hit2 = Physics2D.CircleCast(moveDirections[1].position, 0.05f, Vector3.zero, Mathf.Infinity, enemyMask);

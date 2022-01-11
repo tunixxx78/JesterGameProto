@@ -8,8 +8,8 @@ public enum BattleState { START, PLAYERTURN, PLAYERTWOTURN, ENEMYTURN, WON, LOST
 public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
-    [SerializeField] TMP_Text resultText, teamActionPointsText;
-    [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, KippoAvatar, OgamiAvatar, MoveOnButton;
+    [SerializeField] TMP_Text resultText;
+    [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, MoveOnButton;
     //public GameObject[] enemys; //players;
     public List<GameObject> enemys = new List<GameObject>();
     public List<GameObject> players = new List<GameObject>();
@@ -88,7 +88,7 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.LOST;
             MatchLost();
         }
-        if (!GameObject.FindGameObjectWithTag("Player"))
+        /*if (!GameObject.FindGameObjectWithTag("Player"))
         {
             KippoAvatar.SetActive(true);
             //playerOnemovement.PlayerPoints = 0;
@@ -100,7 +100,7 @@ public class BattleSystem : MonoBehaviour
             //playerTwoMovement.PlayerPoints = 0;
         }
         else { OgamiAvatar.SetActive(false); }
-
+        */
         if(allPlayerPoints == 0 && battleHasEnded == false && enemyIsAttacking == false)
         {
             state = BattleState.ENEMYTURN;

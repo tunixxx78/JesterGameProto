@@ -154,10 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 0
   resultText: {fileID: 1451346665}
-  teamActionPointsText: {fileID: 1451346663}
   resultPanel: {fileID: 1451346666}
-  KippoAvatar: {fileID: 1616507666}
-  OgamiAvatar: {fileID: 983918098}
   MoveOnButton: {fileID: 1451346664}
   enemys:
   - {fileID: 723116447}
@@ -1976,17 +1973,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 72882f2b436a8414789db2bd0b40abef, type: 3}
---- !u!114 &1451346663 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1308777067, guid: 72882f2b436a8414789db2bd0b40abef, type: 3}
-  m_PrefabInstance: {fileID: 1451346662}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1451346664 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 706023146, guid: 72882f2b436a8414789db2bd0b40abef, type: 3}
@@ -2384,6 +2370,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8182896966704632130, guid: b61d310cdb9b84ad3b846d53da6cdf6c, type: 3}
+      propertyPath: bulletSpawnPoint
+      value: 
+      objectReference: {fileID: 2038160246}
+    - target: {fileID: 8182896966704632130, guid: b61d310cdb9b84ad3b846d53da6cdf6c, type: 3}
       propertyPath: enemyMask.m_Bits
       value: 128
       objectReference: {fileID: 0}
@@ -2699,6 +2689,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77f23f17e5d8ae047b3b1940d15c18a1, type: 3}
+--- !u!4 &2038160246 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1198199451934823238, guid: b61d310cdb9b84ad3b846d53da6cdf6c, type: 3}
+  m_PrefabInstance: {fileID: 1727329760}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2114685110
 GameObject:
   m_ObjectHideFlags: 0

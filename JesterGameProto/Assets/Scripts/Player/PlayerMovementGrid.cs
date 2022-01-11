@@ -558,16 +558,19 @@ public class PlayerMovementGrid : MonoBehaviour
         if(collision.gameObject.tag == "DefenceTile")
         {
             enemySingleShotDamage = enemySingleShotDamage / FindObjectOfType<DefenceTile>().armourAmount;
+            sFXManager.attackTile.Play();
         }
         if(collision.gameObject.tag == "RangeTile")
         {
             singleTargetAttack.bulletRange = singleTargetAttack.bulletRange * FindObjectOfType<RangeTile>().rangeAmount;
             bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, ammoRange, 0);
+            sFXManager.attackTile.Play();
         }
         if(collision.gameObject.tag == "ActionPointTile")
         {
             PlayerPoints = PlayerPoints + FindObjectOfType<ActionPointTile>().extraActionPoints;
             battleSystem.allPlayerPoints = battleSystem.allPlayerPoints + FindObjectOfType<ActionPointTile>().extraActionPoints;
+            sFXManager.attackTile.Play();
         }
     }
 
