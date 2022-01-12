@@ -9,12 +9,14 @@ public class StaticObstacle : MonoBehaviour
 
     int damageBoost;
     BattleSystem battleSystem;
-    [SerializeField] GameObject obstacle;
+    [SerializeField] GameObject destroyedObstacle, obstacle;
 
     [SerializeField] HealthBar obstacleHealthbar;
     [SerializeField] int obstacleHealt, obstacleStartHealth, normalHitDamage, boostedHitDamage;
 
     [SerializeField] GameObject[] players;
+
+    [SerializeField] Transform destroyedObstacleSpawnPoint;
 
     private void Awake()
     {
@@ -30,6 +32,7 @@ public class StaticObstacle : MonoBehaviour
     private void Start()
     {
         obstacleHealthbar.SetMaxValue(obstacleStartHealth);
+        destroyedObstacleSpawnPoint.parent = null;
     }
 
     private void Update()
@@ -44,6 +47,9 @@ public class StaticObstacle : MonoBehaviour
         if (obstacleHealt <= 0)
         {
             Debug.Log("HAISTA PASKA!!");
+            GameObject destroyed = Instantiate(destroyedObstacle, destroyedObstacleSpawnPoint.position, Quaternion.identity);
+            Destroy(destroyed, 2f);
+
             Destroy(this.gameObject);
             players[0].GetComponent<Unit>().fenses.Remove(this.gameObject);
         }

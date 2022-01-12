@@ -640,14 +640,17 @@ MonoBehaviour:
   enemyHealth: 0
   enemyStartHealt: 2
   enemy: {fileID: 9125209700906150518}
-  bulletPrefab: {fileID: 8501067502083498164, guid: 283b730f767264ce396aac2acfc49ff2, type: 3}
-  enemyAttackFX: {fileID: 8322785093088199830, guid: d1f0e7e499a774ed8a6f0db2027334b8, type: 3}
+  destroyedEnemy: {fileID: 0}
   inTargetIcon: {fileID: 2827223025573433532}
-  bulletSpawnPoint: {fileID: 9172050728007557882}
   moveDirections: []
   enemySpeed: 5
-  enemyHPText: {fileID: 5627572975113928986}
+  ammoRange: 0
+  bulletTargetRange: {fileID: 0}
+  destroyedEnemySpawnPoint: {fileID: 0}
+  EnemyAttackDelayText: {fileID: 0}
   enemyHealthBar: {fileID: 7738736572225108808}
+  hasMovementScript: 0
+  friendlyFire: 0
 --- !u!50 &9125209700906150519
 Rigidbody2D:
   serializedVersion: 4
@@ -684,6 +687,7 @@ MonoBehaviour:
   enemyName: TURT
   enemyHP: 4
   damage: 1
+  range: 0
 --- !u!58 &7966602915426185846
 CircleCollider2D:
   m_ObjectHideFlags: 0

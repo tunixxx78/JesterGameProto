@@ -81,7 +81,7 @@ public class BattleSystem : MonoBehaviour
         if(enemyCount <= 0)
         {
             state = BattleState.WON;
-           Invoke("MatchWon", 1f);
+           Invoke("MatchWon", 2f);
         }
         if(playerCount <= 0)
         {

@@ -6,17 +6,17 @@ using TMPro;
 public class EnemyProto : MonoBehaviour
 {
     [SerializeField] int enemyHealth, enemyStartHealt;
-    [SerializeField] GameObject enemy; //bulletPrefab, enemyAttackFX;
+    [SerializeField] GameObject enemy, destroyedEnemy; //bulletPrefab, enemyAttackFX;
     public GameObject inTargetIcon;
     //[SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform[] moveDirections;
     [SerializeField] float enemySpeed, ammoRange;
 
-    [SerializeField] Transform bulletTargetRange;
+    [SerializeField] Transform bulletTargetRange, destroyedEnemySpawnPoint;
 
     EnemyUnit enemyUnit;
 
-    //[SerializeField] TMP_Text enemyHPText;
+    [SerializeField] TMP_Text EnemyAttackDelayText;
 
     BattleSystem battleSystem;
 
@@ -58,6 +58,8 @@ public class EnemyProto : MonoBehaviour
     {
         enemyHealthBar.SetMaxValue(enemyStartHealt);
 
+        destroyedEnemySpawnPoint.parent = null;
+
         sFXManager.enemyBounce.Play();
 
         bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, -ammoRange, 0);
@@ -69,13 +71,16 @@ public class EnemyProto : MonoBehaviour
         {
             battleSystem.CountingEnemys();
 
+            GameObject destroyed = Instantiate(destroyedEnemy, destroyedEnemySpawnPoint.position, Quaternion.identity);
+            Destroy(destroyed, 2f);
+
             battleSystem.enemys.Remove(this.gameObject);
 
             Destroy(this.gameObject);
             
         }
 
-        //enemyHPText.text = enemyHealth.ToString();
+        EnemyAttackDelayText.text = GetComponent<EnemySingleShoot>().attackDelay.ToString();
 
         
         
