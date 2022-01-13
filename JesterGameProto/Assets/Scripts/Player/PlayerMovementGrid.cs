@@ -260,6 +260,8 @@ public class PlayerMovementGrid : MonoBehaviour
             firstClickDone = false;
             attackRangeIndicator.SetActive(false);
 
+            indicatorCanMove = false;
+
             playerPointsText.text = PlayerPoints.ToString();
             sFXManager.button.Play();
         }
@@ -313,6 +315,11 @@ public class PlayerMovementGrid : MonoBehaviour
                         PlayerPoints--;
                         battleSystem.allPlayerPoints--;
                         sFXManager.playerMoving.Play();
+
+                        firstClickDone = false;
+                        attackRangeIndicator.SetActive(false);
+                        indicatorCanMove = false;
+
                         StartCoroutine(KillWalkingAnimation());
                     }
                     
@@ -346,6 +353,11 @@ public class PlayerMovementGrid : MonoBehaviour
                         battleSystem.allPlayerPoints--;
                         sFXManager.playerMoving.Play();
                         isActive = true;
+
+                        firstClickDone = false;
+                        attackRangeIndicator.SetActive(false);
+                        indicatorCanMove = false;
+
                         StartCoroutine(KillWalkingAnimation());
                     }
                     
@@ -378,6 +390,11 @@ public class PlayerMovementGrid : MonoBehaviour
                         battleSystem.allPlayerPoints--;
                         sFXManager.playerMoving.Play();
                         isActive = true;
+
+                        firstClickDone = false;
+                        attackRangeIndicator.SetActive(false);
+                        indicatorCanMove = false;
+
                         StartCoroutine(KillWalkingAnimation());
                     }
                     
@@ -410,6 +427,11 @@ public class PlayerMovementGrid : MonoBehaviour
                         battleSystem.allPlayerPoints--;
                         sFXManager.playerMoving.Play();
                         isActive = true;
+
+                        firstClickDone = false;
+                        attackRangeIndicator.SetActive(false);
+                        indicatorCanMove = false;
+
                         StartCoroutine(KillWalkingAnimation());
                     }
                     
