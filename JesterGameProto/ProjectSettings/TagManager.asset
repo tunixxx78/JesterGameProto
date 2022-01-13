@@ -19,6 +19,7 @@ TagManager:
   - DummuObstacle
   - RangeTile
   - ActionPointTile
+  - MovingIndicator
   layers:
   - Default
   - TransparentFX

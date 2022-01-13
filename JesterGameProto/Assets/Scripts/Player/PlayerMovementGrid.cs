@@ -5,11 +5,11 @@ using TMPro;
 
 public class PlayerMovementGrid : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f, ammoRange, timeToShowSpecialTileEffect = 2f;
-    [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX, attackRangeIndicator, specialTileEffectPrefab;
+    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f, ammoRange, timeToShowSpecialTileEffect = 2f, indicatorReSpawnTime = 1;
+    [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX, attackRangeIndicator, specialTileEffectPrefab, movingRangeIndicator;
     public Transform movepoint;
     public LayerMask stopsMovement, enemyMask, playerMask;
-    public bool isActive = false, firstClickDone = false;
+    public bool isActive = false, firstClickDone = false, indicatorCanMove = false;
     public int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
     int enemySingleShotDamage;
     //[SerializeField] GameObject player, player2, enemyOne;
@@ -28,7 +28,8 @@ public class PlayerMovementGrid : MonoBehaviour
     SingleTargetAttack singleTargetAttack;
 
     [SerializeField] GameObject ammoPrefab;
-    [SerializeField] Transform ammoSpawnPoint, bulletTargetRange;
+    [SerializeField] Transform ammoSpawnPoint, movingIndicatorSpawnPoint;
+    public Transform bulletTargetRange;
 
     BattleSystem battleSystem;
 
@@ -148,6 +149,7 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             IsActiveToFalse();
         }
+        
     }
     private void LateUpdate()
     {
@@ -440,6 +442,10 @@ public class PlayerMovementGrid : MonoBehaviour
                             sFXManager.playerMoving.Play();
 
                             isActive = true;
+
+                            firstClickDone = false;
+                            attackRangeIndicator.SetActive(false);
+                            indicatorCanMove = false;
                         }
                         
                     }
@@ -460,6 +466,10 @@ public class PlayerMovementGrid : MonoBehaviour
                             sFXManager.playerMoving.Play();
 
                             isActive = true;
+
+                            firstClickDone = false;
+                            attackRangeIndicator.SetActive(false);
+                            indicatorCanMove = false;
                         }
                         
                     }
@@ -589,23 +599,42 @@ public class PlayerMovementGrid : MonoBehaviour
     public void PlayerAttackPositions()
     {
        
-                attackRangeIndicator.SetActive(true);
+        attackRangeIndicator.SetActive(true);
+        indicatorCanMove = true; 
+        StartCoroutine(MovingIIndicators());
+        GameObject movingIndicator = Instantiate(movingRangeIndicator, movingIndicatorSpawnPoint.position, Quaternion.identity);
 
 
-                if (firstClickDone)
-                {
-                    PlayerStartAttack();
-                    firstClickDone = false;
-                    attackRangeIndicator.SetActive(false);
-                }
+        if (firstClickDone)
+        {
+            PlayerStartAttack();
+            indicatorCanMove = false;
+            firstClickDone = false;
+            attackRangeIndicator.SetActive(false);
+        }
 
-                else if (firstClickDone == false)
-                {
-                    firstClickDone = true;
-                }
+        else if (firstClickDone == false)
+        {
+            firstClickDone = true;
+        }
         
         
         
+    }
+
+    private void SpawnIndicator()
+    {
+        GameObject movingIndicator = Instantiate(movingRangeIndicator, movingIndicatorSpawnPoint.position, Quaternion.identity);
+    }
+
+    IEnumerator MovingIIndicators()
+    {
+        while (indicatorCanMove == true)
+        {
+            yield return new WaitForSeconds(indicatorReSpawnTime);
+
+            SpawnIndicator();
+        }
     }
 
     // Player attack itself
