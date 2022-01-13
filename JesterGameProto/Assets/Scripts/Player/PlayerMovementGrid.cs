@@ -144,21 +144,6 @@ public class PlayerMovementGrid : MonoBehaviour
             }
         }
 
-
-
-        /*if (GameObject.Find("Player2"))
-        {
-            if (player2.GetComponent<PlayerMovementGrid>().isActive == true)
-            {
-                player2.GetComponent<AOEAttack>().ShowTargetIcon();
-            }
-            if (player2.GetComponent<PlayerMovementGrid>().isActive == false)
-            {
-                player2.GetComponent<AOEAttack>().HideTargetIcon();
-            }
-        }
-        */
-
         if (Input.GetKeyDown(KeyCode.P))
         {
             IsActiveToFalse();
@@ -293,39 +278,6 @@ public class PlayerMovementGrid : MonoBehaviour
             playeers[i].GetComponent<PlayerMovementGrid>().pLRPanel.SetActive(false);
 
         }
-        /*
-        if (!GameObject.FindGameObjectWithTag("Player"))
-        {
-            player = null;
-            var p2 = player2.GetComponent<PlayerMovementGrid>();
-            p2.selectedPlayerIcon.SetActive(true);
-            p2.pLRPanel.SetActive(true);
-            p2.isActive = true;
-            
-        }
-        if (!GameObject.FindGameObjectWithTag("Player2"))
-        {
-            player2 = null;
-            var p1 = player.GetComponent<PlayerMovementGrid>();
-            p1.selectedPlayerIcon.SetActive(true);
-            p1.pLRPanel.SetActive(true);
-            p1.isActive = true;
-            
-        }
-        else
-        {
-            var p1_1 = player.GetComponent<PlayerMovementGrid>();
-            var p2_2 = player2.GetComponent<PlayerMovementGrid>();
-            p1_1.selectedPlayerIcon.SetActive(false);
-            p2_2.selectedPlayerIcon.SetActive(false);
-            p1_1.pLRPanel.SetActive(false);
-            p2_2.pLRPanel.SetActive(false);
-
-            p1_1.isActive = false;
-            p2_2.isActive = false;
-
-            
-        }*/
         
     }
 
@@ -482,7 +434,6 @@ public class PlayerMovementGrid : MonoBehaviour
 
                         if (!hit.collider)
                         {
-                            //playerRB.MovePosition(movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f));
                             movepoint.position += new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f);
                             PlayerPoints--;
                             battleSystem.allPlayerPoints--;
@@ -502,7 +453,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
                         if (!hit.collider)
                         {
-                            //playerRB.MovePosition(movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f));
+                            
                             movepoint.position += new Vector3(0f, (Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier), 0f);
                             PlayerPoints--;
                             battleSystem.allPlayerPoints--;
@@ -558,8 +509,6 @@ public class PlayerMovementGrid : MonoBehaviour
         if(collision.gameObject.tag == "AttackBoost")
         {
             playerUnit.InCreaseAttackPower();
-
-            //FindObjectOfType<Unit>().damage = FindObjectOfType<Unit>().damage + FindObjectOfType<AttackTile>().damageMultiplier;
 
             // For showing player special tiles effect to damage.
             GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
@@ -623,7 +572,6 @@ public class PlayerMovementGrid : MonoBehaviour
         if (collision.gameObject.tag == "AttackBoost")
         {
             playerUnit.DeCreaseAttackPower();
-            //FindObjectOfType<Unit>().damage = FindObjectOfType<Unit>().damage - FindObjectOfType<AttackTile>().damageMultiplier;
         }
         if (collision.gameObject.tag == "DefenceTile")
         {
@@ -671,7 +619,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 
                 playerAnimator.SetTrigger("isShooting");
                 sFXManager.playerPreShoot.Play();
-                //playerAnimator.SetBool("isShooting", true);
+
             }
         }
         
@@ -708,22 +656,9 @@ public class PlayerMovementGrid : MonoBehaviour
                             //enemy.TakeDamage(playerUnit.damage);
                         }
                     }
-                    //GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
-                    //Destroy(shootingParticles, 1f);
-                    //Instantiate(ammoPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                    //for (int a = 0; a < playeers.Count; a++)
-                    //{
-                        //if(this.playeers[i].GetComponent<PlayerMovementGrid>().isActive == true)
-                        //{
                             this.playeers[i].GetComponent<SingleTargetAttack>().PlayerSingleTargetAttack();
                             PlayerPoints -= pointsForAttack;
                             battleSystem.allPlayerPoints -= pointsForAttack;
-                        //}
-                        
-                    //}
-
-
-
 
                 }
             }
