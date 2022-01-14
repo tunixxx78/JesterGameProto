@@ -260,7 +260,7 @@ public class PlayerMovementGrid : MonoBehaviour
             firstClickDone = false;
             attackRangeIndicator.SetActive(false);
 
-            indicatorCanMove = false;
+            this.indicatorCanMove = false;
 
             playerPointsText.text = PlayerPoints.ToString();
             sFXManager.button.Play();
@@ -280,7 +280,7 @@ public class PlayerMovementGrid : MonoBehaviour
             playeers[i].GetComponent<PlayerMovementGrid>().isActive = false;
             playeers[i].GetComponent<PlayerMovementGrid>().selectedPlayerIcon.SetActive(false);
             playeers[i].GetComponent<PlayerMovementGrid>().pLRPanel.SetActive(false);
-
+            playeers[i].GetComponent<PlayerMovementGrid>().attackRangeIndicator.SetActive(false);
         }
         
     }
@@ -540,7 +540,9 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         if(collision.gameObject.tag == "AttackBoost")
         {
+            
             playerUnit.InCreaseAttackPower();
+            
 
             // For showing player special tiles effect to damage.
             GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
@@ -620,25 +622,38 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void PlayerAttackPositions()
     {
-       
-        attackRangeIndicator.SetActive(true);
-        indicatorCanMove = true; 
-        StartCoroutine(MovingIIndicators());
-        GameObject movingIndicator = Instantiate(movingRangeIndicator, movingIndicatorSpawnPoint.position, Quaternion.identity);
+       // for (int i = 0; i < playeers.Count; i++)
+       // {
+            this.GetComponent<PlayerMovementGrid>();
+            this.attackRangeIndicator.SetActive(true);
+            this.indicatorCanMove = true;
 
+            this.StartCoroutine(MovingIIndicators());
 
-        if (firstClickDone)
-        {
-            PlayerStartAttack();
-            indicatorCanMove = false;
-            firstClickDone = false;
-            attackRangeIndicator.SetActive(false);
-        }
+            GameObject movingIndicator = Instantiate(movingRangeIndicator, movingIndicatorSpawnPoint.position, Quaternion.identity);
 
-        else if (firstClickDone == false)
-        {
-            firstClickDone = true;
-        }
+            if (this.firstClickDone)
+            {
+                PlayerStartAttack();
+                indicatorCanMove = false;
+                firstClickDone = false;
+                attackRangeIndicator.SetActive(false);
+            }
+
+            else if (this.firstClickDone == false)
+            {
+                this.firstClickDone = true;
+            }
+            //this.GetComponent<PlayerMovementGrid>();
+            //this.IsActiveToFalse();
+            //StartCoroutine(SellectPlayer());
+            //ResetPlayerPoints();
+            //sFXManager.button.Play();
+
+            //this.StartCoroutine(SellectNewPlayer());
+        //}
+        
+         
         
         
         
@@ -646,17 +661,21 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void SpawnIndicator()
     {
+
         GameObject movingIndicator = Instantiate(movingRangeIndicator, movingIndicatorSpawnPoint.position, Quaternion.identity);
+            
     }
 
     IEnumerator MovingIIndicators()
     {
-        while (indicatorCanMove == true)
-        {
-            yield return new WaitForSeconds(indicatorReSpawnTime);
 
-            SpawnIndicator();
-        }
+    while (indicatorCanMove == true)
+    {
+        yield return new WaitForSeconds(indicatorReSpawnTime);
+
+        this.SpawnIndicator();
+    }
+            
     }
 
     // Player attack itself

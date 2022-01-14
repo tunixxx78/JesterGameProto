@@ -8,19 +8,26 @@ public class MovingIndicator : MonoBehaviour
     Transform targetPosition;
     [SerializeField] float moveSpeed = 5;
 
+
     private void Awake()
     {
-        targetPosition = FindObjectOfType<PlayerMovementGrid>().bulletTargetRange;
+        
+        this.targetPosition = FindObjectOfType<PlayerMovementGrid>().bulletTargetRange;
+        
+        
     }
 
     private void Update()
     {
-        this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
 
-        if(FindObjectOfType<PlayerMovementGrid>().indicatorCanMove == false)
-        {
-            Destroy(this.gameObject);
-        }
+            transform.position = Vector3.MoveTowards(this.transform.position, targetPosition.position, moveSpeed * Time.deltaTime);
+
+            if (FindObjectOfType<PlayerMovementGrid>().indicatorCanMove == false)
+            {
+                Destroy(this.gameObject);
+            }
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
