@@ -1516,6 +1516,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: bulletDamage
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: enemyTypeOne
       value: 1
       objectReference: {fileID: 0}
@@ -2438,6 +2442,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: attackDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: bulletDamage
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
