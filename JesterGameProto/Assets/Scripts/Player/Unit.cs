@@ -24,7 +24,7 @@ public class Unit : MonoBehaviour
 
     public void InCreaseAttackPower()
     {
-        damage = damage + attackTile.damageMultiplier;
+        //damage = damage + attackTile.damageMultiplier;
 
         for (int i = 0; i < fenses.Count; i++)
         {
@@ -36,7 +36,7 @@ public class Unit : MonoBehaviour
     }
     public void DeCreaseAttackPower()
     {
-        damage = startDamage;
+        //damage = startDamage;
 
         for (int i = 0; i < fenses.Count; i++)
         {

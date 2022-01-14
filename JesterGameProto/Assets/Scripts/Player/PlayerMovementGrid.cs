@@ -11,7 +11,7 @@ public class PlayerMovementGrid : MonoBehaviour
     public LayerMask stopsMovement, enemyMask, playerMask;
     public bool isActive = false, firstClickDone = false, indicatorCanMove = false;
     public int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
-    int enemySingleShotDamage;
+    [SerializeField] int enemySingleShotDamage;
     //[SerializeField] GameObject player, player2, enemyOne;
 
     public List<GameObject> playeers = new List<GameObject>();
@@ -120,7 +120,7 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         //if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true && player2.GetComponent<PlayerMovementGrid>().isActive == false)
 
-        for(int i = 0; i < playeers.Count; i++)
+        /*for(int i = 0; i < playeers.Count; i++)
         {
             this.GetComponent<PlayerMovementGrid>();
 
@@ -132,8 +132,10 @@ public class PlayerMovementGrid : MonoBehaviour
                     var notSellectedEnemy = battleSystem.enemys[e].GetComponent<EnemyProto>();
                     notSellectedEnemy.inTargetIcon.SetActive(false);
 
-                    RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
+                    RaycastHit2D hitInfo = Physics2D.Raycast(movingIndicatorSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
                     EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
+
+                    Debug.Log(hitInfo);
 
                     if (enemy != null)
                     {
@@ -143,7 +145,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
 
             }
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -542,7 +544,10 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             
             playerUnit.InCreaseAttackPower();
-            
+
+            battleSystem.attackBoostIsOn = false;
+
+            battleSystem.attackOneDamage = battleSystem.attackOneDamage + FindObjectOfType<AttackTile>().damageMultiplier;
 
             // For showing player special tiles effect to damage.
             GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
@@ -606,6 +611,7 @@ public class PlayerMovementGrid : MonoBehaviour
         if (collision.gameObject.tag == "AttackBoost")
         {
             playerUnit.DeCreaseAttackPower();
+            battleSystem.attackBoostIsOn = true;
         }
         if (collision.gameObject.tag == "DefenceTile")
         {

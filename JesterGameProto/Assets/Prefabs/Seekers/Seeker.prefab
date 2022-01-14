@@ -1630,6 +1630,36 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!1 &5110075392713581836
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6931844938872229622}
+  m_Layer: 2
+  m_Name: SpecialTileEffectSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6931844938872229622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5110075392713581836}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.505, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8326227733534867364}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5141324853738673967
 GameObject:
   m_ObjectHideFlags: 0
@@ -7938,6 +7968,7 @@ Transform:
   - {fileID: 2148841342126928002}
   - {fileID: 7034498934310548571}
   - {fileID: 160430547009350261}
+  - {fileID: 6931844938872229622}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7990,7 +8021,7 @@ MonoBehaviour:
   SpecialTileEffectText: {fileID: 0}
   ammoPrefab: {fileID: 202230878098506816, guid: 021091c24a4d1d74aacf2983236950f6, type: 3}
   ammoSpawnPoint: {fileID: 2241737329786233376}
-  movingIndicatorSpawnPoint: {fileID: 5545441194693748148}
+  movingIndicatorSpawnPoint: {fileID: 6931844938872229622}
   bulletTargetRange: {fileID: 160430547009350261}
   healthBar: {fileID: 5634650221364254780}
   playerAnimator: {fileID: 8608739593678477484}

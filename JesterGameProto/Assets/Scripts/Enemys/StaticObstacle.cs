@@ -20,7 +20,7 @@ public class StaticObstacle : MonoBehaviour
 
     private void Awake()
     {
-        //battleSystem = FindObjectOfType<BattleSystem>();
+        battleSystem = FindObjectOfType<BattleSystem>();
 
         //playerDamage = battleSystem.boosteddamages;
 
@@ -37,7 +37,7 @@ public class StaticObstacle : MonoBehaviour
 
     private void Update()
     {
-        //playerDamage = battleSystem.attackOneDamage;
+        playerDamage = battleSystem.attackOneDamage;
 
         //damageBoost = playerDamage;
 

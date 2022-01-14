@@ -13,7 +13,7 @@ public class BattleSystem : MonoBehaviour
     //public GameObject[] enemys; //players;
     public List<GameObject> enemys = new List<GameObject>();
     public List<GameObject> players = new List<GameObject>();
-    public int attackOneDamage = 1, attackTwoDamage;
+    public int attackOneDamage, attackTwoDamage;
     public int allPlayerPoints;
     int playersStats;
 
@@ -32,7 +32,7 @@ public class BattleSystem : MonoBehaviour
     public int enemyCount, playerCount;
 
     bool battleHasEnded = false, enemyIsAttacking = false;
-
+    public bool attackBoostIsOn = false;
     AttackTile attackTile;
 
     private void Awake()
@@ -115,9 +115,12 @@ public class BattleSystem : MonoBehaviour
             playerMovementGrid.IsActiveToFalse();
         }*/
 
-        
 
-        attackOneDamage = playerUnit.damage;
+        if (attackBoostIsOn)
+        {
+            attackOneDamage = playerUnit.damage;
+        }
+        
     }
 
     void SetupBattle()
