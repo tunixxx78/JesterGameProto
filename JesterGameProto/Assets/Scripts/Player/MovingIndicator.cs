@@ -36,5 +36,9 @@ public class MovingIndicator : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        if(collision.gameObject.tag == "Enemy")
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

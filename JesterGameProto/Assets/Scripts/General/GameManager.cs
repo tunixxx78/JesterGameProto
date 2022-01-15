@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     PlayerMovementGrid playerMovementGrid;
+    public string totoScene;
 
     BattleState state;
     BattleSystem battleSystem;
@@ -25,10 +26,10 @@ public class GameManager : MonoBehaviour
         playerMovementGrid.IsActiveToFalse();
     }
 
-    public void FromPOneToPTwo()
+    /*public void FromPOneToPTwo()
     {
         FindObjectOfType<BattleSystem>().PlayerTwoTurn();
-    }
+    }*/
     public void FromPTwoToPOne()
     {
         FindObjectOfType<BattleSystem>().PlayerOneTurn();
@@ -52,6 +53,28 @@ public class GameManager : MonoBehaviour
 
     public void GoToScene(string toScene)
     {
-        SceneManager.LoadScene(toScene);
+        totoScene = toScene;
+
+        FindObjectOfType<LevelChangeFade>().canMove = true;
+
+        StartCoroutine(ChangeCanMoveToFalse());
+
+        //if (FindObjectOfType<LevelChangeFade>().canMove == false)
+        //{
+          //  SceneManager.LoadScene(toScene);
+        //}
+        
     }
+
+    IEnumerator ChangeCanMoveToFalse()
+    {
+        yield return new WaitForSeconds(2);
+
+        //FindObjectOfType<LevelChangeFade>().canMove = true;
+
+        SceneManager.LoadScene(totoScene);
+
+    }
+
+    
 }

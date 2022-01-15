@@ -9,7 +9,6 @@ public class EnemySingleShoot : MonoBehaviour
     public int bulletDamage, attackDelay, startAttackDealy;
     [SerializeField] Animator cannonAnimator;
 
-
     [SerializeField] bool enemyTypeOne = false, enemyTypeTwo = false, hasAttackDelay = false;
 
     SFXManager sFXManager;

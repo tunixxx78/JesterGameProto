@@ -16,6 +16,11 @@ public class ActionPointTile : MonoBehaviour
         {
             attackTileAnimator.SetBool("isActive", true);
         }
+
+        if (collision.gameObject.tag == "Player" && cantBeUsedMultipleTimes)
+        {
+            Destroy(this.gameObject, 1f);
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -24,9 +29,6 @@ public class ActionPointTile : MonoBehaviour
             attackTileAnimator.SetBool("isActive", false);
         }
 
-        if(collision.gameObject.tag == "Player" && cantBeUsedMultipleTimes)
-        {
-            Destroy(this.gameObject, 1f);
-        }
+        
     }
 }

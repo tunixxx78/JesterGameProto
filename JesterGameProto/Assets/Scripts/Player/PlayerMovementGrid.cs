@@ -5,11 +5,11 @@ using TMPro;
 
 public class PlayerMovementGrid : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f, ammoRange, timeToShowSpecialTileEffect = 2f, indicatorReSpawnTime = 1;
+    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f, ammoRange, timeToShowSpecialTileEffect = 2f, indicatorReSpawnTime = 1, timeToSetAttackinToFalse = 2;
     [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX, attackRangeIndicator, specialTileEffectPrefab, movingRangeIndicator;
     public Transform movepoint;
     public LayerMask stopsMovement, enemyMask, playerMask;
-    public bool isActive = false, firstClickDone = false, indicatorCanMove = false;
+    public bool isActive = false, firstClickDone = false, indicatorCanMove = false, playerIsAttacking = false;
     public int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
     [SerializeField] int enemySingleShotDamage;
     //[SerializeField] GameObject player, player2, enemyOne;
@@ -225,6 +225,10 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (CompareTag("EnemyBulletDestroyer"))
+        {
+            IsActiveToFalse();
+        }
 
         for (int i = 0; i < playeers.Count; i++)
         {
@@ -448,7 +452,7 @@ public class PlayerMovementGrid : MonoBehaviour
     {   
         transform.position = Vector3.MoveTowards(transform.position, movepoint.position, moveSpeed * Time.deltaTime);
 
-        if (isActive == true && PlayerPoints >= 1)
+        if (isActive == true && PlayerPoints >= 1 && playerIsAttacking == false)
         {
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
@@ -628,8 +632,10 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void PlayerAttackPositions()
     {
-       // for (int i = 0; i < playeers.Count; i++)
-       // {
+        // for (int i = 0; i < playeers.Count; i++)
+        // {
+        
+
             this.GetComponent<PlayerMovementGrid>();
             this.attackRangeIndicator.SetActive(true);
             this.indicatorCanMove = true;
@@ -688,6 +694,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void PlayerStartAttack()
     {
+        playerIsAttacking = true;
+
         for (int i = 0; i < playeers.Count; i++)
         {
             if (isActive == true && PlayerPoints >= pointsForAttack)
@@ -732,9 +740,11 @@ public class PlayerMovementGrid : MonoBehaviour
                             //enemy.TakeDamage(playerUnit.damage);
                         }
                     }
-                            this.playeers[i].GetComponent<SingleTargetAttack>().PlayerSingleTargetAttack();
-                            PlayerPoints -= pointsForAttack;
-                            battleSystem.allPlayerPoints -= pointsForAttack;
+                    this.playeers[i].GetComponent<SingleTargetAttack>().PlayerSingleTargetAttack();
+                    PlayerPoints -= pointsForAttack;
+                    battleSystem.allPlayerPoints -= pointsForAttack;
+
+                    StartCoroutine(SetAttackingToFalse());
 
                 }
             }
@@ -785,7 +795,12 @@ public class PlayerMovementGrid : MonoBehaviour
         playerAnimator.SetBool("isWalking", false);
     }
     
-    
+    IEnumerator SetAttackingToFalse()
+    {
+        yield return new WaitForSeconds(timeToSetAttackinToFalse);
+
+        playerIsAttacking = false;
+    }
 
 
 }

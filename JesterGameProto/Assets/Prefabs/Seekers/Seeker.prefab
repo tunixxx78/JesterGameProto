@@ -3063,6 +3063,7 @@ MonoBehaviour:
   ammoRange: 0
   timeToShowSpecialTileEffect: 3
   indicatorReSpawnTime: 1
+  timeToSetAttackinToFalse: 2
   pLRPanel: {fileID: 2732065375168047395}
   selectedPlayerIcon: {fileID: 7751838062420888731}
   seeker_AttackFX: {fileID: 8322785093088199830, guid: 83489161cb5166a48a8a41d078ce8098, type: 3}
@@ -3082,8 +3083,9 @@ MonoBehaviour:
   isActive: 0
   firstClickDone: 0
   indicatorCanMove: 0
-  PlayerPoints: 0
-  playerStartPoints: 0
+  playerIsAttacking: 0
+  PlayerPoints: 5
+  playerStartPoints: 5
   pointsForAttack: 3
   wantedHP: 0
   playerHp: 0
