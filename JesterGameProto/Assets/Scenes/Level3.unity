@@ -166,7 +166,7 @@ MonoBehaviour:
   - {fileID: 2121885229}
   attackOneDamage: 1
   attackTwoDamage: 5
-  allPlayerPoints: 1
+  allPlayerPoints: 0
   enemyCount: 3
   playerCount: 2
   attackBoostIsOn: 0
@@ -2276,6 +2276,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5588518334756993363, guid: 72882f2b436a8414789db2bd0b40abef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6241287535939270261, guid: 72882f2b436a8414789db2bd0b40abef, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}

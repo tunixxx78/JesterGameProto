@@ -50,7 +50,7 @@ public class BattleSystem : MonoBehaviour
             playersStats = players[i].GetComponent<PlayerMovementGrid>().PlayerPoints;
             Debug.Log(playersStats);
 
-            allPlayerPoints = playersStats; 
+            allPlayerPoints += playersStats; 
         }
 
 
