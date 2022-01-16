@@ -1059,6 +1059,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: attackDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: hasAttackDelay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: startAttackDealy
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3041140573088265969, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
