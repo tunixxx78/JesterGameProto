@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RangeTile : MonoBehaviour
 {
-    public int rangeAmount;
+    public float rangeAmount;
     public float starBulletRange;
+    public bool RangeNumberIsNegative = false;
 
     [SerializeField] Animator attackTileAnimator;
 
