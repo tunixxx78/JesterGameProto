@@ -93,7 +93,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2120801254252253751, guid: 4966996319fd9664da3166289e49db72, type: 3}
       propertyPath: m_Name
-      value: LevelEndScreen
+      value: LevelCompletedScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2120801254252253751, guid: 4966996319fd9664da3166289e49db72, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4966996319fd9664da3166289e49db72, type: 3}

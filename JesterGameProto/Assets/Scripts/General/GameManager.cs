@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     SFXManager sFXManager;
 
+    [SerializeField] GameObject outFade;
+
     private void Awake()
     {
         battleSystem = FindObjectOfType<BattleSystem>();
@@ -55,7 +57,8 @@ public class GameManager : MonoBehaviour
     {
         totoScene = toScene;
 
-        FindObjectOfType<LevelChangeFade>().canMove = true;
+        outFade.GetComponent<LevelChangeFade>().canMove = true;
+        //FindObjectOfType<LevelChangeFade>().canMove = true;
 
         StartCoroutine(ChangeCanMoveToFalse());
 

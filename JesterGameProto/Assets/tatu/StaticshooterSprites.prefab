@@ -585,6 +585,7 @@ MonoBehaviour:
   - {fileID: 1881348920}
   enemySpeed: 0
   ammoRange: 14
+  enemyAnimator: {fileID: 3358737105324486684}
   bulletTargetRange: {fileID: 1825486372}
   destroyedEnemySpawnPoint: {fileID: 718345237254338551}
   EnemyAttackDelayText: {fileID: 8471386073474520204}

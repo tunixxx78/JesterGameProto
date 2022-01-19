@@ -5,7 +5,7 @@ using UnityEngine;
 public class StaticObstacle : MonoBehaviour
 {
     
-    public int playerDamage, realAttackDamage;
+    public float playerDamage, realAttackDamage;
 
     int damageBoost;
     BattleSystem battleSystem;
