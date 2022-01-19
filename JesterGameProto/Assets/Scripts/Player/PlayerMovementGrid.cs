@@ -37,7 +37,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
     EnemyProto enemyProto;
 
-    [SerializeField] Animator playerAnimator;
+    [SerializeField] Animator playerAnimator, canvasAnimator;
 
     [SerializeField] Sprite[] iconSprites;
 
@@ -251,6 +251,7 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         yield return new WaitForSeconds(.2f);
 
+        canvasAnimator.SetTrigger("show");
         pLRPanel.SetActive(true);
         selectedPlayerIcon.SetActive(true);
 
@@ -275,6 +276,9 @@ public class PlayerMovementGrid : MonoBehaviour
 
                 playerPointsText.text = PlayerPoints.ToString();
                 sFXManager.button.Play();
+
+                canvasAnimator.SetTrigger("hide");
+                StartCoroutine(HidePlrPanelNow());
             }
         }
         
@@ -296,6 +300,13 @@ public class PlayerMovementGrid : MonoBehaviour
             playeers[i].GetComponent<PlayerMovementGrid>().attackRangeIndicator.SetActive(false);
         }
         
+    }
+
+    IEnumerator HidePlrPanelNow()
+    {
+        yield return new WaitForSeconds(2);
+
+        this.pLRPanel.SetActive(false);
     }
 
     public void ResetPlayerPoints()
@@ -877,18 +888,22 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void PlayerStartAttack()
     {
-        playerIsAttacking = true;
-
-        for (int i = 0; i < playeers.Count; i++)
+        if (PlayerPoints >= pointsForAttack)
         {
-            if (isActive == true && PlayerPoints >= pointsForAttack)
-            {
-                
-                playerAnimator.SetTrigger("isShooting");
-                sFXManager.playerPreShoot.Play();
+            playerIsAttacking = true;
 
+            for (int i = 0; i < playeers.Count; i++)
+            {
+                if (isActive == true && PlayerPoints >= pointsForAttack)
+                {
+
+                    playerAnimator.SetTrigger("isShooting");
+                    sFXManager.playerPreShoot.Play();
+
+                }
             }
         }
+        
         
 
     }

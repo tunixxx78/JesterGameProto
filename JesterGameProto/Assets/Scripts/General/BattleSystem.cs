@@ -51,7 +51,7 @@ public class BattleSystem : MonoBehaviour
 
         //enemyProto = FindObjectOfType<EnemyProto>();
 
-        for (int i = 0; i < players.Count; i++)
+        /*for (int i = 0; i < players.Count; i++)
         {
             playersStats = players[i].GetComponent<PlayerMovementGrid>().PlayerPoints;
             Debug.Log(playersStats);
@@ -62,8 +62,8 @@ public class BattleSystem : MonoBehaviour
 
             attackOneDamage = playersDamage;
         }
-
-
+        */
+        actionPAmount = FindObjectOfType<ActionPointTile>().extraActionPoints;
 
         //playerOnemovement = players[0].GetComponent<PlayerMovementGrid>();
         //playerTwoMovement = players[1].GetComponent<PlayerMovementGrid>();
@@ -77,7 +77,18 @@ public class BattleSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        for (int i = 0; i < players.Count; i++)
+        {
+            playersStats = players[i].GetComponent<PlayerMovementGrid>().PlayerPoints;
+            Debug.Log(playersStats);
+
+            allPlayerPoints += playersStats;
+
+            var playersDamage = players[i].GetComponent<Unit>().damage;
+
+            attackOneDamage = playersDamage;
+        }
+
 
         state = BattleState.START;
         SetupBattle();
@@ -117,7 +128,7 @@ public class BattleSystem : MonoBehaviour
         {
             state = BattleState.ENEMYTURN;
             StartCoroutine(EnemyTurnIvoke());
-            playerMovementGrid.IsActiveToFalse();
+            //playerMovementGrid.IsActiveToFalse();
             enemyIsAttacking = true;
         }
         /*if(playerOnemovement.PlayerPoints == 0 && playerTwoMovement.PlayerPoints == 0 && battleHasEnded == false)
@@ -277,6 +288,7 @@ public class BattleSystem : MonoBehaviour
 
             yield return new WaitForSeconds(timeToChangeTurn);
 
+            playerMovementGrid.IsActiveToFalse();
             EnemyTurn();
         }
         
@@ -285,8 +297,18 @@ public class BattleSystem : MonoBehaviour
         
     }
 
+    public void FindActionPointTileStats()
+    {
+        actionPAmount = FindObjectOfType<ActionPointTile>().extraActionPoints;
+
+    }
+
     IEnumerator Won()
     {
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].GetComponent<PlayerMovementGrid>().IsActiveToFalse();
+        }
         yield return new WaitForSeconds(timeToChangeTurn);
 
         resultPanelWin.SetActive(true);
@@ -297,6 +319,11 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator Lost()
     {
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].GetComponent<PlayerMovementGrid>().IsActiveToFalse();
+        }
+
         yield return new WaitForSeconds(timeToChangeTurn);
 
         resultPanelLost.SetActive(true);

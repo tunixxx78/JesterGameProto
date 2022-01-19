@@ -28,6 +28,7 @@ public class ActionPointTile : MonoBehaviour
         if (collision.gameObject.tag == "Player" && cantBeUsedMultipleTimes)
         {
             Destroy(this.gameObject, 1f);
+            battleSystem.FindActionPointTileStats();
         }
 
         if (actionpointIsNegative)

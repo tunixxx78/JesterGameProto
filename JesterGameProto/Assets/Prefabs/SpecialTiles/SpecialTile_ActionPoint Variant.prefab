@@ -60,7 +60,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   extraActionPoints: 5
-  cantBeUsedMultipleTimes: 0
+  actionpointIsNegative: 0
+  cantBeUsedMultipleTimes: 1
   attackTileAnimator: {fileID: 6575979645616682233}
 --- !u!1001 &3928831458909869618
 PrefabInstance:

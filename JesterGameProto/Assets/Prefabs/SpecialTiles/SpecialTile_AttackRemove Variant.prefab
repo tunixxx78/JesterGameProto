@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2012877313, guid: 777a4e238bbbaf44d945b32bffc55664, type: 3}
       propertyPath: damageMultiplier
-      value: -2
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2012877313, guid: 777a4e238bbbaf44d945b32bffc55664, type: 3}
+      propertyPath: damageNumberIsNegative
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4572660883042030433, guid: 777a4e238bbbaf44d945b32bffc55664, type: 3}
       propertyPath: m_RootOrder

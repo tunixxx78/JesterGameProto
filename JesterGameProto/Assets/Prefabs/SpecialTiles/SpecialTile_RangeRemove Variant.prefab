@@ -9,7 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2141878975424603934, guid: 14a6b036892e34db796bc6c87192e36b, type: 3}
       propertyPath: rangeAmount
-      value: -1
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2141878975424603934, guid: 14a6b036892e34db796bc6c87192e36b, type: 3}
+      propertyPath: RangeNumberIsNegative
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2788697958555979979, guid: 14a6b036892e34db796bc6c87192e36b, type: 3}
       propertyPath: m_Name

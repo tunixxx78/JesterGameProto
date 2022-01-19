@@ -91,7 +91,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 805308637, guid: adc85269627674da2b6bed62ff7154ae, type: 3}
       propertyPath: extraActionPoints
-      value: -2
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 805308637, guid: adc85269627674da2b6bed62ff7154ae, type: 3}
+      propertyPath: actionpointIsNegative
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 805308637, guid: adc85269627674da2b6bed62ff7154ae, type: 3}
+      propertyPath: cantBeUsedMultipleTimes
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2743858763594881084, guid: adc85269627674da2b6bed62ff7154ae, type: 3}
       propertyPath: m_Sprite
