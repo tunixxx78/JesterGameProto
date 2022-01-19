@@ -425,7 +425,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 572137658}
         m_TargetAssemblyTypeName: LevelChangeFade, Assembly-CSharp
         m_MethodName: MoveImage
         m_Mode: 1
@@ -716,6 +716,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SceneChangeFadeImageOUT
       objectReference: {fileID: 0}
+    - target: {fileID: 5054986643735409702, guid: 7aa4c1c901af0412b8214a358181fe07, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aa4c1c901af0412b8214a358181fe07, type: 3}
 --- !u!224 &572137656 stripped
@@ -728,6 +732,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5054986643735409702, guid: 7aa4c1c901af0412b8214a358181fe07, type: 3}
   m_PrefabInstance: {fileID: 572137655}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &572137658 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1415303047610386769, guid: 7aa4c1c901af0412b8214a358181fe07, type: 3}
+  m_PrefabInstance: {fileID: 572137655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572137657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc0f9b22411647768cde2916e0e0da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &596908938
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +877,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 596908938}
   m_CullTransparentMesh: 1
+--- !u!1 &648867594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6157292217499050031, guid: 5146fc7094ca248b2b04347581fe4e5c, type: 3}
+  m_PrefabInstance: {fileID: 1451121399}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &648867595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 648867594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8dc0f9b22411647768cde2916e0e0da6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeImage: {fileID: 3005883838002638183, guid: 072f485783bc7fd4ab3102ec62dcf287, type: 3}
+  ImageEndPosition: {fileID: 1451121400}
+  speed: 5
+  canMove: 0
+  outOfWay: 0
 --- !u!1 &913069478
 GameObject:
   m_ObjectHideFlags: 0

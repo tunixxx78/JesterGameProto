@@ -38,6 +38,9 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] Transform playerTurnIndicatorSpawnPoint;
     [SerializeField] float timeToChangeTurn;
 
+    public bool rangeIsNegative = false;
+    public float rangeTileAmount;
+
     private void Awake()
     {
 
@@ -77,6 +80,7 @@ public class BattleSystem : MonoBehaviour
 
     private void Update()
     {
+       
         
         if(enemyCount <= 0)
         {
@@ -147,7 +151,7 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYERTURN;
 
         GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
-        indicator.GetComponent<TextMeshPro>().text = " PLAYER TURN";
+        indicator.GetComponentInChildren<TextMeshPro>().text = " PLAYER TURN";
 
         Destroy(indicator, timeToChangeTurn);
 
@@ -228,7 +232,7 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.PLAYERTURN;
 
         GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
-        indicator.GetComponent<TextMeshPro>().text = " PLAYER TURN";
+        indicator.GetComponentInChildren<TextMeshPro>().text = " PLAYER TURN";
 
         Destroy(indicator, timeToChangeTurn);
 
@@ -249,7 +253,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator EnemyTurnIvoke()
     {
         GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
-        indicator.GetComponent<TextMeshPro>().text = " ENEMY TURN";
+        indicator.GetComponentInChildren<TextMeshPro>().text = " ENEMY TURN";
 
         Destroy(indicator, timeToChangeTurn);
 

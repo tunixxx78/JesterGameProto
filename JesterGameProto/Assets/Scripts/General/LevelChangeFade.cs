@@ -23,6 +23,7 @@ public class LevelChangeFade : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(this.transform.position, ImageEndPosition.position, speed * Time.deltaTime);
 
+            //GameObject movingImage = Instantiate(fadeImage, ImageEndPosition.position, Quaternion.identity);
             
         }
 
@@ -31,6 +32,8 @@ public class LevelChangeFade : MonoBehaviour
             transform.position = Vector3.MoveTowards(this.transform.position, ImageEndPosition.position, speed * Time.deltaTime);
 
             Destroy(this.gameObject, 1f);
+
+            //GameObject movingImage = Instantiate(fadeImage, ImageEndPosition.position, Quaternion.identity);
         }
     }
 

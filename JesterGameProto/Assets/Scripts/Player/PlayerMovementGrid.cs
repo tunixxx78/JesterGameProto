@@ -605,32 +605,32 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         if(collision.gameObject.tag == "RangeTile")
         {
-            if(FindObjectOfType<RangeTile>().RangeNumberIsNegative == false)
+            if(battleSystem.rangeIsNegative == false)
             {
-                singleTargetAttack.bulletRange = singleTargetAttack.bulletRange + FindObjectOfType<RangeTile>().rangeAmount;
-                float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
-                Debug.Log(extraRange);
-                bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, extraRange / 2f, 0); //+ new Vector3(0, ammoRange, 0);
+                singleTargetAttack.bulletRange = singleTargetAttack.bulletRange + battleSystem.rangeTileAmount;
+                //float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
+                //Debug.Log(extraRange);
+                bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, battleSystem.rangeTileAmount / 2f, 0); 
 
                 // For showing player special tiles effect to damage.
                 GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                tileEffectPrefab.GetComponent<TextMeshPro>().text = "+" + extraRange;
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.rangeTileAmount;
 
                 // for hiding above
                 Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
 
                 sFXManager.attackTile.Play();
             }
-            if (FindObjectOfType<RangeTile>().RangeNumberIsNegative == true)
+            if (battleSystem.rangeIsNegative == true)
             {
-                singleTargetAttack.bulletRange = singleTargetAttack.bulletRange - FindObjectOfType<RangeTile>().rangeAmount;
-                float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
-                Debug.Log(extraRange);
-                bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, extraRange / 2f, 0); //+ new Vector3(0, ammoRange, 0);
+                singleTargetAttack.bulletRange = singleTargetAttack.bulletRange - battleSystem.rangeTileAmount;
+                //float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
+                //Debug.Log(extraRange);
+                bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, battleSystem.rangeTileAmount / 2f, 0); 
 
                 // For showing player special tiles effect to damage.
                 GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                tileEffectPrefab.GetComponent<TextMeshPro>().text = "-" + extraRange;
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.rangeTileAmount;
 
                 // for hiding above
                 Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
@@ -676,30 +676,30 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         if (collision.gameObject.tag == "RangeTile")
         {
-            if(FindObjectOfType<RangeTile>().RangeNumberIsNegative == false)
+            if(battleSystem.rangeIsNegative == false)
             {
                 singleTargetAttack.bulletRange = FindObjectOfType<RangeTile>().starBulletRange;
-                float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
-                Debug.Log(extraRange);
-                bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, extraRange / 2, 0);
+                //float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
+                //Debug.Log(extraRange);
+                bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, battleSystem.rangeTileAmount / 2, 0);
 
                 // For showing player special tiles effect to damage.
                 GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                tileEffectPrefab.GetComponent<TextMeshPro>().text = "-" + extraRange;
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.rangeTileAmount;
 
                 // for hiding above
                 Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
             }
-            if(FindObjectOfType<RangeTile>().RangeNumberIsNegative == true)
+            if(battleSystem.rangeIsNegative == true)
             {
                 singleTargetAttack.bulletRange = FindObjectOfType<RangeTile>().starBulletRange;
-                float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
-                Debug.Log(extraRange);
-                bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, extraRange / 2, 0);
+                //float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
+                //Debug.Log(extraRange);
+                bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, battleSystem.rangeTileAmount / 2, 0);
 
                 // For showing player special tiles effect to damage.
                 GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                tileEffectPrefab.GetComponent<TextMeshPro>().text = "+" + extraRange;
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.rangeTileAmount;
 
                 // for hiding above
                 Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
