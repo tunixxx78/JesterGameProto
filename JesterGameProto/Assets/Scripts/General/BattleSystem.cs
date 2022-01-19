@@ -8,14 +8,14 @@ public enum BattleState { START, PLAYERTURN, PLAYERTWOTURN, ENEMYTURN, WON, LOST
 public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
-    [SerializeField] TMP_Text resultText;
-    [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanel, MoveOnButton, playerTurnIndicator;
+    //[SerializeField] TMP_Text resultText;
+    [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanelWin, resultPanelLost, playerTurnIndicator;
     //public GameObject[] enemys; //players;
     public List<GameObject> enemys = new List<GameObject>();
     public List<GameObject> players = new List<GameObject>();
-    public int attackOneDamage, attackTwoDamage;
-    public int allPlayerPoints;
-    int playersStats;
+    public float attackOneDamage, attackTwoDamage;
+    public float allPlayerPoints;
+    float playersStats;
 
     Unit playerUnit;
     Unit playerOneUnit;
@@ -38,6 +38,12 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] Transform playerTurnIndicatorSpawnPoint;
     [SerializeField] float timeToChangeTurn;
 
+    // for special tiles
+    public bool rangeIsNegative = false, damageIsNegative = false, actionPIsNegative = false;
+    public float rangeTileAmount, damageTileAmount, actionPAmount;
+
+    
+
     private void Awake()
     {
 
@@ -50,8 +56,13 @@ public class BattleSystem : MonoBehaviour
             playersStats = players[i].GetComponent<PlayerMovementGrid>().PlayerPoints;
             Debug.Log(playersStats);
 
-            allPlayerPoints += playersStats; 
+            allPlayerPoints += playersStats;
+
+            var playersDamage = players[i].GetComponent<Unit>().damage;
+
+            attackOneDamage = playersDamage;
         }
+
 
 
         //playerOnemovement = players[0].GetComponent<PlayerMovementGrid>();
@@ -77,6 +88,7 @@ public class BattleSystem : MonoBehaviour
 
     private void Update()
     {
+       
         
         if(enemyCount <= 0)
         {
@@ -113,14 +125,14 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.ENEMYTURN;
             EnemyTurn();
             playerMovementGrid.IsActiveToFalse();
-        }*/
+        }
 
 
         if (attackBoostIsOn)
         {
             attackOneDamage = playerUnit.damage;
         }
-        
+        */
     }
 
     void SetupBattle()
@@ -144,18 +156,22 @@ public class BattleSystem : MonoBehaviour
 
     public void PlayerOneTurn()
     {
-        state = BattleState.PLAYERTURN;
-
-        GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
-        indicator.GetComponent<TextMeshPro>().text = " PLAYER TURN";
-
-        Destroy(indicator, timeToChangeTurn);
-
-        //instructionsText.text = playerOneUnit.unitName;
-        if (!GameObject.FindGameObjectWithTag("Player") && !GameObject.FindGameObjectWithTag("Player2"))
+        if(playerCount != 0 && enemyCount != 0)
         {
-            MatchLost();
+            state = BattleState.PLAYERTURN;
+
+            GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
+            indicator.GetComponentInChildren<TextMeshPro>().text = " PLAYER TURN";
+
+            Destroy(indicator, timeToChangeTurn);
+
+            //instructionsText.text = playerOneUnit.unitName;
+            if (!GameObject.FindGameObjectWithTag("Player") && !GameObject.FindGameObjectWithTag("Player2"))
+            {
+                MatchLost();
+            }
         }
+        
         
     }
 
@@ -223,39 +239,47 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator ResetPlayerActionPoints()
     {
-        yield return new WaitForSeconds(timeToChangeTurn + 1);
-
-        state = BattleState.PLAYERTURN;
-
-        GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
-        indicator.GetComponent<TextMeshPro>().text = " PLAYER TURN";
-
-        Destroy(indicator, timeToChangeTurn);
-
-        for (int i = 0; i < players.Count; i++)
+        if (playerCount != 0 && enemyCount != 0)
         {
-            players[i].GetComponent<PlayerMovementGrid>().ResetPlayerPoints();
+            yield return new WaitForSeconds(timeToChangeTurn + 1);
 
-            playersStats = players[i].GetComponent<Unit>().newActionPoints;
-            Debug.Log(playersStats);
+            state = BattleState.PLAYERTURN;
+
+            GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
+            indicator.GetComponentInChildren<TextMeshPro>().text = " PLAYER TURN";
+
+            Destroy(indicator, timeToChangeTurn);
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                players[i].GetComponent<PlayerMovementGrid>().ResetPlayerPoints();
+
+                playersStats = players[i].GetComponent<Unit>().newActionPoints;
+                Debug.Log(playersStats);
 
 
-            allPlayerPoints += playersStats;
+                allPlayerPoints += playersStats;
 
-            enemyIsAttacking = false;
+                enemyIsAttacking = false;
+            }
         }
+        
     }
 
     IEnumerator EnemyTurnIvoke()
     {
-        GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
-        indicator.GetComponent<TextMeshPro>().text = " ENEMY TURN";
+        if(enemyCount != 0 && playerCount != 0)
+        {
+            GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
+            indicator.GetComponentInChildren<TextMeshPro>().text = " ENEMY TURN";
 
-        Destroy(indicator, timeToChangeTurn);
+            Destroy(indicator, timeToChangeTurn);
 
-        yield return new WaitForSeconds(timeToChangeTurn);
+            yield return new WaitForSeconds(timeToChangeTurn);
 
-        EnemyTurn();
+            EnemyTurn();
+        }
+        
 
         
         
@@ -265,9 +289,9 @@ public class BattleSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToChangeTurn);
 
-        resultPanel.SetActive(true);
-        MoveOnButton.SetActive(true);
-        resultText.text = "You Won This Match!";
+        resultPanelWin.SetActive(true);
+        //MoveOnButton.SetActive(true);
+        //resultText.text = "You Won This Match!";
         battleHasEnded = true;
     }
 
@@ -275,8 +299,8 @@ public class BattleSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(timeToChangeTurn);
 
-        resultPanel.SetActive(true);
-        resultText.text = "You Lost This Match!";
+        resultPanelLost.SetActive(true);
+        //resultText.text = "You Lost This Match!";
         battleHasEnded = true;
     }
 

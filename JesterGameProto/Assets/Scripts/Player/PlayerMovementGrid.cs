@@ -10,7 +10,7 @@ public class PlayerMovementGrid : MonoBehaviour
     public Transform movepoint;
     public LayerMask stopsMovement, enemyMask, playerMask;
     public bool isActive = false, firstClickDone = false, indicatorCanMove = false, playerIsAttacking = false, playerIsMoving = false, movingIndicatorIsOn = false;
-    public int PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
+    public float PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
     [SerializeField] int enemySingleShotDamage;
     //[SerializeField] GameObject player, player2, enemyOne;
 
@@ -38,6 +38,8 @@ public class PlayerMovementGrid : MonoBehaviour
     EnemyProto enemyProto;
 
     [SerializeField] Animator playerAnimator;
+
+    [SerializeField] Sprite[] iconSprites;
 
     // These are for mobile swipe control system
 
@@ -335,6 +337,9 @@ public class PlayerMovementGrid : MonoBehaviour
 
                         playerIsMoving = true;
                         StartCoroutine(SetPlayerIsMovingToFalse());
+
+                        playerAnimator.SetBool("wait", false);
+                        movingIndicatorIsOn = false;
                     }
                     
                 }
@@ -376,6 +381,9 @@ public class PlayerMovementGrid : MonoBehaviour
 
                         playerIsMoving = true;
                         StartCoroutine(SetPlayerIsMovingToFalse());
+
+                        playerAnimator.SetBool("wait", false);
+                        movingIndicatorIsOn = false;
                     }
                     
                 }
@@ -416,6 +424,9 @@ public class PlayerMovementGrid : MonoBehaviour
 
                         playerIsMoving = true;
                         StartCoroutine(SetPlayerIsMovingToFalse());
+
+                        playerAnimator.SetBool("wait", false);
+                        movingIndicatorIsOn = false;
                     }
                     
                 }
@@ -456,6 +467,9 @@ public class PlayerMovementGrid : MonoBehaviour
 
                         playerIsMoving = true;
                         StartCoroutine(SetPlayerIsMovingToFalse());
+
+                        playerAnimator.SetBool("wait", false);
+                        movingIndicatorIsOn = false;
                     }
                     
                 }
@@ -494,6 +508,9 @@ public class PlayerMovementGrid : MonoBehaviour
 
                             playerIsMoving = true;
                             StartCoroutine(SetPlayerIsMovingToFalse());
+
+                            playerAnimator.SetBool("wait", false);
+                            movingIndicatorIsOn = false;
                         }
                         
                     }
@@ -521,6 +538,9 @@ public class PlayerMovementGrid : MonoBehaviour
 
                             playerIsMoving = true;
                             StartCoroutine(SetPlayerIsMovingToFalse());
+
+                            playerAnimator.SetBool("wait", false);
+                            movingIndicatorIsOn = false;
                         }
                         
                     }
@@ -569,26 +589,50 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         if(collision.gameObject.tag == "AttackBoost")
         {
+            if (battleSystem.damageIsNegative == false)
+            {
+                playerUnit.InCreaseAttackPower();
+
+                battleSystem.attackBoostIsOn = true;
+
+                battleSystem.attackOneDamage = battleSystem.attackOneDamage + battleSystem.damageTileAmount;
+
+                // For showing player special tiles effect to damage.
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.damageTileAmount;
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[0];
+
+                // for hiding above
+                Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
+
+
+                sFXManager.attackTile.Play();
+            }
+            if(battleSystem.damageIsNegative == true)
+            {
+                playerUnit.InCreaseAttackPower();
+
+                battleSystem.attackBoostIsOn = true;
+
+                battleSystem.attackOneDamage = battleSystem.attackOneDamage - battleSystem.damageTileAmount;
+
+                // For showing player special tiles effect to damage.
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.damageTileAmount;
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[0];
+
+                // for hiding above
+                Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
+
+
+                sFXManager.attackTile.Play();
+            }
             
-            playerUnit.InCreaseAttackPower();
-
-            battleSystem.attackBoostIsOn = false;
-
-            battleSystem.attackOneDamage = battleSystem.attackOneDamage + FindObjectOfType<AttackTile>().damageMultiplier;
-
-            // For showing player special tiles effect to damage.
-            GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-            tileEffectPrefab.GetComponent<TextMeshPro>().text = "+" + FindObjectOfType<AttackTile>().damageMultiplier.ToString();
-            
-            // for hiding above
-            Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
-            
-
-            sFXManager.attackTile.Play();
         }
         if(collision.gameObject.tag == "EnemyBullet")
         {
             PlayerTakeDamage(enemySingleShotDamage);
+            playerAnimator.SetTrigger("TakeDamage");
         }
         if(collision.gameObject.tag == "DefenceTile")
         {
@@ -596,7 +640,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
             // For showing player special tiles effect to damage.
             GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-            tileEffectPrefab.GetComponent<TextMeshPro>().text = "/" + FindObjectOfType<DefenceTile>().armourAmount.ToString();
+            tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "/" + FindObjectOfType<DefenceTile>().armourAmount.ToString();
+            tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[3];
 
             // for hiding above
             Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
@@ -605,32 +650,34 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         if(collision.gameObject.tag == "RangeTile")
         {
-            if(FindObjectOfType<RangeTile>().RangeNumberIsNegative == false)
+            if(battleSystem.rangeIsNegative == false)
             {
-                singleTargetAttack.bulletRange = singleTargetAttack.bulletRange + FindObjectOfType<RangeTile>().rangeAmount;
-                float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
-                Debug.Log(extraRange);
-                bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, extraRange / 2f, 0); //+ new Vector3(0, ammoRange, 0);
+                singleTargetAttack.bulletRange = singleTargetAttack.bulletRange + battleSystem.rangeTileAmount;
+                //float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
+                //Debug.Log(extraRange);
+                bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, battleSystem.rangeTileAmount / 2f, 0); 
 
                 // For showing player special tiles effect to damage.
                 GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                tileEffectPrefab.GetComponent<TextMeshPro>().text = "+" + extraRange;
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.rangeTileAmount;
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[1];
 
                 // for hiding above
                 Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
 
                 sFXManager.attackTile.Play();
             }
-            if (FindObjectOfType<RangeTile>().RangeNumberIsNegative == true)
+            if (battleSystem.rangeIsNegative == true)
             {
-                singleTargetAttack.bulletRange = singleTargetAttack.bulletRange - FindObjectOfType<RangeTile>().rangeAmount;
-                float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
-                Debug.Log(extraRange);
-                bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, extraRange / 2f, 0); //+ new Vector3(0, ammoRange, 0);
+                singleTargetAttack.bulletRange = singleTargetAttack.bulletRange - battleSystem.rangeTileAmount;
+                //float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
+                //Debug.Log(extraRange);
+                bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, battleSystem.rangeTileAmount / 2f, 0); 
 
                 // For showing player special tiles effect to damage.
                 GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                tileEffectPrefab.GetComponent<TextMeshPro>().text = "-" + extraRange;
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.rangeTileAmount;
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[1];
 
                 // for hiding above
                 Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
@@ -641,17 +688,37 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         if(collision.gameObject.tag == "ActionPointTile")
         {
-            PlayerPoints = PlayerPoints + FindObjectOfType<ActionPointTile>().extraActionPoints;
-            battleSystem.allPlayerPoints = battleSystem.allPlayerPoints + FindObjectOfType<ActionPointTile>().extraActionPoints;
+            if(battleSystem.actionPIsNegative == false)
+            {
+                PlayerPoints = PlayerPoints + battleSystem.actionPAmount;
+                battleSystem.allPlayerPoints = battleSystem.allPlayerPoints + battleSystem.actionPAmount;
 
-            // For showing player special tiles effect to damage.
-            GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-            tileEffectPrefab.GetComponent<TextMeshPro>().text = "+" + FindObjectOfType<ActionPointTile>().extraActionPoints.ToString();
+                // For showing player special tiles effect to damage.
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + FindObjectOfType<ActionPointTile>().extraActionPoints.ToString();
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[2];
 
-            // for hiding above
-            Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
+                // for hiding above
+                Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
 
-            sFXManager.attackTile.Play();
+                sFXManager.attackTile.Play();
+            }
+            if(battleSystem.actionPIsNegative == true)
+            {
+                PlayerPoints = PlayerPoints - battleSystem.actionPAmount;
+                battleSystem.allPlayerPoints = battleSystem.allPlayerPoints + battleSystem.actionPAmount;
+
+                // For showing player special tiles effect to damage.
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + FindObjectOfType<ActionPointTile>().extraActionPoints.ToString();
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[2];
+
+                // for hiding above
+                Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
+
+                sFXManager.attackTile.Play();
+            }
+            
         }
     }
 
@@ -659,15 +726,44 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         if (collision.gameObject.tag == "AttackBoost")
         {
-            playerUnit.DeCreaseAttackPower();
-            battleSystem.attackBoostIsOn = true;
+            if (battleSystem.damageIsNegative == false)
+            {
+                playerUnit.InCreaseAttackPower();
 
-            // For showing player special tiles effect to damage.
-            GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-            tileEffectPrefab.GetComponent<TextMeshPro>().text = "-" + FindObjectOfType<AttackTile>().damageMultiplier.ToString();
+                battleSystem.attackBoostIsOn = false;
 
-            // for hiding above
-            Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
+                battleSystem.attackOneDamage = battleSystem.attackOneDamage - battleSystem.damageTileAmount;
+
+                // For showing player special tiles effect to damage.
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.damageTileAmount;
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[0];
+
+                // for hiding above
+                Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
+
+
+                sFXManager.attackTile.Play();
+            }
+            if (battleSystem.damageIsNegative == true)
+            {
+                playerUnit.InCreaseAttackPower();
+
+                battleSystem.attackBoostIsOn = false;
+
+                battleSystem.attackOneDamage = battleSystem.attackOneDamage + battleSystem.damageTileAmount;
+
+                // For showing player special tiles effect to damage.
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.damageTileAmount;
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[0];
+
+                // for hiding above
+                Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
+
+
+                sFXManager.attackTile.Play();
+            }
 
         }
         if (collision.gameObject.tag == "DefenceTile")
@@ -676,30 +772,32 @@ public class PlayerMovementGrid : MonoBehaviour
         }
         if (collision.gameObject.tag == "RangeTile")
         {
-            if(FindObjectOfType<RangeTile>().RangeNumberIsNegative == false)
+            if(battleSystem.rangeIsNegative == false)
             {
                 singleTargetAttack.bulletRange = FindObjectOfType<RangeTile>().starBulletRange;
-                float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
-                Debug.Log(extraRange);
-                bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, extraRange / 2, 0);
+                //float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
+                //Debug.Log(extraRange);
+                bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, battleSystem.rangeTileAmount / 2, 0);
 
                 // For showing player special tiles effect to damage.
                 GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                tileEffectPrefab.GetComponent<TextMeshPro>().text = "-" + extraRange;
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.rangeTileAmount;
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[1];
 
                 // for hiding above
                 Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
             }
-            if(FindObjectOfType<RangeTile>().RangeNumberIsNegative == true)
+            if(battleSystem.rangeIsNegative == true)
             {
                 singleTargetAttack.bulletRange = FindObjectOfType<RangeTile>().starBulletRange;
-                float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
-                Debug.Log(extraRange);
-                bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, extraRange / 2, 0);
+                //float extraRange = FindObjectOfType<RangeTile>().rangeAmount;
+                //Debug.Log(extraRange);
+                bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, battleSystem.rangeTileAmount / 2, 0);
 
                 // For showing player special tiles effect to damage.
                 GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
-                tileEffectPrefab.GetComponent<TextMeshPro>().text = "+" + extraRange;
+                tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.rangeTileAmount;
+                tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[1];
 
                 // for hiding above
                 Destroy(tileEffectPrefab, timeToShowSpecialTileEffect);
@@ -718,6 +816,7 @@ public class PlayerMovementGrid : MonoBehaviour
        if(movingIndicatorIsOn == false && playerIsAttacking == false)
         {
             movingIndicatorIsOn = true;
+            playerAnimator.SetBool("wait", true);
 
             this.GetComponent<PlayerMovementGrid>();
             this.attackRangeIndicator.SetActive(true);
@@ -744,6 +843,7 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             if (this.firstClickDone)
             {
+                playerAnimator.SetBool("wait", false);
                 PlayerStartAttack();
                 indicatorCanMove = false;
                 firstClickDone = false;

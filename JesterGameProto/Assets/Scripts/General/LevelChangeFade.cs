@@ -6,8 +6,8 @@ public class LevelChangeFade : MonoBehaviour
 {
 
     [SerializeField] GameObject fadeImage;
-    [SerializeField] Transform ImageEndPosition;
-    [SerializeField] float speed = 5;
+    [SerializeField] Transform ImageSpawnPosition, targetFolder;
+    //[SerializeField] float speed = 5;
     public bool canMove = false, outOfWay = false;
 
 
@@ -21,16 +21,25 @@ public class LevelChangeFade : MonoBehaviour
     {
         if(canMove == true)
         {
-            transform.position = Vector3.MoveTowards(this.transform.position, ImageEndPosition.position, speed * Time.deltaTime);
+            canMove = false;
+            //transform.position = Vector3.MoveTowards(this.transform.position, ImageEndPosition.position, speed * Time.deltaTime);
 
+            GameObject movingImage = Instantiate(fadeImage, ImageSpawnPosition.position, Quaternion.identity, targetFolder.transform);
+
+            
             
         }
 
-        if (outOfWay == true)
+        else if (outOfWay == true)
         {
-            transform.position = Vector3.MoveTowards(this.transform.position, ImageEndPosition.position, speed * Time.deltaTime);
+            outOfWay = false;
+            //transform.position = Vector3.MoveTowards(this.transform.position, ImageEndPosition.position, speed * Time.deltaTime);
 
-            Destroy(this.gameObject, 1f);
+            //Destroy(this.gameObject, 1f);
+
+            GameObject movingImage = Instantiate(fadeImage, ImageSpawnPosition.position, Quaternion.identity, targetFolder.transform);
+
+            Destroy(movingImage, 2f);
         }
     }
 

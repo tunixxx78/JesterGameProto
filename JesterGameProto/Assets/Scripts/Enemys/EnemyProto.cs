@@ -5,12 +5,13 @@ using TMPro;
 
 public class EnemyProto : MonoBehaviour
 {
-    [SerializeField] int enemyHealth, enemyStartHealt;
+    [SerializeField] float enemyHealth, enemyStartHealt;
     [SerializeField] GameObject enemy, destroyedEnemy; //bulletPrefab, enemyAttackFX;
     public GameObject inTargetIcon;
     //[SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform[] moveDirections;
     [SerializeField] float enemySpeed, ammoRange;
+    [SerializeField] Animator enemyAnimator;
 
     [SerializeField] Transform bulletTargetRange, destroyedEnemySpawnPoint;
 
@@ -86,7 +87,7 @@ public class EnemyProto : MonoBehaviour
         
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         enemyHealth -= damage;
         enemyHealthBar.SetHealth(enemyHealth);
@@ -98,6 +99,7 @@ public class EnemyProto : MonoBehaviour
         {
             //enemyHealth--;
             TakeDamage(battleSystem.attackOneDamage);
+            enemyAnimator.SetTrigger("TakeDamage");
             Debug.Log("OSUMA TULI!");
         }
     }
@@ -107,17 +109,20 @@ public class EnemyProto : MonoBehaviour
         if(collision.gameObject.tag == "Bullet")
         {
             TakeDamage(battleSystem.attackOneDamage);
+            enemyAnimator.SetTrigger("TakeDamage");
             Debug.Log("DAMAGEEEEEEEEE" + battleSystem.attackOneDamage);
         }
         if(collision.gameObject.tag == "Bullet2")
         {
             TakeDamage(battleSystem.attackTwoDamage);
+            enemyAnimator.SetTrigger("TakeDamage");
         }
         if (friendlyFire)
         {
             if (collision.gameObject.tag == "EnemyBullet")
             {
                 TakeDamage(battleSystem.attackTwoDamage);
+                enemyAnimator.SetTrigger("TakeDamage");
             }
         }
         
