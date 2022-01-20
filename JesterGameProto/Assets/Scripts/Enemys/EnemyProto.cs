@@ -73,7 +73,7 @@ public class EnemyProto : MonoBehaviour
             battleSystem.CountingEnemys();
 
             GameObject destroyed = Instantiate(destroyedEnemy, destroyedEnemySpawnPoint.position, Quaternion.identity);
-            Destroy(destroyed, 2f);
+            Destroy(destroyed, 7f);
 
             battleSystem.enemys.Remove(this.gameObject);
 
@@ -129,7 +129,7 @@ public class EnemyProto : MonoBehaviour
     }
     public void EnemyAction()
     {
-        Debug.Log("VIHOLLINEN HY?KK??");
+        
         GetComponent<EnemySingleShoot>().EnemySingleShootAction();
 
         if(hasMovementScript)

@@ -28,7 +28,7 @@ public class PlayerMovementGrid : MonoBehaviour
     SingleTargetAttack singleTargetAttack;
 
     [SerializeField] GameObject ammoPrefab;
-    [SerializeField] Transform ammoSpawnPoint, movingIndicatorSpawnPoint;
+    [SerializeField] Transform ammoSpawnPoint, movingIndicatorSpawnPoint, specialTileEffectSpawnPoint;
     public Transform bulletTargetRange;
 
     BattleSystem battleSystem;
@@ -609,7 +609,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 battleSystem.attackOneDamage = battleSystem.attackOneDamage + battleSystem.damageTileAmount;
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.damageTileAmount;
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[0];
 
@@ -628,7 +628,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 battleSystem.attackOneDamage = battleSystem.attackOneDamage - battleSystem.damageTileAmount;
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.damageTileAmount;
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[0];
 
@@ -650,7 +650,7 @@ public class PlayerMovementGrid : MonoBehaviour
             enemySingleShotDamage = enemySingleShotDamage / FindObjectOfType<DefenceTile>().armourAmount;
 
             // For showing player special tiles effect to damage.
-            GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+            GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
             tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "/" + FindObjectOfType<DefenceTile>().armourAmount.ToString();
             tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[3];
 
@@ -669,7 +669,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, battleSystem.rangeTileAmount / 2f, 0); 
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.rangeTileAmount;
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[1];
 
@@ -686,7 +686,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, battleSystem.rangeTileAmount / 2f, 0); 
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.rangeTileAmount;
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[1];
 
@@ -705,7 +705,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 battleSystem.allPlayerPoints = battleSystem.allPlayerPoints + battleSystem.actionPAmount;
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + FindObjectOfType<ActionPointTile>().extraActionPoints.ToString();
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[2];
 
@@ -720,7 +720,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 battleSystem.allPlayerPoints = battleSystem.allPlayerPoints + battleSystem.actionPAmount;
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + FindObjectOfType<ActionPointTile>().extraActionPoints.ToString();
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[2];
 
@@ -746,7 +746,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 battleSystem.attackOneDamage = battleSystem.attackOneDamage - battleSystem.damageTileAmount;
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.damageTileAmount;
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[0];
 
@@ -765,7 +765,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 battleSystem.attackOneDamage = battleSystem.attackOneDamage + battleSystem.damageTileAmount;
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.damageTileAmount;
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[0];
 
@@ -791,7 +791,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 bulletTargetRange.transform.position = bulletTargetRange.transform.position - new Vector3(0, battleSystem.rangeTileAmount / 2, 0);
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "-" + battleSystem.rangeTileAmount;
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[1];
 
@@ -806,7 +806,7 @@ public class PlayerMovementGrid : MonoBehaviour
                 bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, battleSystem.rangeTileAmount / 2, 0);
 
                 // For showing player special tiles effect to damage.
-                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, ammoSpawnPoint.position, Quaternion.identity);
+                GameObject tileEffectPrefab = Instantiate(specialTileEffectPrefab, specialTileEffectSpawnPoint.position, Quaternion.identity);
                 tileEffectPrefab.GetComponentInChildren<TextMeshPro>().text = "+" + battleSystem.rangeTileAmount;
                 tileEffectPrefab.GetComponentInChildren<SpriteRenderer>().sprite = iconSprites[1];
 

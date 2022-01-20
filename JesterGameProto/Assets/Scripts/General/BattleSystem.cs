@@ -172,9 +172,9 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
 
             GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
-            indicator.GetComponentInChildren<TextMeshPro>().text = " PLAYER TURN";
+            indicator.GetComponentInChildren<TextMeshPro>().text = "Your Turn";
 
-            Destroy(indicator, timeToChangeTurn);
+            Destroy(indicator, 7);
 
             //instructionsText.text = playerOneUnit.unitName;
             if (!GameObject.FindGameObjectWithTag("Player") && !GameObject.FindGameObjectWithTag("Player2"))
@@ -257,9 +257,9 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.PLAYERTURN;
 
             GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
-            indicator.GetComponentInChildren<TextMeshPro>().text = " PLAYER TURN";
+            indicator.GetComponentInChildren<TextMeshPro>().text = "Your turn";
 
-            Destroy(indicator, timeToChangeTurn);
+            Destroy(indicator, 7);
 
             for (int i = 0; i < players.Count; i++)
             {
@@ -284,7 +284,7 @@ public class BattleSystem : MonoBehaviour
             GameObject indicator = Instantiate(playerTurnIndicator, playerTurnIndicatorSpawnPoint.position, Quaternion.identity);
             indicator.GetComponentInChildren<TextMeshPro>().text = " ENEMY TURN";
 
-            Destroy(indicator, timeToChangeTurn);
+            Destroy(indicator, 7);
 
             yield return new WaitForSeconds(timeToChangeTurn);
 

@@ -46,9 +46,9 @@ public class StaticObstacle : MonoBehaviour
 
         if (obstacleHealt <= 0)
         {
-            Debug.Log("HAISTA PASKA!!");
+            
             GameObject destroyed = Instantiate(destroyedObstacle, destroyedObstacleSpawnPoint.position, Quaternion.identity);
-            Destroy(destroyed, 2f);
+            Destroy(destroyed, 7f);
 
             Destroy(this.gameObject);
             players[0].GetComponent<Unit>().fenses.Remove(this.gameObject);

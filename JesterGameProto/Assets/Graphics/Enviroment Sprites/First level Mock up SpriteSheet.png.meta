@@ -176,6 +176,9 @@ TextureImporter:
   - first:
       213: -6410871919466420743
     second: defence_Icon_outline
+  - first:
+      213: 4325403688842016641
+    second: white_triangle
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1502,6 +1505,27 @@ TextureImporter:
       bones: []
       spriteID: 9f56dab94f10807a0800000000000000
       internalID: -6410871919466420743
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: white_triangle
+      rect:
+        serializedVersion: 2
+        x: 599
+        y: 691
+        width: 140
+        height: 102
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 187b79fecbbe60c30800000000000000
+      internalID: 4325403688842016641
       vertices: []
       indices: 
       edges: []
