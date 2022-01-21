@@ -24,17 +24,7 @@ public class RangeTile : MonoBehaviour
         {
             attackTileAnimator.SetBool("isActive", true);
         }
-        if (RangeNumberIsNegative)
-        {
-            battleSystem.rangeTileAmount = rangeAmount;
-            battleSystem.rangeIsNegative = true;
-
-        }
-        if (RangeNumberIsNegative == false)
-        {
-            battleSystem.rangeTileAmount = rangeAmount;
-            battleSystem.rangeIsNegative = false;
-        }
+       
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

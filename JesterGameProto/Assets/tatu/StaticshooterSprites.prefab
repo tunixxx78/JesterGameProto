@@ -534,7 +534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSpawnPoint: {fileID: 3358737105541286035}
   enemyBullet: {fileID: 9166999713506837262, guid: a0209e5c5ae96a24d977e10e6522f0c2, type: 3}
-  bulletDamage: 2
+  bulletDamage: 5
   attackDelay: 1
   startAttackDealy: 1
   cannonAnimator: {fileID: 3358737105324486684}
@@ -575,8 +575,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83551d13f0e774f55a43c6d0cd803b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHealth: 10
-  enemyStartHealt: 10
+  enemyHealth: 14
+  enemyStartHealt: 14
   enemy: {fileID: 3358737105324486687}
   destroyedEnemy: {fileID: 8597889486861694996, guid: 4ab303d13850caa45bb64a09567a01cb, type: 3}
   inTargetIcon: {fileID: 359794429}

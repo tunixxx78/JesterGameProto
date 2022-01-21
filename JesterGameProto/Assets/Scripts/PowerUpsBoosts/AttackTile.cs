@@ -23,16 +23,6 @@ public class AttackTile : MonoBehaviour
         {
             attackTileAnimator.SetBool("isActive", true);
         }
-        if (damageNumberIsNegative)
-        {
-            battleSystem.damageTileAmount = damageMultiplier;
-            battleSystem.damageIsNegative = true;
-        }
-        if(damageNumberIsNegative == false)
-        {
-            battleSystem.damageTileAmount = damageMultiplier;
-            battleSystem.damageIsNegative = false;
-        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

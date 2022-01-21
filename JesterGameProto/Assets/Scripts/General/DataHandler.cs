@@ -39,6 +39,7 @@ public class DataHandler : MonoBehaviour
             levelFiveLockedImage.SetActive(false);
             levelFifeButton.SetActive(true);
         }
+        
     }
 
     
