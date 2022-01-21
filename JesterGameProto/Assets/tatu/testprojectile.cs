@@ -75,5 +75,13 @@ public class testprojectile : MonoBehaviour
             this.GetComponent<SpriteRenderer>().enabled = false;
             Destroy(this.gameObject, 2);
         }
+
+        if (collision.gameObject.tag == "DummuObstacle")
+        {
+            Instantiate(onHitParticle, collision.transform.position, Quaternion.identity);
+            this.enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this.gameObject, 2);
+        }
     }
 }

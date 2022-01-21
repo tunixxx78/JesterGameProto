@@ -38,4 +38,10 @@ public class SavingActionsInlevels : MonoBehaviour
         dataholder.levelFour = true;
         dataholder.SaveData();
     }
+    public void LevelFiveDone()
+    {
+        sFXManager.button.Play();
+        dataholder.levelFive = true;
+        dataholder.SaveData();
+    }
 }

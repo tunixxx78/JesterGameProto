@@ -38,9 +38,7 @@ public class BattleSystem : MonoBehaviour
     [SerializeField] Transform playerTurnIndicatorSpawnPoint;
     [SerializeField] float timeToChangeTurn;
 
-    // for special tiles
-    public bool rangeIsNegative = false, damageIsNegative = false, actionPIsNegative = false;
-    public float rangeTileAmount, damageTileAmount, actionPAmount;
+   
 
     
 
@@ -50,8 +48,8 @@ public class BattleSystem : MonoBehaviour
         playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
 
         //enemyProto = FindObjectOfType<EnemyProto>();
-
-        /*for (int i = 0; i < players.Count; i++)
+        /*
+        for (int i = 0; i < players.Count; i++)
         {
             playersStats = players[i].GetComponent<PlayerMovementGrid>().PlayerPoints;
             Debug.Log(playersStats);
@@ -63,7 +61,7 @@ public class BattleSystem : MonoBehaviour
             attackOneDamage = playersDamage;
         }
         */
-        actionPAmount = FindObjectOfType<ActionPointTile>().extraActionPoints;
+        //actionPAmount = FindObjectOfType<ActionPointTile>().extraActionPoints;
 
         //playerOnemovement = players[0].GetComponent<PlayerMovementGrid>();
         //playerTwoMovement = players[1].GetComponent<PlayerMovementGrid>();
@@ -88,7 +86,7 @@ public class BattleSystem : MonoBehaviour
 
             attackOneDamage = playersDamage;
         }
-
+        
 
         state = BattleState.START;
         SetupBattle();
@@ -124,13 +122,7 @@ public class BattleSystem : MonoBehaviour
         }
         else { OgamiAvatar.SetActive(false); }
         */
-        if(allPlayerPoints == 0 && battleHasEnded == false && enemyIsAttacking == false)
-        {
-            state = BattleState.ENEMYTURN;
-            StartCoroutine(EnemyTurnIvoke());
-            //playerMovementGrid.IsActiveToFalse();
-            enemyIsAttacking = true;
-        }
+        
         /*if(playerOnemovement.PlayerPoints == 0 && playerTwoMovement.PlayerPoints == 0 && battleHasEnded == false)
         {
             state = BattleState.ENEMYTURN;
@@ -144,6 +136,20 @@ public class BattleSystem : MonoBehaviour
             attackOneDamage = playerUnit.damage;
         }
         */
+    }
+
+    
+
+    public void AllPlayerPointsCheck()
+    { 
+
+        if (allPlayerPoints == 0 && battleHasEnded == false && enemyIsAttacking == false)
+        {
+            state = BattleState.ENEMYTURN;
+            StartCoroutine(EnemyTurnIvoke());
+            //playerMovementGrid.IsActiveToFalse();
+            enemyIsAttacking = true;
+        }
     }
 
     void SetupBattle()
@@ -296,13 +302,13 @@ public class BattleSystem : MonoBehaviour
         
         
     }
-
+    /*
     public void FindActionPointTileStats()
     {
-        actionPAmount = FindObjectOfType<ActionPointTile>().extraActionPoints;
+        //actionPAmount = FindObjectOfType<ActionPointTile>().extraActionPoints;
 
     }
-
+    */
     IEnumerator Won()
     {
         for (int i = 0; i < players.Count; i++)
