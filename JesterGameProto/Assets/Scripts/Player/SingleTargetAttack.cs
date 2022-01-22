@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class SingleTargetAttack : MonoBehaviour
 {
+    [Header("LEVEL DESIGNER USE!!!")]
+    public float bulletRange; // Variable for bullet range in singleshot attack.
+    public float maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
+
+    [Header("PROGRAMMER USE!!!")]
     [SerializeField] GameObject ammoPrefab;
     [SerializeField] Transform ammoSpawnPoint;
-    public float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
-    public float bulletRange; // Variable for bullet range in singleshot attack.
+    public float currentSpeed;
+    
 
     private void Start()
     {

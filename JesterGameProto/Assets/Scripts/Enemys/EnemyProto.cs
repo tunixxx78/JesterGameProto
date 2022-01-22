@@ -5,10 +5,16 @@ using TMPro;
 
 public class EnemyProto : MonoBehaviour
 {
-    [SerializeField] float enemyHealth, enemyStartHealt;
-    [SerializeField] GameObject enemy, destroyedEnemy; //bulletPrefab, enemyAttackFX;
+    [Header("LEVEL DESIGNER USE !!!")]
+    [SerializeField] float enemyHealth; 
+    [SerializeField] float enemyStartHealt;
+    [SerializeField] bool hasMovementScript = false, friendlyFire = false;
+
+    [Header("PROGRAMMER USE!!!")]
+
+    [SerializeField] GameObject enemy; 
+    [SerializeField] GameObject destroyedEnemy;
     public GameObject inTargetIcon;
-    //[SerializeField] Transform bulletSpawnPoint;
     [SerializeField] Transform[] moveDirections;
     [SerializeField] float enemySpeed, ammoRange;
     [SerializeField] Animator enemyAnimator;
@@ -29,7 +35,7 @@ public class EnemyProto : MonoBehaviour
 
     EnemySingleShoot enemySingleShoot;
 
-    [SerializeField] bool hasMovementScript = false, friendlyFire = false;
+    
 
     //public Animator enemyAnimator;
 

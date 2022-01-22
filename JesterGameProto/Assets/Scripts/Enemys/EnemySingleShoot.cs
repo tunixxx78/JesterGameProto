@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class EnemySingleShoot : MonoBehaviour
 {
+    [Header("LEVEL DESIGNER USE!!!")]
+    public float bulletRange; // Variable for bullet range in singleshot attack.
+    [SerializeField] bool enemyTypeOne = false, enemyTypeTwo = false, hasAttackDelay = false;
+    public int bulletDamage, attackDelay;
+
+    [Header("PROGRAMMER USE!!!")]
     [SerializeField] Transform bulletSpawnPoint;
     [SerializeField] GameObject enemyBullet;
-    public int bulletDamage, attackDelay, startAttackDealy;
+    public int startAttackDealy;
     [SerializeField] Animator cannonAnimator;
 
-    [SerializeField] bool enemyTypeOne = false, enemyTypeTwo = false, hasAttackDelay = false;
+    
 
     SFXManager sFXManager;
 
     public float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
-    public float bulletRange; // Variable for bullet range in singleshot attack.
+    
 
     private void Awake()
     {

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class EnemyUnit : MonoBehaviour
 {
-    public string enemyName;
-    public int enemyHP, damage, range;
+    [Header("LEVEL DESIGNER USE!!!")]
+    public int enemyHP;
 
+    [Header("PROGRAMMER USE!!!")]
+    public int damage;
+    public int range;
 }

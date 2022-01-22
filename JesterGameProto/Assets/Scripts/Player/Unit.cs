@@ -4,12 +4,19 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public string unitName;
-    public int unitLevel, damage, maxHP, currentHp, playerActionPoints, newActionPoints;
-
+    [Header("LEVEL DESIGNER USE!!!")]
+    
+    public int maxHP;
+    public int currentHp;
+    public int playerActionPoints;
+    public int newActionPoints;
     public int startDamage;
-
     public List<GameObject> fenses = new List<GameObject>();
+
+    [HideInInspector]
+    public int damage;
+
+    
 
     AttackTile attackTile;
     StaticObstacle staticObstacle;

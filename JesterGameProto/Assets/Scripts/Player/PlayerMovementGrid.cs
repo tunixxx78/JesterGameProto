@@ -5,19 +5,41 @@ using TMPro;
 
 public class PlayerMovementGrid : MonoBehaviour
 {
-    [SerializeField] float moveSpeed = 5f, verticalGridSizeMultiplier = 1f, horizontzlGridMultiplier = 0.75f, ammoRange, timeToShowSpecialTileEffect = 2f, indicatorReSpawnTime = 1, timeToSetAttackinToFalse = 2, timeToSetPlayerIsMovingToFalse = 1;
-    [SerializeField] GameObject pLRPanel, selectedPlayerIcon, seeker_AttackFX, attackRangeIndicator, specialTileEffectPrefab, movingRangeIndicator;
-    public Transform movepoint;
-    public LayerMask stopsMovement, enemyMask, playerMask;
-    public bool isActive = false, firstClickDone = false, indicatorCanMove = false, playerIsAttacking = false, playerIsMoving = false, movingIndicatorIsOn = false;
-    public float PlayerPoints, playerStartPoints, pointsForAttack, wantedHP, playerHp;
-    [SerializeField] int enemySingleShotDamage;
-    //[SerializeField] GameObject player, player2, enemyOne;
+    [Header("LEVEL DESIGNER USE!!!")]
 
     public List<GameObject> playeers = new List<GameObject>();
-    public List<GameObject> impactIndicators = new List<GameObject>();
+    
+    public float PlayerPoints;
+    public float playerStartPoints;
+    public float pointsForAttack;
 
-    PlayerPointManager playerPointManager;
+    [Header ("FOR PROGRAMMER USE!!!")]
+    [SerializeField] Sprite[] iconSprites;
+    [SerializeField] GameObject pLRPanel;
+    [SerializeField] GameObject selectedPlayerIcon;
+    [SerializeField] GameObject seeker_AttackFX;
+    [SerializeField] GameObject attackRangeIndicator;
+    [SerializeField] GameObject specialTileEffectPrefab;
+    [SerializeField] GameObject movingRangeIndicator;
+    [SerializeField] float verticalGridSizeMultiplier = 1f;
+    [SerializeField] float horizontzlGridMultiplier = 0.75f;
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float ammoRange;
+    [SerializeField] float timeToShowSpecialTileEffect = 2f;
+    [SerializeField] float indicatorReSpawnTime = 1;
+    [SerializeField] float timeToSetAttackinToFalse = 2;
+    [SerializeField] float timeToSetPlayerIsMovingToFalse = 1;
+
+
+
+    public Transform movepoint;
+    public LayerMask stopsMovement, enemyMask, playerMask;
+    [HideInInspector]
+    public bool isActive = false, firstClickDone = false, indicatorCanMove = false, playerIsAttacking = false, playerIsMoving = false, movingIndicatorIsOn = false;
+    private float wantedHP, playerHp;
+    [SerializeField] int enemySingleShotDamage;
+    
+
 
     [SerializeField] TMP_Text playerPointsText, playerAttackCostText, SpecialTileEffectText;
 
@@ -39,13 +61,16 @@ public class PlayerMovementGrid : MonoBehaviour
 
     [SerializeField] Animator playerAnimator, canvasAnimator;
 
-    [SerializeField] Sprite[] iconSprites;
+    
 
     // These are for mobile swipe control system
-
-    Vector2 startTouchPosition, currentPosition, endTouchPosition;
+    [Header ("SWIPE CONTROL VARIABLES")]
+    Vector2 startTouchPosition;
+    Vector2 currentPosition;
+    Vector2 endTouchPosition;
     bool stopTouch = false;
-    public float swipeRange, tapRange;
+    public float swipeRange;
+    public float tapRange;
 
     private void Awake()
     {
@@ -85,11 +110,6 @@ public class PlayerMovementGrid : MonoBehaviour
         movepoint.parent = null;
 
         healthBar.SetMaxValue(wantedHP);
-
-        for(int i = 0; i < impactIndicators.Count; i++)
-        {
-
-        }
 
         bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, ammoRange, 0);
 
