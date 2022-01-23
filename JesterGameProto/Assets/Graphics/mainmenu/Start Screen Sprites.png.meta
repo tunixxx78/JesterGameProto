@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: -2994920107536483141
     second: continue-banner
+  - first:
+      213: -7066856232726448152
+    second: kippo_mainmenu
+  - first:
+      213: 1859700659305358257
+    second: ogami_mainmenu
+  - first:
+      213: 8923321520242031642
+    second: Ramhog_mainmenu
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -132,7 +141,7 @@ TextureImporter:
         width: 1080
         height: 1920
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -153,7 +162,7 @@ TextureImporter:
         width: 951
         height: 382
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -174,7 +183,7 @@ TextureImporter:
         width: 893
         height: 167
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -182,6 +191,69 @@ TextureImporter:
       bones: []
       spriteID: bbcfc9ba708ef66d0800000000000000
       internalID: -2994920107536483141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: kippo_mainmenu
+      rect:
+        serializedVersion: 2
+        x: 1120
+        y: 289
+        width: 414
+        height: 571
+      alignment: 9
+      pivot: {x: 0.4621868, y: 0.054519627}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e7b599b2bb7ded90800000000000000
+      internalID: -7066856232726448152
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ogami_mainmenu
+      rect:
+        serializedVersion: 2
+        x: 1558
+        y: 545
+        width: 378
+        height: 461
+      alignment: 9
+      pivot: {x: 0.50443196, y: 0.0893323}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b3a47285ebfec910800000000000000
+      internalID: 1859700659305358257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ramhog_mainmenu
+      rect:
+        serializedVersion: 2
+        x: 1611
+        y: 31
+        width: 282
+        height: 491
+      alignment: 9
+      pivot: {x: 0.49999955, y: 0.11442407}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1cff9615a106db70800000000000000
+      internalID: 8923321520242031642
       vertices: []
       indices: 
       edges: []
