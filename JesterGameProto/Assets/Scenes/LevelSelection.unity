@@ -2315,9 +2315,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 755618616873081858, guid: c7d2bc74dfb0248359a14edbfa54a1f8, type: 3}
+      propertyPath: m_Volume
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 755618616873081858, guid: c7d2bc74dfb0248359a14edbfa54a1f8, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 9c504c5076cc77e498fbdabbfd570e34, type: 3}
+      objectReference: {fileID: 8300000, guid: 2bef2e3b03cefe342be76e9f2d830f72, type: 3}
     - target: {fileID: 755618616873081859, guid: c7d2bc74dfb0248359a14edbfa54a1f8, type: 3}
       propertyPath: m_Name
       value: Music
@@ -2401,6 +2405,7 @@ MonoBehaviour:
   levelTwo: 0
   levelThree: 0
   levelFour: 0
+  levelFive: 0
 --- !u!4 &1338010636
 Transform:
   m_ObjectHideFlags: 0
