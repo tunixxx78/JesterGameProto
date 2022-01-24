@@ -931,7 +931,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 2da1dd76fb567ba4e9be15a4df97c789, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1555,7 +1555,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 10840e5c81876774980820ce069e6279, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1637,7 +1637,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5b164eb1e3813a24bb7e65031166432d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1900,7 +1900,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ff52d764c8870c84aa3e7f9b20045c0a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2891,7 +2891,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 643c0c02d9d91924793de701856c7b36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2973,7 +2973,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7b274cee9ee71554fbc9b377d596bf3b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -3294,20 +3294,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15539fd5cb828459fb084b1886de7466, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  verticalGridSizeMultiplier: 0.5
-  horizontzlGridMultiplier: 0.7
-  ammoRange: 0
-  timeToShowSpecialTileEffect: 3
-  indicatorReSpawnTime: 1
-  timeToSetAttackinToFalse: 2
-  timeToSetPlayerIsMovingToFalse: 1
+  playeers: []
+  PlayerPoints: 5
+  playerStartPoints: 5
+  pointsForAttack: 3
+  iconSprites:
+  - {fileID: -6070567647391341082, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
+  - {fileID: -8268062826113971592, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
+  - {fileID: -6705635578839714586, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
+  - {fileID: -6410871919466420743, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
   pLRPanel: {fileID: 2732065375168047395}
   selectedPlayerIcon: {fileID: 7751838062420888731}
   seeker_AttackFX: {fileID: 8322785093088199830, guid: 83489161cb5166a48a8a41d078ce8098, type: 3}
   attackRangeIndicator: {fileID: 1686743140150185312}
   specialTileEffectPrefab: {fileID: 4293284740751360086, guid: a954a2211aa6e41a382279cc36e7e446, type: 3}
   movingRangeIndicator: {fileID: 6189009832884220614, guid: cdf2458b63b5946e9bc32f0512107f6b, type: 3}
+  verticalGridSizeMultiplier: 0.5
+  horizontzlGridMultiplier: 0.7
+  moveSpeed: 5
+  ammoRange: 0
+  timeToShowSpecialTileEffect: 3
+  indicatorReSpawnTime: 1
+  timeToSetAttackinToFalse: 2
+  timeToSetPlayerIsMovingToFalse: 1
   movepoint: {fileID: 8326227732336217061}
   stopsMovement:
     serializedVersion: 2
@@ -3324,30 +3333,17 @@ MonoBehaviour:
   playerIsAttacking: 0
   playerIsMoving: 0
   movingIndicatorIsOn: 0
-  PlayerPoints: 5
-  playerStartPoints: 5
-  pointsForAttack: 3
-  wantedHP: 0
-  playerHp: 0
   enemySingleShotDamage: 0
-  playeers: []
-  impactIndicators: []
   playerPointsText: {fileID: 160430548755507425}
   playerAttackCostText: {fileID: 160430548575839439}
   SpecialTileEffectText: {fileID: 0}
   ammoPrefab: {fileID: 202230878098506816, guid: 021091c24a4d1d74aacf2983236950f6, type: 3}
   ammoSpawnPoint: {fileID: 2241737329786233376}
   movingIndicatorSpawnPoint: {fileID: 6931844938872229622}
-  specialTileEffectSpawnPoint: {fileID: 6931844938872229622}
   bulletTargetRange: {fileID: 160430547009350261}
   healthBar: {fileID: 5634650221364254780}
   playerAnimator: {fileID: 8608739593678477484}
   canvasAnimator: {fileID: 0}
-  iconSprites:
-  - {fileID: -6070567647391341082, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
-  - {fileID: -8268062826113971592, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
-  - {fileID: -6705635578839714586, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
-  - {fileID: -6410871919466420743, guid: b1b1e1a7da6e55f47bc34c4f3dd830ee, type: 3}
   swipeRange: 50
   tapRange: 10
 --- !u!58 &8326227733534867362
@@ -3378,15 +3374,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032107b24c1294d9298eb221a77c857c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: TEAM KIPPO
-  unitLevel: 1
-  damage: 1
   maxHP: 2
   currentHp: 2
   playerActionPoints: 5
   newActionPoints: 5
   startDamage: 1
   fenses: []
+  damage: 1
 --- !u!50 &2148841341058634964
 Rigidbody2D:
   serializedVersion: 4
@@ -3420,14 +3414,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5385668d65eca4b0f93763bcedaec807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammoPrefab: {fileID: 202230878098506816, guid: 021091c24a4d1d74aacf2983236950f6, type: 3}
-  ammoSpawnPoint: {fileID: 5545441194693748148}
-  currentSpeed: 0
+  bulletRange: 5
   maxSpeed: 20
   minSpeed: 1
   accelerationTime: 0.2
   time: 0
-  bulletRange: 5
+  ammoPrefab: {fileID: 202230878098506816, guid: 021091c24a4d1d74aacf2983236950f6, type: 3}
+  ammoSpawnPoint: {fileID: 5545441194693748148}
+  currentSpeed: 0
 --- !u!1 &8361928544214783139
 GameObject:
   m_ObjectHideFlags: 0
@@ -3500,7 +3494,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: be7f936a9c97c6245a49c65f72a7ecc2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

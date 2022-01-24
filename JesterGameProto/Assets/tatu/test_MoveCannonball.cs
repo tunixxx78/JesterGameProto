@@ -18,8 +18,7 @@ public class test_MoveCannonball : MonoBehaviour
 
     private void Start()
     {
-        startpos = this.transform.position;
-        endPos = new Vector3(startpos.x, startpos.y - 30, 0);
+        Destroy(this, 10);
     }
     // Update is called once per frame
     void Update()
@@ -46,9 +45,9 @@ public class test_MoveCannonball : MonoBehaviour
             Destroy(this.gameObject);
         }*/
 
-        if (collision.gameObject.tag == "EnemyBulletDestroyer")
+        /*if (collision.gameObject.tag == "EnemyBulletDestroyer")
         {
             Destroy(this.gameObject);
-        }
+        }*/
     }
 }
