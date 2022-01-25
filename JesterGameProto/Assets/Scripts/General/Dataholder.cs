@@ -5,6 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System;
 
+
+// saving and loading game data functionality
+
 public class Dataholder : MonoBehaviour
 {
     public static Dataholder dataInstance;

@@ -35,16 +35,12 @@ public class EnemyProto : MonoBehaviour
 
     EnemySingleShoot enemySingleShoot;
 
-    
-
-    //public Animator enemyAnimator;
 
     private void Awake()
     {
         enemyUnit = enemy.GetComponent<EnemyUnit>();
         enemyStartHealt = enemyUnit.enemyHP;
         enemyHealth = enemyStartHealt;
-        //enemyHPText.text = enemyHealth.ToString();
 
         gameManager = FindObjectOfType<GameManager>();
 
@@ -123,7 +119,7 @@ public class EnemyProto : MonoBehaviour
             TakeDamage(battleSystem.attackTwoDamage);
             enemyAnimator.SetTrigger("TakeDamage");
         }
-        if (friendlyFire)
+        if (friendlyFire) //checks if friendly fire is allowed
         {
             if (collision.gameObject.tag == "EnemyBullet")
             {
@@ -135,6 +131,7 @@ public class EnemyProto : MonoBehaviour
     }
     public void EnemyAction()
     {
+        //enemy shoots and after that checks if there is moving script attached
         
         GetComponent<EnemySingleShoot>().EnemySingleShootAction();
 
@@ -151,48 +148,4 @@ public class EnemyProto : MonoBehaviour
         FindObjectOfType<EnemyDumbMovement>().DumbEnemyMovement();
     }
 
-
-    // Enemy "AI" functionality
-
-    /*IEnumerator EnemyAttack()
-    {
-        RaycastHit2D hitInfo = Physics2D.Raycast(bulletSpawnPoint.position, -bulletSpawnPoint.up);
-        if (hitInfo)
-        {
-            Debug.Log(hitInfo.transform.name);
-            PlayerMovementGrid player = hitInfo.transform.GetComponent<PlayerMovementGrid>();
-            if (player != null)
-            {
-
-                player.PlayerTakeDamage(enemyUnit.damage);
-            }
-        }
-        GameObject enemyShootingParticle = Instantiate(enemyAttackFX, bulletSpawnPoint.position, Quaternion.identity);
-        Destroy(enemyShootingParticle, 1f);
-
-        yield return new WaitForSeconds(1f);
-
-
-        var randomDirection = Random.Range(0, moveDirections.Length);
-
-        if(transform.position.x <= -.9)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, moveDirections[0].position, 1f);
-        }
-        if (transform.position.x >= .9)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, moveDirections[1].position, 1f);
-        }
-        else
-        {
-            transform.position = Vector3.MoveTowards(transform.position, moveDirections[randomDirection].position, 1f);
-        }
-        
-
-        yield return new WaitForSeconds(1f);
-
-        
-        gameManager.FromPTwoToPOne();
-    }
-    */
 }

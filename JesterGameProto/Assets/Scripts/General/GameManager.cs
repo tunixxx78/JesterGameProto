@@ -28,10 +28,6 @@ public class GameManager : MonoBehaviour
         playerMovementGrid.IsActiveToFalse();
     }
 
-    /*public void FromPOneToPTwo()
-    {
-        FindObjectOfType<BattleSystem>().PlayerTwoTurn();
-    }*/
     public void FromPTwoToPOne()
     {
         FindObjectOfType<BattleSystem>().PlayerOneTurn();
@@ -58,22 +54,14 @@ public class GameManager : MonoBehaviour
         totoScene = toScene;
 
         outFade.GetComponent<LevelChangeFade>().canMove = true;
-        //FindObjectOfType<LevelChangeFade>().canMove = true;
 
         StartCoroutine(ChangeCanMoveToFalse());
 
-        //if (FindObjectOfType<LevelChangeFade>().canMove == false)
-        //{
-          //  SceneManager.LoadScene(toScene);
-        //}
-        
     }
 
     IEnumerator ChangeCanMoveToFalse()
     {
         yield return new WaitForSeconds(2);
-
-        //FindObjectOfType<LevelChangeFade>().canMove = true;
 
         SceneManager.LoadScene(totoScene);
 
