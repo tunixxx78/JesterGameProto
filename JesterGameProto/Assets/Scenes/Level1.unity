@@ -1241,6 +1241,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: bulletRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438416117, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: bulletDamage
       value: 5
       objectReference: {fileID: 0}
@@ -1255,6 +1259,10 @@ PrefabInstance:
     - target: {fileID: 1438416120, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: enemyHP
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1438416121, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
+      propertyPath: ammoRange
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1438416121, guid: e32f42b0a8cf6ec4881155997ea78ce9, type: 3}
       propertyPath: enemyHealth

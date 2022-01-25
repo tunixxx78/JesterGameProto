@@ -37,18 +37,8 @@ public class EnemyBullet : MonoBehaviour
         transform.position += -transform.up * currentSpeed * Time.deltaTime;
         time += Time.deltaTime;
 
-        //ammoRB.velocity = transform.up * -ammoSpeed * Time.deltaTime;
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("BulletDestroyer") || collision.collider.CompareTag("Player") || collision.collider.CompareTag("Player2"))
-        {
-            Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
-
-            Destroy(this.gameObject);
-        }
-    }*/
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2")
@@ -61,10 +51,7 @@ public class EnemyBullet : MonoBehaviour
             Destroy(this.gameObject, 2);
             Destroy(this.hitParticle, 2f);
         }
-        /*if(collision.gameObject.tag == "BulletDestroyer")
-        {
-            Destroy(this.gameObject);
-        }*/
+
 
         if(collision.gameObject.tag == "EnemyBulletDestroyer")
         {

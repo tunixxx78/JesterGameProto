@@ -138,37 +138,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
         if(isActive == false)
         {
-            //teamPoints = 0;
             selectedPlayerIcon.SetActive(false);
         }
-        //if(isActive == true && battleSystem.enemyCount != 0 && player.GetComponent<PlayerMovementGrid>().isActive == true && player2.GetComponent<PlayerMovementGrid>().isActive == false)
-
-        /*for(int i = 0; i < playeers.Count; i++)
-        {
-            this.GetComponent<PlayerMovementGrid>();
-
-            if (isActive == true && battleSystem.enemyCount != 0 && playeers[i].GetComponent<PlayerMovementGrid>().isActive == true)
-            {
-                for (int e = 0; e < battleSystem.enemys.Count; e++)
-                {
-                    //EnemyProto notSellectedEnemy = enemyOne.GetComponent<EnemyProto>();
-                    var notSellectedEnemy = battleSystem.enemys[e].GetComponent<EnemyProto>();
-                    notSellectedEnemy.inTargetIcon.SetActive(false);
-
-                    RaycastHit2D hitInfo = Physics2D.Raycast(movingIndicatorSpawnPoint.position, ammoSpawnPoint.up, enemyMask);
-                    EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
-
-                    Debug.Log(hitInfo);
-
-                    if (enemy != null)
-                    {
-                        enemy.inTargetIcon.SetActive(true);
-                    }
-                }
-
-
-            }
-        }*/
 
         if (Input.GetKeyDown(KeyCode.P))
         {
@@ -235,19 +206,15 @@ public class PlayerMovementGrid : MonoBehaviour
             
             /*if(Mathf.Abs(distance.x) < tapRange && Mathf.Abs(distance.y) < tapRange)
             {
-                Debug.Log("TAPPED!");
-                IsActiveToFalse();
-                ResetPlayerPoints();
-                pLRPanel.SetActive(true);
-                selectedPlayerIcon.SetActive(true);
-
-                isActive = true;
+                //this for tap functionality
             }*/
         }
     }
 
     private void OnMouseDown()
     {
+        // functions for mouseClick/tap in mobile
+
         if(this.isActive == false)
         {
             for (int i = 0; i < playeers.Count; i++)
@@ -312,6 +279,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
     public void IsActiveToFalse()
     {
+        // this turns active player/players to inactive
 
         for(int i = 0; i < playeers.Count; i++)
         {
@@ -510,7 +478,7 @@ public class PlayerMovementGrid : MonoBehaviour
         }
     }
 
-    //Player movements with keyboard commands
+    //Player movements with keyboard commands ONLY DEVELOER USE!
 
     private void PlayerActions()
     {   
@@ -625,6 +593,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //Damage specialTile Functionality when entering
+
         if(collision.gameObject.tag == "AttackBoost")
         {
             if (collision.GetComponent<AttackTile>().damageNumberIsNegative == false)
@@ -672,6 +642,9 @@ public class PlayerMovementGrid : MonoBehaviour
             PlayerTakeDamage(enemySingleShotDamage);
             playerAnimator.SetTrigger("TakeDamage");
         }
+
+        // Defence specialTile functionality when entering
+
         if(collision.gameObject.tag == "DefenceTile")
         {
             enemySingleShotDamage = enemySingleShotDamage / FindObjectOfType<DefenceTile>().armourAmount;
@@ -686,6 +659,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
             sFXManager.attackTile.Play();
         }
+
+        //Range specialTile functionality when entering
         if(collision.gameObject.tag == "RangeTile")
         {
             if(collision.GetComponent<RangeTile>().RangeNumberIsNegative == false)
@@ -724,6 +699,9 @@ public class PlayerMovementGrid : MonoBehaviour
             }
             
         }
+
+        // Actionpoint specialTile functionality when entering
+
         if(collision.gameObject.tag == "ActionPointTile")
         {
             if(collision.GetComponent<ActionPointTile>().actionpointIsNegative == false)
@@ -778,6 +756,8 @@ public class PlayerMovementGrid : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        // Damage specialTile functionality when exiting
+
         if (collision.gameObject.tag == "AttackBoost")
         {
             if (collision.GetComponent<AttackTile>().damageNumberIsNegative == false)
@@ -820,10 +800,16 @@ public class PlayerMovementGrid : MonoBehaviour
             }
 
         }
+
+        //Defence specialTile functionality when exiting
+
         if (collision.gameObject.tag == "DefenceTile")
         {
             enemySingleShotDamage = FindObjectOfType<EnemySingleShoot>().bulletDamage;
         }
+
+        // Range specialTile functionality when exiting
+
         if (collision.gameObject.tag == "RangeTile")
         {
             if(collision.GetComponent<RangeTile>().RangeNumberIsNegative == false)
@@ -884,14 +870,7 @@ public class PlayerMovementGrid : MonoBehaviour
             {
                 this.firstClickDone = true;
             }
-            //this.GetComponent<PlayerMovementGrid>();
-            //this.IsActiveToFalse();
-            //StartCoroutine(SellectPlayer());
-            //ResetPlayerPoints();
-            //sFXManager.button.Play();
-
-            //this.StartCoroutine(SellectNewPlayer());
-            //}
+            
         }
        else if (movingIndicatorIsOn && playerIsAttacking == false)
         {
@@ -1000,26 +979,6 @@ public class PlayerMovementGrid : MonoBehaviour
     {
         if (isActive == true && PlayerPoints >= pointsForAttack)
         {
-            /*RaycastHit2D hitInfo = Physics2D.Raycast(ammoSpawnPoint.position, ammoSpawnPoint.up, 10f, enemyMask);
-
-
-
-            if (hitInfo)
-            {
-                EnemyProto enemy = hitInfo.transform.GetComponent<EnemyProto>();
-                Debug.Log(hitInfo.transform.name);
-
-                if (enemy != null)
-                {
-                    enemy.inTargetIcon.SetActive(true);
-                    enemy.TakeDamage(playerUnit.damage);
-                }
-            }
-            
-            GameObject shootingParticles = Instantiate(seeker_AttackFX, ammoSpawnPoint.position, Quaternion.identity);
-            Destroy(shootingParticles, 1f);
-            */
-            //player2.GetComponent<AOEAttack>().PlayerAOEAttack();
 
             PlayerPoints -= pointsForAttack;
             battleSystem.allPlayerPoints -= pointsForAttack;

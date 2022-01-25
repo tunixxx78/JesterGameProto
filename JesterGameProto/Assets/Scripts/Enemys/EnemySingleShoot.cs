@@ -29,24 +29,8 @@ public class EnemySingleShoot : MonoBehaviour
 
     public void EnemySingleShootAction()
     {
-        /*RaycastHit2D hitInfo = Physics2D.Raycast(bulletSpawnPoint.position, -bulletSpawnPoint.up);
-        if (hitInfo)
-        {
-            Debug.Log(hitInfo.transform.name);
-            PlayerMovementGrid player = hitInfo.transform.GetComponent<PlayerMovementGrid>();
-            if (player != null)
-            {
+       // this checks if attackDelay is allowed and whitch kind of attack is sellected
 
-                player.PlayerTakeDamage(enemyUnit.damage);
-            }
-        }
-        GameObject enemyShootingParticle = Instantiate(enemyBullet, bulletSpawnPoint.position, Quaternion.identity);
-        Destroy(enemyShootingParticle, 1f);
-         */
-
-        //GameObject enemyBulletPrefab = Instantiate(enemyBullet, bulletSpawnPoint.position, Quaternion.identity);
-
-        //sFXManager.enemyShoot.Play();
         if(attackDelay <= 0 && hasAttackDelay)
         {
             if (enemyTypeOne)

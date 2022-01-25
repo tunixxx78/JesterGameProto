@@ -24,8 +24,6 @@ public class testprojectile : MonoBehaviour
 
     private void Start()
     {
-        //startPos = this.transform.position;
-        //endPos = new Vector3(startPos.x, startPos.y + 20, 0);
 
         // setting up bullet SpeedUp.
         minSpeed = currentSpeed;
@@ -42,8 +40,6 @@ public class testprojectile : MonoBehaviour
         transform.position += transform.up * currentSpeed * Time.deltaTime;
         time += Time.deltaTime;
 
-        //Vector3 movement = Vector3.MoveTowards(this.transform.position, endPos, delta);
-        //this.transform.position = movement;
         
     }
     private void OnTriggerEnter2D(Collider2D collision)

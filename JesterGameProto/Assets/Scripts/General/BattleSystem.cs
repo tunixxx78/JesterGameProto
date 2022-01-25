@@ -7,12 +7,18 @@ public enum BattleState { START, PLAYERTURN, PLAYERTWOTURN, ENEMYTURN, WON, LOST
 
 public class BattleSystem : MonoBehaviour
 {
-    public BattleState state;
-    //[SerializeField] TMP_Text resultText;
-    [SerializeField] GameObject /*playerOne, playerTwo,*/ resultPanelWin, resultPanelLost, playerTurnIndicator;
-    //public GameObject[] enemys; //players;
+    [Header("LEVEL DESIGNER USE!!!")]
+
     public List<GameObject> enemys = new List<GameObject>();
     public List<GameObject> players = new List<GameObject>();
+    [SerializeField] GameObject resultPanelWin, resultPanelLost, playerTurnIndicator;
+    public int enemyCount, playerCount;
+
+    [Header("PROGRAMER USE!!!")]
+
+    public BattleState state;
+    
+    
     public float attackOneDamage, attackTwoDamage;
     public float allPlayerPoints;
     float playersStats;
@@ -29,7 +35,7 @@ public class BattleSystem : MonoBehaviour
 
     PlayerMovementGrid playerOnemovement, playerTwoMovement;
 
-    public int enemyCount, playerCount;
+    
 
     bool battleHasEnded = false, enemyIsAttacking = false;
     public bool attackBoostIsOn = false;
@@ -46,25 +52,6 @@ public class BattleSystem : MonoBehaviour
     {
 
         playerMovementGrid = FindObjectOfType<PlayerMovementGrid>();
-
-        //enemyProto = FindObjectOfType<EnemyProto>();
-        /*
-        for (int i = 0; i < players.Count; i++)
-        {
-            playersStats = players[i].GetComponent<PlayerMovementGrid>().PlayerPoints;
-            Debug.Log(playersStats);
-
-            allPlayerPoints += playersStats;
-
-            var playersDamage = players[i].GetComponent<Unit>().damage;
-
-            attackOneDamage = playersDamage;
-        }
-        */
-        //actionPAmount = FindObjectOfType<ActionPointTile>().extraActionPoints;
-
-        //playerOnemovement = players[0].GetComponent<PlayerMovementGrid>();
-        //playerTwoMovement = players[1].GetComponent<PlayerMovementGrid>();
 
         enemyCount = enemys.Count;
         playerCount = players.Count;
@@ -109,33 +96,7 @@ public class BattleSystem : MonoBehaviour
             state = BattleState.LOST;
             MatchLost();
         }
-        /*if (!GameObject.FindGameObjectWithTag("Player"))
-        {
-            KippoAvatar.SetActive(true);
-            //playerOnemovement.PlayerPoints = 0;
-        }
-        else { KippoAvatar.SetActive(false); }
-        if (!GameObject.FindGameObjectWithTag("Player2"))
-        {
-            OgamiAvatar.SetActive(true);
-            //playerTwoMovement.PlayerPoints = 0;
-        }
-        else { OgamiAvatar.SetActive(false); }
-        */
         
-        /*if(playerOnemovement.PlayerPoints == 0 && playerTwoMovement.PlayerPoints == 0 && battleHasEnded == false)
-        {
-            state = BattleState.ENEMYTURN;
-            EnemyTurn();
-            playerMovementGrid.IsActiveToFalse();
-        }
-
-
-        if (attackBoostIsOn)
-        {
-            attackOneDamage = playerUnit.damage;
-        }
-        */
     }
 
     
@@ -159,9 +120,6 @@ public class BattleSystem : MonoBehaviour
             playerUnit = players[0].GetComponent<Unit>();
         }
 
-        //playerOneUnit = players[0].GetComponent<Unit>();
-        //playerTwoUnit = players[1].GetComponent<Unit>();
-
         enemyOneUnit = enemys[0].GetComponent<EnemyUnit>();
         //enemyTwoUnit = enemys[1].GetComponent<EnemyUnit>();
 
@@ -182,7 +140,6 @@ public class BattleSystem : MonoBehaviour
 
             Destroy(indicator, 7);
 
-            //instructionsText.text = playerOneUnit.unitName;
             if (!GameObject.FindGameObjectWithTag("Player") && !GameObject.FindGameObjectWithTag("Player2"))
             {
                 MatchLost();
@@ -192,21 +149,9 @@ public class BattleSystem : MonoBehaviour
         
     }
 
-    /*public void PlayerTwoTurn()
-    {
-        state = BattleState.PLAYERTWOTURN;
-        //instructionsText.text = playerTwoUnit.unitName;
-        if (!GameObject.FindGameObjectWithTag("Player2"))
-        {
-           EnemyTurn();
-        }
-    }*/
 
     public void EnemyTurn()
     {
-
-        //state = BattleState.ENEMYTURN;
-        //instructionsText.text = enemyOneUnit.enemyName;
         
         for (int i = 0; i < enemys.Count; i++)
         {
@@ -221,12 +166,7 @@ public class BattleSystem : MonoBehaviour
             }
             
         }    
-        //enemyProto.EnemyAction();
-        //enemyTwoProto.EnemyAction();
 
-
-        //playerOnemovement.ResetPlayerPoints();
-        //playerTwoMovement.ResetPlayerPoints();
         enemyIsAttacking = true;
 
         StartCoroutine(ResetPlayerActionPoints());
@@ -302,13 +242,7 @@ public class BattleSystem : MonoBehaviour
         
         
     }
-    /*
-    public void FindActionPointTileStats()
-    {
-        //actionPAmount = FindObjectOfType<ActionPointTile>().extraActionPoints;
-
-    }
-    */
+    
     IEnumerator Won()
     {
         for (int i = 0; i < players.Count; i++)
@@ -318,8 +252,7 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(timeToChangeTurn);
 
         resultPanelWin.SetActive(true);
-        //MoveOnButton.SetActive(true);
-        //resultText.text = "You Won This Match!";
+
         battleHasEnded = true;
     }
 
@@ -333,7 +266,6 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(timeToChangeTurn);
 
         resultPanelLost.SetActive(true);
-        //resultText.text = "You Lost This Match!";
         battleHasEnded = true;
     }
 
