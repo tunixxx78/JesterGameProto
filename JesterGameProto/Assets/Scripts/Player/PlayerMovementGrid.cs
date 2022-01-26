@@ -131,11 +131,9 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             for (int i = 0; i < playeers.Count; i++)
             {
-                
+                playeers[i].GetComponent<PlayerMovementGrid>().playeers.Remove(this.gameObject);
 
                 battleSystem.players.Remove(this.gameObject);
-
-                playeers[i].GetComponent<PlayerMovementGrid>().playeers.Remove(this.gameObject);
 
                 Destroy(this.gameObject);
             }

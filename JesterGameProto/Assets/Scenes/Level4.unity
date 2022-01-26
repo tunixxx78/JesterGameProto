@@ -282,10 +282,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6f01f53e164dabb72807ccb54f33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  resultPanelWin: {fileID: 1451346665}
-  resultPanelLost: {fileID: 1451346664}
-  playerTurnIndicator: {fileID: 7721036230584114029, guid: 6aa058976d8d84935837a86cb130341f, type: 3}
   enemys:
   - {fileID: 578894212}
   - {fileID: 723116447}
@@ -293,11 +289,15 @@ MonoBehaviour:
   players:
   - {fileID: 312042846}
   - {fileID: 343766123}
+  resultPanelWin: {fileID: 1451346665}
+  resultPanelLost: {fileID: 1451346664}
+  playerTurnIndicator: {fileID: 7721036230584114029, guid: 6aa058976d8d84935837a86cb130341f, type: 3}
+  enemyCount: 3
+  playerCount: 2
+  state: 0
   attackOneDamage: 1
   attackTwoDamage: 5
   allPlayerPoints: 0
-  enemyCount: 3
-  playerCount: 2
   attackBoostIsOn: 0
   playerTurnIndicatorSpawnPoint: {fileID: 2051188010}
   timeToChangeTurn: 2
@@ -1985,11 +1985,11 @@ PrefabInstance:
     - target: {fileID: 8244134942916489316, guid: 3ead9d81680853e44b6f4f1c81404ff0, type: 3}
       propertyPath: playeers.Array.data[0]
       value: 
-      objectReference: {fileID: 343766123}
+      objectReference: {fileID: 312042846}
     - target: {fileID: 8244134942916489316, guid: 3ead9d81680853e44b6f4f1c81404ff0, type: 3}
       propertyPath: playeers.Array.data[1]
       value: 
-      objectReference: {fileID: 312042846}
+      objectReference: {fileID: 343766123}
     - target: {fileID: 8244134942916489316, guid: 3ead9d81680853e44b6f4f1c81404ff0, type: 3}
       propertyPath: iconSprites.Array.data[0]
       value: 
