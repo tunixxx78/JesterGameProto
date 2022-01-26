@@ -129,14 +129,20 @@ public class PlayerMovementGrid : MonoBehaviour
 
         if (playerHp <= 0)
         {
+            for (int i = 0; i < playeers.Count; i++)
+            {
+                
+
+                battleSystem.players.Remove(this.gameObject);
+
+                playeers[i].GetComponent<PlayerMovementGrid>().playeers.Remove(this.gameObject);
+
+                Destroy(this.gameObject);
+            }
             battleSystem.CountingPlayers();
-
-            battleSystem.players.Remove(this.gameObject);
-
-            Destroy(this.gameObject);
         }
 
-        if(isActive == false)
+        if (isActive == false)
         {
             selectedPlayerIcon.SetActive(false);
         }
@@ -219,13 +225,14 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             for (int i = 0; i < playeers.Count; i++)
             {
-                this.GetComponent<PlayerMovementGrid>();
-                this.IsActiveToFalse();
-                //StartCoroutine(SellectPlayer());
-                //ResetPlayerPoints();
-                sFXManager.button.Play();
+                    this.GetComponent<PlayerMovementGrid>();
+                    this.IsActiveToFalse();
+                    //StartCoroutine(SellectPlayer());
+                    //ResetPlayerPoints();
+                    sFXManager.button.Play();
 
-                this.StartCoroutine(SellectNewPlayer());
+                    this.StartCoroutine(SellectNewPlayer());
+                
             }
         }
 
