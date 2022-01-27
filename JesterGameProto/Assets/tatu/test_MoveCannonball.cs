@@ -45,9 +45,14 @@ public class test_MoveCannonball : MonoBehaviour
             Destroy(this.gameObject);
         }*/
 
-        /*if (collision.gameObject.tag == "EnemyBulletDestroyer")
+        if (collision.gameObject.tag == "EnemyBulletDestroyer")
         {
-            Destroy(this.gameObject);
-        }*/
+            Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
+            sFXManager.hitFromBullet.Play();
+
+            this.enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this.gameObject, 2);
+        }
     }
 }

@@ -9,18 +9,22 @@ public class BattleSystem : MonoBehaviour
 {
     [Header("LEVEL DESIGNER USE!!!")]
 
-    public List<GameObject> enemys = new List<GameObject>();
-    public List<GameObject> players = new List<GameObject>();
-    [SerializeField] GameObject resultPanelWin, resultPanelLost, playerTurnIndicator;
-    public int enemyCount, playerCount;
-
+    [Tooltip(" Drag all enmys on scene HERE! ")] public List<GameObject> enemys = new List<GameObject>();
+    [Tooltip(" Drag all player characters in scene here! ")] public List<GameObject> players = new List<GameObject>();
+    
+    
+    [HideInInspector]
     [Header("PROGRAMER USE!!!")]
-
     public BattleState state;
-    
-    
+    [HideInInspector]
+    public int enemyCount, playerCount;
+    [HideInInspector]
+    [SerializeField] GameObject resultPanelWin, resultPanelLost, playerTurnIndicator;
+    [HideInInspector]
     public float attackOneDamage, attackTwoDamage;
+    [HideInInspector]
     public float allPlayerPoints;
+    [HideInInspector]
     float playersStats;
 
     Unit playerUnit;
@@ -38,10 +42,13 @@ public class BattleSystem : MonoBehaviour
     
 
     bool battleHasEnded = false, enemyIsAttacking = false;
+    [HideInInspector]
     public bool attackBoostIsOn = false;
     AttackTile attackTile;
 
+    [HideInInspector]
     [SerializeField] Transform playerTurnIndicatorSpawnPoint;
+    [HideInInspector]
     [SerializeField] float timeToChangeTurn;
 
    

@@ -152,19 +152,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6f01f53e164dabb72807ccb54f33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  resultPanelWin: {fileID: 1611922620}
-  resultPanelLost: {fileID: 1176713081}
-  playerTurnIndicator: {fileID: 7721036230584114029, guid: 6aa058976d8d84935837a86cb130341f, type: 3}
   enemys:
   - {fileID: 1438416116}
   players:
   - {fileID: 1364829450}
+  state: 0
+  enemyCount: 1
+  playerCount: 1
+  resultPanelWin: {fileID: 1611922620}
+  resultPanelLost: {fileID: 1176713081}
+  playerTurnIndicator: {fileID: 7721036230584114029, guid: 6aa058976d8d84935837a86cb130341f, type: 3}
   attackOneDamage: 1
   attackTwoDamage: 5
   allPlayerPoints: 0
-  enemyCount: 1
-  playerCount: 1
   attackBoostIsOn: 0
   playerTurnIndicatorSpawnPoint: {fileID: 665217865}
   timeToChangeTurn: 2
@@ -269,7 +269,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.34980893, y: -3.779807}
+  m_Offset: {x: 0.34980893, y: -3.6125653}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -280,7 +280,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5085645, y: 0.3821535}
+  m_Size: {x: 3.5085645, y: 0.71663713}
   m_EdgeRadius: 0
 --- !u!61 &143830509
 BoxCollider2D:
@@ -337,7 +337,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.8782849, y: -0.69715744}
+  m_Offset: {x: -1.9012549, y: -0.7116166}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -348,7 +348,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.6188316, y: 0.59883153}
+  m_Size: {x: 1.5728917, y: 0.62774956}
   m_EdgeRadius: 0
 --- !u!61 &143830512
 BoxCollider2D:
@@ -591,8 +591,16 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2103216202989302787, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
+      propertyPath: AttackCost
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2103216202989302787, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
       propertyPath: startDamage
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2103216202989302787, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
+      propertyPath: newActionPoints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2103216202989302787, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
       propertyPath: fenses.Array.size
@@ -635,12 +643,24 @@ PrefabInstance:
       value: PushTheButton
       objectReference: {fileID: 0}
     - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
+      propertyPath: PlayerPoints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
       propertyPath: canvasAnimator
       value: 
       objectReference: {fileID: 1056551703}
     - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
       propertyPath: pointsForAttack
-      value: 3
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
+      propertyPath: playerMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
+      propertyPath: playerStartPoints
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
       propertyPath: playeers.Array.size
@@ -654,6 +674,18 @@ PrefabInstance:
       propertyPath: playeers.Array.data[0]
       value: 
       objectReference: {fileID: 1364829450}
+    - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
+      propertyPath: playeers.Array.data[1]
+      value: 
+      objectReference: {fileID: 1364829450}
+    - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
+      propertyPath: playeers.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
+      propertyPath: playeers.Array.data[3]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8244134942916489316, guid: 07f7caa3a1c7cab43bb8123d4a70380b, type: 3}
       propertyPath: iconSprites.Array.data[0]
       value: 
@@ -1583,7 +1615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba5a3c5af0f64a6c960311be1de6417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totoScene: 
   outFade: {fileID: 1836881123}
 --- !u!4 &1674015567
 Transform:
@@ -1658,6 +1689,14 @@ PrefabInstance:
     - target: {fileID: 7242448695625561266, guid: 5943eebac9ae44f8ea7566e9113d2d9b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242448695625561268, guid: 5943eebac9ae44f8ea7566e9113d2d9b, type: 3}
+      propertyPath: m_Size.y
+      value: 0.11175096
+      objectReference: {fileID: 0}
+    - target: {fileID: 7242448695625561268, guid: 5943eebac9ae44f8ea7566e9113d2d9b, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.2716245
       objectReference: {fileID: 0}
     - target: {fileID: 7242448695625561279, guid: 5943eebac9ae44f8ea7566e9113d2d9b, type: 3}
       propertyPath: m_Name

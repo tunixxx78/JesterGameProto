@@ -6,29 +6,42 @@ using TMPro;
 public class EnemyProto : MonoBehaviour
 {
     [Header("LEVEL DESIGNER USE !!!")]
-    [SerializeField] float enemyHealth; 
-    [SerializeField] float enemyStartHealt;
-    [SerializeField] bool hasMovementScript = false, friendlyFire = false;
+    
+    [SerializeField] bool hasMovementScript = false;
+    [Tooltip("If friendly fire is allowed! -> TRUE!")] [SerializeField] bool friendlyFire = false;
 
+    [HideInInspector]
     [Header("PROGRAMMER USE!!!")]
 
-    [SerializeField] GameObject enemy; 
+    [SerializeField] float enemyHealth;
+    [HideInInspector]
+    [SerializeField] float enemyStartHealt;
+    [HideInInspector]
+    [SerializeField] GameObject enemy;
+    [HideInInspector]
     [SerializeField] GameObject destroyedEnemy;
+    [HideInInspector]
     public GameObject inTargetIcon;
+    [HideInInspector]
     [SerializeField] Transform[] moveDirections;
+    [HideInInspector]
     [SerializeField] float enemySpeed, ammoRange;
+    [HideInInspector]
     [SerializeField] Animator enemyAnimator;
+    [HideInInspector]
 
     [SerializeField] Transform bulletTargetRange, destroyedEnemySpawnPoint;
 
     EnemyUnit enemyUnit;
 
+    [HideInInspector]
     [SerializeField] TMP_Text EnemyAttackDelayText;
 
     BattleSystem battleSystem;
 
     GameManager gameManager;
 
+    [HideInInspector]
     [SerializeField] HealthBar enemyHealthBar;
 
     SFXManager sFXManager;
@@ -145,7 +158,8 @@ public class EnemyProto : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
 
-        FindObjectOfType<EnemyDumbMovement>().DumbEnemyMovement();
+        GetComponent<EnemyDumbMovement>().DumbEnemyMovement();
+        //FindObjectOfType<EnemyDumbMovement>().DumbEnemyMovement();
     }
 
 }
