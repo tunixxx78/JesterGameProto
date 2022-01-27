@@ -424,11 +424,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3358737105324486686}
   - component: {fileID: 3358737105324486684}
-  - component: {fileID: 3358737105324486685}
-  - component: {fileID: 1438416118}
+  - component: {fileID: 1438416121}
   - component: {fileID: 1438416117}
   - component: {fileID: 1438416120}
-  - component: {fileID: 1438416121}
+  - component: {fileID: 3358737105324486685}
+  - component: {fileID: 1438416118}
   m_Layer: 0
   m_Name: StaticshooterSprites
   m_TagString: Enemy
@@ -479,6 +479,77 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1438416121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3358737105324486687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83551d13f0e774f55a43c6d0cd803b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasMovementScript: 0
+  friendlyFire: 0
+  ammoRange: 14
+  enemyHealth: 14
+  enemyStartHealt: 14
+  enemy: {fileID: 3358737105324486687}
+  destroyedEnemy: {fileID: 8597889486861694996, guid: 4ab303d13850caa45bb64a09567a01cb, type: 3}
+  inTargetIcon: {fileID: 359794429}
+  moveDirections:
+  - {fileID: 2109023060}
+  - {fileID: 1881348920}
+  enemySpeed: 0
+  enemyAnimator: {fileID: 3358737105324486684}
+  bulletTargetRange: {fileID: 1825486372}
+  destroyedEnemySpawnPoint: {fileID: 718345237254338551}
+  EnemyAttackDelayText: {fileID: 8471386073474520204}
+  enemyHealthBar: {fileID: 9106154192636779741}
+--- !u!114 &1438416117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3358737105324486687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e91ad1a3147f4ad6b6656871b18c335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletRange: 1
+  enemyTypeOne: 1
+  enemyTypeTwo: 0
+  hasAttackDelay: 1
+  bulletDamage: 5
+  attackDelay: 1
+  bulletSpawnPoint: {fileID: 3358737105541286035}
+  enemyBullet: {fileID: 9166999713506837262, guid: a0209e5c5ae96a24d977e10e6522f0c2, type: 3}
+  startAttackDealy: 1
+  cannonAnimator: {fileID: 3358737105324486684}
+  currentSpeed: 0
+  maxSpeed: 0
+  minSpeed: 0
+  accelerationTime: 0
+  time: 0
+--- !u!114 &1438416120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3358737105324486687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b069903a7b9484a76927a3df3df2b19e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHP: 10
+  damage: 0
+  range: 20
 --- !u!114 &3358737105324486685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,78 +591,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5985983, y: 0.39036667}
   m_EdgeRadius: 0
---- !u!114 &1438416117
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3358737105324486687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e91ad1a3147f4ad6b6656871b18c335, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletSpawnPoint: {fileID: 3358737105541286035}
-  enemyBullet: {fileID: 9166999713506837262, guid: a0209e5c5ae96a24d977e10e6522f0c2, type: 3}
-  bulletDamage: 5
-  attackDelay: 1
-  startAttackDealy: 1
-  cannonAnimator: {fileID: 3358737105324486684}
-  enemyTypeOne: 1
-  enemyTypeTwo: 0
-  hasAttackDelay: 1
-  currentSpeed: 0
-  maxSpeed: 0
-  minSpeed: 0
-  accelerationTime: 0
-  time: 0
-  bulletRange: 15
---- !u!114 &1438416120
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3358737105324486687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b069903a7b9484a76927a3df3df2b19e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyName: 
-  enemyHP: 10
-  damage: 0
-  range: 20
---- !u!114 &1438416121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3358737105324486687}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83551d13f0e774f55a43c6d0cd803b2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHealth: 14
-  enemyStartHealt: 14
-  enemy: {fileID: 3358737105324486687}
-  destroyedEnemy: {fileID: 8597889486861694996, guid: 4ab303d13850caa45bb64a09567a01cb, type: 3}
-  inTargetIcon: {fileID: 359794429}
-  moveDirections:
-  - {fileID: 2109023060}
-  - {fileID: 1881348920}
-  enemySpeed: 0
-  ammoRange: 14
-  enemyAnimator: {fileID: 3358737105324486684}
-  bulletTargetRange: {fileID: 1825486372}
-  destroyedEnemySpawnPoint: {fileID: 718345237254338551}
-  EnemyAttackDelayText: {fileID: 8471386073474520204}
-  enemyHealthBar: {fileID: 9106154192636779741}
-  hasMovementScript: 0
-  friendlyFire: 0
 --- !u!1 &3358737105411353657
 GameObject:
   m_ObjectHideFlags: 0

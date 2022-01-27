@@ -241,21 +241,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd6f01f53e164dabb72807ccb54f33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 0
-  resultPanelWin: {fileID: 1222234131}
-  resultPanelLost: {fileID: 739140885}
-  playerTurnIndicator: {fileID: 7721036230584114029, guid: 6aa058976d8d84935837a86cb130341f, type: 3}
   enemys:
   - {fileID: 1438416116}
   - {fileID: 1759177486}
   - {fileID: 610894362}
   players:
   - {fileID: 1390828879}
+  state: 0
+  enemyCount: 3
+  playerCount: 1
+  resultPanelWin: {fileID: 1222234131}
+  resultPanelLost: {fileID: 739140885}
+  playerTurnIndicator: {fileID: 7721036230584114029, guid: 6aa058976d8d84935837a86cb130341f, type: 3}
   attackOneDamage: 1
   attackTwoDamage: 5
   allPlayerPoints: 0
-  enemyCount: 3
-  playerCount: 1
   attackBoostIsOn: 0
   playerTurnIndicatorSpawnPoint: {fileID: 1192146977}
   timeToChangeTurn: 2
@@ -363,7 +363,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.3919251, y: -3.893609}
+  m_Offset: {x: 0.3919251, y: -3.7528965}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -374,7 +374,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5927968, y: 0.7349167}
+  m_Size: {x: 3.5927968, y: 1.0163417}
   m_EdgeRadius: 0
 --- !u!61 &143830509
 BoxCollider2D:
@@ -2917,7 +2917,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba5a3c5af0f64a6c960311be1de6417, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totoScene: 
   outFade: {fileID: 1661266307}
 --- !u!4 &1674015567
 Transform:

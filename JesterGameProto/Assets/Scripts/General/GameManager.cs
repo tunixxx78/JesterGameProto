@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     PlayerMovementGrid playerMovementGrid;
-    public string totoScene;
+    private string totoScene;
 
     BattleState state;
     BattleSystem battleSystem;

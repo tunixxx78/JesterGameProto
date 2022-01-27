@@ -7,40 +7,61 @@ public class PlayerMovementGrid : MonoBehaviour
 {
     [Header("LEVEL DESIGNER USE!!!")]
 
+    [Tooltip("Add all your player characters Here! Element 0 needs to be other than this character!!!")]
     public List<GameObject> playeers = new List<GameObject>();
-    
-    public float PlayerPoints;
-    public float playerStartPoints;
-    public float pointsForAttack;
 
+
+    [HideInInspector]
     [Header ("FOR PROGRAMMER USE!!!")]
     [SerializeField] Sprite[] iconSprites;
+    [HideInInspector]
     [SerializeField] GameObject pLRPanel;
+    [HideInInspector]
     [SerializeField] GameObject selectedPlayerIcon;
+    [HideInInspector]
     [SerializeField] GameObject seeker_AttackFX;
+    [HideInInspector]
     [SerializeField] GameObject attackRangeIndicator;
+    [HideInInspector]
     [SerializeField] GameObject specialTileEffectPrefab;
+    [HideInInspector]
     [SerializeField] GameObject movingRangeIndicator;
+    [HideInInspector]
     [SerializeField] float verticalGridSizeMultiplier = 1f;
+    [HideInInspector]
     [SerializeField] float horizontzlGridMultiplier = 0.75f;
+    [HideInInspector]
     [SerializeField] float moveSpeed = 5f;
+    [HideInInspector]
     [SerializeField] float ammoRange;
+    [HideInInspector]
     [SerializeField] float timeToShowSpecialTileEffect = 2f;
+    [HideInInspector]
     [SerializeField] float indicatorReSpawnTime = 1;
+    [HideInInspector]
     [SerializeField] float timeToSetAttackinToFalse = 2;
+    [HideInInspector]
     [SerializeField] float timeToSetPlayerIsMovingToFalse = 1;
+    [HideInInspector]
+    [Tooltip("Add here player actionPoints")] public float PlayerPoints;
+    [HideInInspector]
+    public float playerStartPoints;
+    [HideInInspector]
+    public float pointsForAttack;
 
-
-
+    [HideInInspector]
     public Transform movepoint;
+    [HideInInspector]
     public LayerMask stopsMovement, enemyMask, playerMask;
     [HideInInspector]
-    public bool isActive = false, firstClickDone = false, indicatorCanMove = false, playerIsAttacking = false, playerIsMoving = false, movingIndicatorIsOn = false;
+    public bool isActive = false, firstClickDone = false, indicatorCanMove = false, playerIsAttacking = false, playerIsMoving = false, movingIndicatorIsOn = false, playerIsDead = false;
+    [HideInInspector]
     private float wantedHP, playerHp;
+    [HideInInspector]
     [SerializeField] int enemySingleShotDamage;
-    
 
 
+    [HideInInspector]
     [SerializeField] TMP_Text playerPointsText, playerAttackCostText, SpecialTileEffectText;
 
     Unit playerUnit;
@@ -48,20 +69,22 @@ public class PlayerMovementGrid : MonoBehaviour
     SFXManager sFXManager;
 
     SingleTargetAttack singleTargetAttack;
-
+    [HideInInspector]
     [SerializeField] GameObject ammoPrefab;
+    [HideInInspector]
     [SerializeField] Transform ammoSpawnPoint, movingIndicatorSpawnPoint;
+    [HideInInspector]
     public Transform bulletTargetRange;
 
     BattleSystem battleSystem;
-
+    [HideInInspector]
     [SerializeField] HealthBar healthBar;
 
     EnemyProto enemyProto;
+    [HideInInspector]
+    [SerializeField] Animator playerAnimator;
+    [Tooltip("Just drag this characters canvas in here!")] [SerializeField] Animator canvasAnimator;
 
-    [SerializeField] Animator playerAnimator, canvasAnimator;
-
-    
 
     // These are for mobile swipe control system
     [Header ("SWIPE CONTROL VARIABLES")]
@@ -69,7 +92,9 @@ public class PlayerMovementGrid : MonoBehaviour
     Vector2 currentPosition;
     Vector2 endTouchPosition;
     bool stopTouch = false;
+    [HideInInspector]
     public float swipeRange;
+    [HideInInspector]
     public float tapRange;
 
     private void Awake()
@@ -87,7 +112,7 @@ public class PlayerMovementGrid : MonoBehaviour
         wantedHP = playerUnit.maxHP;
         playerHp = wantedHP;
 
-        playerAttackCostText.text = pointsForAttack.ToString();
+        
 
         singleTargetAttack = FindObjectOfType<SingleTargetAttack>();
 
@@ -102,7 +127,7 @@ public class PlayerMovementGrid : MonoBehaviour
 
         sFXManager = FindObjectOfType<SFXManager>();
 
-        
+        pointsForAttack = GetComponent<Unit>().AttackCost;
     }
 
     private void Start()
@@ -112,6 +137,8 @@ public class PlayerMovementGrid : MonoBehaviour
         healthBar.SetMaxValue(wantedHP);
 
         bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, ammoRange, 0);
+
+        playerAttackCostText.text = pointsForAttack.ToString();
 
     }
 
@@ -129,15 +156,26 @@ public class PlayerMovementGrid : MonoBehaviour
 
         if (playerHp <= 0)
         {
+            
             for (int i = 0; i < playeers.Count; i++)
             {
+
                 playeers[i].GetComponent<PlayerMovementGrid>().playeers.Remove(this.gameObject);
-
+                
+                StartCoroutine(TurnPlayerDead());
                 battleSystem.players.Remove(this.gameObject);
-
-                Destroy(this.gameObject);
+                if (playerIsDead)
+                {
+                    battleSystem.CountingPlayers();
+                    Destroy(this.gameObject);
+                    playerIsDead = false;
+                }
+                
             }
-            battleSystem.CountingPlayers();
+
+                
+
+            
         }
 
         if (isActive == false)
@@ -157,6 +195,19 @@ public class PlayerMovementGrid : MonoBehaviour
     }
 
     // player movement controls with swipe system
+
+    IEnumerator TurnPlayerDead()
+    {
+        yield return new WaitForSeconds(.5f);
+
+        playerIsDead = true;
+        if(battleSystem.playerCount <= 1)
+        {
+            Destroy(this.gameObject);
+            battleSystem.CountingPlayers();
+        }
+        
+    }
 
     public void Swipe()
     {
@@ -223,13 +274,15 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             for (int i = 0; i < playeers.Count; i++)
             {
-                    this.GetComponent<PlayerMovementGrid>();
-                    this.IsActiveToFalse();
-                    //StartCoroutine(SellectPlayer());
-                    //ResetPlayerPoints();
-                    sFXManager.button.Play();
+                this.GetComponent<PlayerMovementGrid>();
+                var thisUnit = this.GetComponent<Unit>();
+                battleSystem.attackOneDamage = thisUnit.startDamage;
+                this.IsActiveToFalse();
+                //StartCoroutine(SellectPlayer());
+                //ResetPlayerPoints();
+                sFXManager.button.Play();
 
-                    this.StartCoroutine(SellectNewPlayer());
+                this.StartCoroutine(SellectNewPlayer());
                 
             }
         }
@@ -322,9 +375,9 @@ public class PlayerMovementGrid : MonoBehaviour
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
                 
-                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(-1f, 0f, 0f), .2f, stopsMovement))
+                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(-1f * horizontzlGridMultiplier, 0f, 0f), .2f, stopsMovement))
                 {
-                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(-1f, 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
+                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(-1f * horizontzlGridMultiplier, 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
 
                     if (!hit.collider)
                     {
@@ -365,9 +418,9 @@ public class PlayerMovementGrid : MonoBehaviour
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
 
-                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(1f, 0f, 0f), .2f, stopsMovement))
+                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(1f * horizontzlGridMultiplier, 0f, 0f), .2f, stopsMovement))
                 {
-                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(1f, 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
+                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(1f * horizontzlGridMultiplier, 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
 
                     if (!hit.collider)
                     {
@@ -408,9 +461,9 @@ public class PlayerMovementGrid : MonoBehaviour
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
 
-                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, 1f, 0f), .2f, stopsMovement))
+                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, 1f * verticalGridSizeMultiplier, 0f), .2f, stopsMovement))
                 {
-                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, 1f, 0f), 0.0001f, Vector3.zero, Mathf.Infinity, (playerMask));
+                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, 1f * verticalGridSizeMultiplier, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
 
                     if (!hit.collider)
                     {
@@ -451,9 +504,9 @@ public class PlayerMovementGrid : MonoBehaviour
             if (Vector3.Distance(transform.position, movepoint.position) <= .05f)
             {
 
-                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, -1f, 0f), .2f, stopsMovement))
+                if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, -1f * verticalGridSizeMultiplier, 0f), .2f, stopsMovement))
                 {
-                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, -1f, 0f), 0.0001f, Vector3.zero, Mathf.Infinity, (playerMask));
+                    var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, -1f * verticalGridSizeMultiplier, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
 
                     if (!hit.collider)
                     {
@@ -495,9 +548,9 @@ public class PlayerMovementGrid : MonoBehaviour
             {
                 if (Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1f)
                 {
-                    if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), .2f, stopsMovement))
+                    if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f), .2f, stopsMovement))
                     {
-                        var hit = Physics2D.CircleCast(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal"), 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
+                        var hit = Physics2D.CircleCast(movepoint.position + new Vector3(Input.GetAxisRaw("Horizontal") * horizontzlGridMultiplier, 0f, 0f), 0.1f, Vector3.zero, Mathf.Infinity, (playerMask));
 
                         if (!hit.collider)
                         {
@@ -528,9 +581,9 @@ public class PlayerMovementGrid : MonoBehaviour
                 }
                 if (Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1f)
                 {
-                    if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), .2f, stopsMovement))
+                    if (!Physics2D.OverlapCircle(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier, 0f), .2f, stopsMovement))
                     {
-                        var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical"), 0f), 0.00011f, Vector3.zero, Mathf.Infinity, (playerMask));
+                        var hit = Physics2D.CircleCast(movepoint.position + new Vector3(0f, Input.GetAxisRaw("Vertical") * verticalGridSizeMultiplier, 0f), 0.2f, Vector3.zero, Mathf.Infinity, (playerMask));
 
                         if (!hit.collider)
                         {

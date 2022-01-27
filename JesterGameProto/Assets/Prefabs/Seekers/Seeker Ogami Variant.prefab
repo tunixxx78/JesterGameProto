@@ -195,6 +195,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8326227733534867365, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+      propertyPath: canvasAnimator
+      value: 
+      objectReference: {fileID: 7693026592786239579}
     - target: {fileID: 8326227733534867366, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
       propertyPath: m_Name
       value: Seeker Ogami Variant
@@ -205,3 +209,8 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: a7f67e7c282e2e243a358882f3f8a7a1, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+--- !u!95 &7693026592786239579 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7721043202259394458, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+  m_PrefabInstance: {fileID: 136718839000190913}
+  m_PrefabAsset: {fileID: 0}

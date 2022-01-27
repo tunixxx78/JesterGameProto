@@ -6,25 +6,32 @@ public class EnemySingleShoot : MonoBehaviour
 {
     [Header("LEVEL DESIGNER USE!!!")]
     public float bulletRange; // Variable for bullet range in singleshot attack.
-    [SerializeField] bool enemyTypeOne = false, enemyTypeTwo = false, hasAttackDelay = false;
-    public int bulletDamage, attackDelay;
+    [Tooltip(" If attached to CANNON, this needs to be true, otherwise false ! ")] [SerializeField] bool enemyTypeOne = false;
+    [Tooltip(" If attached to MOVING ENEMY, this needs to be true, otherwise false ! ")] [SerializeField] bool enemyTypeTwo = false;
+    [Tooltip(" If enemy has attack delay, this needs to be True. Otherwise false! ")] [SerializeField] bool hasAttackDelay = false;
+    public int bulletDamage, startAttackDealy;
 
+    [HideInInspector]
     [Header("PROGRAMMER USE!!!")]
     [SerializeField] Transform bulletSpawnPoint;
+    [HideInInspector]
     [SerializeField] GameObject enemyBullet;
-    public int startAttackDealy;
+    [HideInInspector]
+    public int attackDelay;
+    [HideInInspector]
     [SerializeField] Animator cannonAnimator;
 
     
 
     SFXManager sFXManager;
-
+    [HideInInspector]
     public float currentSpeed, maxSpeed, minSpeed, accelerationTime, time; // variables for exponential speedUp for bullet.
     
 
     private void Awake()
     {
         sFXManager = FindObjectOfType<SFXManager>();
+        attackDelay = startAttackDealy;
     }
 
     public void EnemySingleShootAction()

@@ -29,6 +29,9 @@ MonoBehaviour:
   moveDirections:
   - {fileID: 1198199453437766750}
   - {fileID: 1198199452605391418}
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1001 &8035158253132322457
 PrefabInstance:
   m_ObjectHideFlags: 0

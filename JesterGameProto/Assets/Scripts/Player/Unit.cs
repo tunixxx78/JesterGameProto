@@ -5,18 +5,17 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     [Header("LEVEL DESIGNER USE!!!")]
-    
-    public int maxHP;
-    public int currentHp;
-    public int playerActionPoints;
-    public int newActionPoints;
-    public int startDamage;
-    public List<GameObject> fenses = new List<GameObject>();
 
-    [HideInInspector]
-    public int damage;
+    [Tooltip(" Insert wanted player maximum HEALTH here! ")] public int maxHP;    
+    [Tooltip(" Insert wanted player ACTION POINTS here! ")] public int playerActionPoints;
+    [Tooltip(" Insert wanted player DAMAGE here! ")] public int startDamage;
+    [Tooltip(" Insert wanted COST FOR PLAYER ATTACK here! ")] public float AttackCost;
+    [Tooltip(" Drag all FENCES in level here! ")] public List<GameObject> fenses = new List<GameObject>();
 
-    
+
+    [HideInInspector] public int damage;
+    [HideInInspector] public int newActionPoints;
+    [HideInInspector] public int currentHp;
 
     AttackTile attackTile;
     StaticObstacle staticObstacle;
@@ -27,6 +26,8 @@ public class Unit : MonoBehaviour
         damage = startDamage;
 
         staticObstacle = FindObjectOfType<StaticObstacle>();
+
+        newActionPoints = playerActionPoints;
     }
 
     public void InCreaseAttackPower()
