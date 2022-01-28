@@ -4,28 +4,23 @@ using UnityEngine;
 
 public class StaticObstacle : MonoBehaviour
 {
-    
-    public float playerDamage, realAttackDamage;
+    [Header("Level designer use!!!")]
 
-    int damageBoost;
-    BattleSystem battleSystem;
+    [Tooltip("Amount that obstacle has HEALTH! ")] [SerializeField] int obstacleStartHealth;
+    [Tooltip("Amount that player causes damage with one shot! ")] [SerializeField] int normalHitDamage;
+
+
+    [HideInInspector]
     [SerializeField] GameObject destroyedObstacle, obstacle;
-
+    [HideInInspector]
     [SerializeField] HealthBar obstacleHealthbar;
-    [SerializeField] int obstacleHealt, obstacleStartHealth, normalHitDamage, boostedHitDamage;
-
-    [SerializeField] GameObject[] players;
-
+    [HideInInspector]
+    [SerializeField] int obstacleHealt;
+    [HideInInspector]
     [SerializeField] Transform destroyedObstacleSpawnPoint;
 
     private void Awake()
     {
-        battleSystem = FindObjectOfType<BattleSystem>();
-
-        //playerDamage = battleSystem.boosteddamages;
-
-        //Debug.Log("Player damage is " + playerDamage);
-
         obstacleHealt = obstacleStartHealth;
     }
 
@@ -37,52 +32,24 @@ public class StaticObstacle : MonoBehaviour
 
     private void Update()
     {
-        playerDamage = battleSystem.attackOneDamage;
-
-        //damageBoost = playerDamage;
-
-        //playerDamage = damageBoost;
-        realAttackDamage = playerDamage;
-
         if (obstacleHealt <= 0)
         {
             
             GameObject destroyed = Instantiate(destroyedObstacle, destroyedObstacleSpawnPoint.position, Quaternion.identity);
             Destroy(destroyed, 7f);
-
+            
             Destroy(this.gameObject);
-            players[0].GetComponent<Unit>().fenses.Remove(this.gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
+    {        
         if (collision.gameObject.tag == "Bullet")
         {
             ObstacleDamage(normalHitDamage);
-
-            if(realAttackDamage  >= 5)
-            {
-                ObstacleDamage(boostedHitDamage);
-            }
         }
     }
-
-    public void DamagePointsUp()
-    {
-        for (int i = 0; i < players.Length; i++)
-        {
-            damageBoost = players[i].GetComponent<Unit>().damage;
-            Debug.Log(damageBoost);
-
-            playerDamage += damageBoost;
-            Debug.Log("Player boosteddamage is " + playerDamage);
-
-            realAttackDamage = playerDamage;
-        }
-    }
-
+    
     public void ObstacleDamage(int damage)
     {
         obstacleHealt -= damage;
