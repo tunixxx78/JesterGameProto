@@ -185,6 +185,15 @@ TextureImporter:
   - first:
       213: 5353998731846990992
     second: destroyed_basic_enemy
+  - first:
+      213: -5464557204112376820
+    second: Seeker_flux_white
+  - first:
+      213: -765020848323587500
+    second: Seeker_grub_white
+  - first:
+      213: -1230951906949082505
+    second: Seeker_Lavamanter_white
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1566,7 +1575,7 @@ TextureImporter:
         width: 96
         height: 97
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1574,6 +1583,69 @@ TextureImporter:
       bones: []
       spriteID: 09cb1abda793d4a40800000000000000
       internalID: 5353998731846990992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seeker_flux_white
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 1
+        width: 74
+        height: 115
+      alignment: 9
+      pivot: {x: 0.5062153, y: 0.24802452}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0c7412ec2ef924b0800000000000000
+      internalID: -5464557204112376820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seeker_grub_white
+      rect:
+        serializedVersion: 2
+        x: 454
+        y: 0
+        width: 67
+        height: 115
+      alignment: 9
+      pivot: {x: 0.5, y: 0.21202824}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45297e977991265f0800000000000000
+      internalID: -765020848323587500
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Seeker_Lavamanter_white
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 0
+        width: 63
+        height: 111
+      alignment: 9
+      pivot: {x: 0.5292029, y: 0.27623862}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 772d5b233c7caeee0800000000000000
+      internalID: -1230951906949082505
       vertices: []
       indices: 
       edges: []
