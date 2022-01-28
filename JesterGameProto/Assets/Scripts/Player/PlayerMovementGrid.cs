@@ -657,7 +657,6 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             if (collision.GetComponent<AttackTile>().damageNumberIsNegative == false)
             {
-                playerUnit.InCreaseAttackPower();
 
                 battleSystem.attackBoostIsOn = true;
 
@@ -676,7 +675,6 @@ public class PlayerMovementGrid : MonoBehaviour
             }
             if(collision.GetComponent<AttackTile>().damageNumberIsNegative == true)
             {
-                playerUnit.InCreaseAttackPower();
 
                 battleSystem.attackBoostIsOn = true;
 
@@ -820,7 +818,6 @@ public class PlayerMovementGrid : MonoBehaviour
         {
             if (collision.GetComponent<AttackTile>().damageNumberIsNegative == false)
             {
-                playerUnit.InCreaseAttackPower();
 
                 battleSystem.attackBoostIsOn = false;
 
@@ -839,7 +836,6 @@ public class PlayerMovementGrid : MonoBehaviour
             }
             if (collision.GetComponent<AttackTile>().damageNumberIsNegative == true)
             {
-                playerUnit.InCreaseAttackPower();
 
                 battleSystem.attackBoostIsOn = false;
 

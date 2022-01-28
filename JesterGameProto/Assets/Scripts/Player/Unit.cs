@@ -10,7 +10,7 @@ public class Unit : MonoBehaviour
     [Tooltip(" Insert wanted player ACTION POINTS here! ")] public int playerActionPoints;
     [Tooltip(" Insert wanted player DAMAGE here! ")] public int startDamage;
     [Tooltip(" Insert wanted COST FOR PLAYER ATTACK here! ")] public float AttackCost;
-    [Tooltip(" Drag all FENCES in level here! ")] public List<GameObject> fenses = new List<GameObject>();
+    
 
 
     [HideInInspector] public int damage;
@@ -29,33 +29,6 @@ public class Unit : MonoBehaviour
 
         newActionPoints = playerActionPoints;
     }
+    
 
-    public void InCreaseAttackPower()
-    {
-        //damage = damage + attackTile.damageMultiplier;
-
-        for (int i = 0; i < fenses.Count; i++)
-        {
-            fenses[i].GetComponent<StaticObstacle>().playerDamage = damage;
-
-        }
-        
-        
-    }
-    public void DeCreaseAttackPower()
-    {
-        //damage = startDamage;
-
-        for (int i = 0; i < fenses.Count; i++)
-        {
-            fenses[i].GetComponent<StaticObstacle>().playerDamage = damage;
-
-        }
-        /*if (GameObject.Find("Chest"))
-        {
-            staticObstacle.realAttackDamage = 1;
-            staticObstacle.playerDamage = 0;
-        }*/
-            
-    }
 }
