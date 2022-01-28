@@ -55,6 +55,14 @@ PrefabInstance:
       propertyPath: cannonAnimator
       value: 
       objectReference: {fileID: 3762228839370230808}
+    - target: {fileID: 6608050493961050751, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
+      propertyPath: enemyAnimator
+      value: 
+      objectReference: {fileID: 3762228839370230808}
+    - target: {fileID: 6608050493961050751, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
+      propertyPath: destroyedEnemy
+      value: 
+      objectReference: {fileID: 7179495673438767877, guid: 99675feee93410842be2b9bff03cbc62, type: 3}
     - target: {fileID: 6608050493961050752, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
       propertyPath: m_Name
       value: EnemyWithAnimation_Variant
