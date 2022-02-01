@@ -659,7 +659,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6708981578673480231}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.042, z: 0}
+  m_LocalPosition: {x: 0.024, y: 0.008, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8964455738590903297}
@@ -831,7 +831,7 @@ MonoBehaviour:
   enemyHealth: 14
   enemyStartHealt: 14
   enemy: {fileID: 8964455738590903296}
-  destroyedEnemy: {fileID: 8597889486861694996, guid: 4ab303d13850caa45bb64a09567a01cb, type: 3}
+  destroyedEnemy: {fileID: 8597889486861694996, guid: 3ef124b9d120b914bb6450bd8bbba0e7, type: 3}
   inTargetIcon: {fileID: 5977549276729051874}
   moveDirections:
   - {fileID: 5977549278461243211}

@@ -340,7 +340,7 @@ GameObject:
   - component: {fileID: 6608050493961050748}
   - component: {fileID: 6608050493961050749}
   m_Layer: 7
-  m_Name: EnemyWithAnimation_Original
+  m_Name: BasicEnemy_original
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

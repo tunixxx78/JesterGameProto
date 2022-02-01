@@ -11,10 +11,10 @@ public class EnemySingleShoot : MonoBehaviour
     [Tooltip(" If enemy has attack delay, this needs to be True. Otherwise false! ")] [SerializeField] bool hasAttackDelay = false;
     public int bulletDamage, startAttackDealy;
 
-    [HideInInspector]
+   
     [Header("PROGRAMMER USE!!!")]
     [SerializeField] Transform bulletSpawnPoint;
-    [HideInInspector]
+    
     [SerializeField] GameObject enemyBullet;
     [HideInInspector]
     public int attackDelay;

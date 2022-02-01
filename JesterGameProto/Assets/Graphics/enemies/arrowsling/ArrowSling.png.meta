@@ -32,6 +32,9 @@ TextureImporter:
   - first:
       213: -5282578905501561856
     second: Arrow
+  - first:
+      213: 8313109960575384727
+    second: destroyed_sling
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -350,6 +353,27 @@ TextureImporter:
       bones: []
       spriteID: 00c8b97497280b6b0800000000000000
       internalID: -5282578905501561856
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destroyed_sling
+      rect:
+        serializedVersion: 2
+        x: 305
+        y: 7
+        width: 135
+        height: 81
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 79c7bd2e6791e5370800000000000000
+      internalID: 8313109960575384727
       vertices: []
       indices: 
       edges: []

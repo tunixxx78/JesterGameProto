@@ -10,7 +10,7 @@ public class EnemyProto : MonoBehaviour
     [SerializeField] bool hasMovementScript = false;
     [Tooltip("If friendly fire is allowed! -> TRUE!")] [SerializeField] bool friendlyFire = false;
 
-    [HideInInspector]
+    
     [Header("PROGRAMMER USE!!!")]
 
     [SerializeField] float enemyHealth;
@@ -18,7 +18,7 @@ public class EnemyProto : MonoBehaviour
     [SerializeField] float enemyStartHealt;
     [HideInInspector]
     [SerializeField] GameObject enemy;
-    [HideInInspector]
+    
     [SerializeField] GameObject destroyedEnemy;
     [HideInInspector]
     public GameObject inTargetIcon;

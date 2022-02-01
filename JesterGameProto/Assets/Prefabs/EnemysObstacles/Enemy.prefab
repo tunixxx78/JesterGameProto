@@ -637,6 +637,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83551d13f0e774f55a43c6d0cd803b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasMovementScript: 0
+  friendlyFire: 0
   enemyHealth: 0
   enemyStartHealt: 2
   enemy: {fileID: 9125209700906150518}
@@ -645,12 +647,11 @@ MonoBehaviour:
   moveDirections: []
   enemySpeed: 5
   ammoRange: 0
+  enemyAnimator: {fileID: 0}
   bulletTargetRange: {fileID: 0}
   destroyedEnemySpawnPoint: {fileID: 0}
   EnemyAttackDelayText: {fileID: 0}
   enemyHealthBar: {fileID: 7738736572225108808}
-  hasMovementScript: 0
-  friendlyFire: 0
 --- !u!50 &9125209700906150519
 Rigidbody2D:
   serializedVersion: 4
@@ -684,7 +685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b069903a7b9484a76927a3df3df2b19e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyName: TURT
   enemyHP: 4
   damage: 1
   range: 0

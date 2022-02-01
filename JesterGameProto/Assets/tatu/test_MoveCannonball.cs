@@ -34,11 +34,12 @@ public class test_MoveCannonball : MonoBehaviour
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Player2" || collision.gameObject.tag == "DummuObstacle")
         {
             Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
-            sFXManager.hitFromBullet.Play();
+            
 
             this.enabled = false;
             this.GetComponent<SpriteRenderer>().enabled = false;
             Destroy(this.gameObject, 2);
+            sFXManager.hitFromBullet.Play();
         }
         /*if (collision.gameObject.tag == "BulletDestroyer")
         {
@@ -48,11 +49,12 @@ public class test_MoveCannonball : MonoBehaviour
         if (collision.gameObject.tag == "EnemyBulletDestroyer")
         {
             Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
-            sFXManager.hitFromBullet.Play();
+            
 
             this.enabled = false;
             this.GetComponent<SpriteRenderer>().enabled = false;
             Destroy(this.gameObject, 2);
+            sFXManager.hitFromBullet.Play();
         }
     }
 }
