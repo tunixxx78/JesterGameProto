@@ -17,6 +17,12 @@ TextureImporter:
   - first:
       213: -6946794899128302283
     second: purple_Stone
+  - first:
+      213: -474801529939535949
+    second: destroyed Sentry
+  - first:
+      213: -4139998008204087791
+    second: mage_book
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -180,7 +186,7 @@ TextureImporter:
         width: 107
         height: 92
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +207,7 @@ TextureImporter:
         width: 147
         height: 79
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -217,12 +223,12 @@ TextureImporter:
       name: purple_Stone
       rect:
         serializedVersion: 2
-        x: 52
-        y: 85
+        x: 89
+        y: 88
         width: 43
         height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -230,6 +236,48 @@ TextureImporter:
       bones: []
       spriteID: 53546fd48d6089f90800000000000000
       internalID: -6946794899128302283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destroyed Sentry
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 9
+        width: 101
+        height: 65
+      alignment: 9
+      pivot: {x: 0.4924188, y: 0.42343313}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b7542d268a2969f0800000000000000
+      internalID: -474801529939535949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: mage_book
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 86
+        width: 87
+        height: 48
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 11eab260fb5cb86c0800000000000000
+      internalID: -4139998008204087791
       vertices: []
       indices: 
       edges: []
