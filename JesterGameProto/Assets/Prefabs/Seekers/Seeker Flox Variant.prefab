@@ -199,7 +199,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2358789314155884160, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.82
+      value: 0.99
       objectReference: {fileID: 0}
     - target: {fileID: 3075838026952819136, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
       propertyPath: m_LocalScale.x
@@ -290,6 +290,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: af60e66cae427bd4cbb9681e146504a0, type: 3}
     - target: {fileID: 5658213449455091631, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5658213449455091631, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -311,7 +315,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6048649924530105369, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
       propertyPath: m_SortingOrder
-      value: -2
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6048649924530105369, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6804145751398299052, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
       propertyPath: m_Sprite
@@ -321,6 +329,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: b009e3d4f3b550c43bb809d44d897e29, type: 3}
+    - target: {fileID: 6918748466236022844, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6950937865004404122, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
