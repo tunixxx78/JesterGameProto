@@ -76,7 +76,7 @@ public class EnemyProto : MonoBehaviour
 
         destroyedEnemySpawnPoint.parent = null;
 
-        sFXManager.enemyBounce.Play();
+        //sFXManager.enemyBounce.Play();
 
         bulletTargetRange.transform.position = bulletTargetRange.transform.position + new Vector3(0, -ammoRange, 0);
     }
