@@ -15,7 +15,12 @@ public class EnemyDumbMovement : MonoBehaviour
         var hit1 = Physics2D.CircleCast(moveDirections[0].position, 0.2f, Vector3.zero, Mathf.Infinity, enemyMask);
         var hit2 = Physics2D.CircleCast(moveDirections[1].position, 0.2f, Vector3.zero, Mathf.Infinity, enemyMask);
 
-        if (transform.position.x <= -.7 || !hit1.collider)
+        if(!hit1.collider && !hit2.collider)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, moveDirections[randomDirection].position, 1f);
+        }
+
+        else if (transform.position.x <= -.7 || !hit1.collider)
         {
             transform.position = Vector3.MoveTowards(transform.position, moveDirections[0].position, 1f);
             Debug.Log("OIKEAAN");
@@ -32,7 +37,7 @@ public class EnemyDumbMovement : MonoBehaviour
         }
         else
         {
-            transform.position = Vector3.MoveTowards(transform.position, moveDirections[randomDirection].position, 1f);
+            
         }
     }
     
