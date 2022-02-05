@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AttackTile : MonoBehaviour
 {
-    public float damageMultiplier, startDamageAmount;
+    public float damageMultiplier;
     public bool damageNumberIsNegative = false;
 
     [SerializeField] Animator attackTileAnimator;
@@ -14,7 +14,7 @@ public class AttackTile : MonoBehaviour
     private void Awake()
     {
         battleSystem = FindObjectOfType<BattleSystem>();
-        startDamageAmount = FindObjectOfType<Unit>().startDamage;
+        //startDamageAmount = FindObjectOfType<Unit>().startDamage;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

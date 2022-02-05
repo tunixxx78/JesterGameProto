@@ -48,6 +48,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6608050493961050748, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
+      propertyPath: enemyBullet
+      value: 
+      objectReference: {fileID: 2312003949619393783, guid: 7d438e048a409c4419a4ba6e68a2a982, type: 3}
+    - target: {fileID: 6608050493961050748, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
       propertyPath: enemyTypeTwo
       value: 1
       objectReference: {fileID: 0}
@@ -65,7 +69,7 @@ PrefabInstance:
       objectReference: {fileID: 7179495673438767877, guid: 99675feee93410842be2b9bff03cbc62, type: 3}
     - target: {fileID: 6608050493961050752, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
       propertyPath: m_Name
-      value: EnemyWithAnimation_Variant
+      value: BasicEnemy_Variation
       objectReference: {fileID: 0}
     - target: {fileID: 6608050493961050756, guid: 94851dd18aae64b349fe5b1a209e32f3, type: 3}
       propertyPath: m_RootOrder

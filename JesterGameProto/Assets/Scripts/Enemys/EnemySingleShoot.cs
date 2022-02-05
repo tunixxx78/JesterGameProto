@@ -9,16 +9,16 @@ public class EnemySingleShoot : MonoBehaviour
     [Tooltip(" If attached to CANNON, this needs to be true, otherwise false ! ")] [SerializeField] bool enemyTypeOne = false;
     [Tooltip(" If attached to MOVING ENEMY, this needs to be true, otherwise false ! ")] [SerializeField] bool enemyTypeTwo = false;
     [Tooltip(" If enemy has attack delay, this needs to be True. Otherwise false! ")] [SerializeField] bool hasAttackDelay = false;
-    public int bulletDamage, startAttackDealy;
+    public int bulletDamage, startAttackDelay;
 
-   
+   [HideInInspector]
     [Header("PROGRAMMER USE!!!")]
     [SerializeField] Transform bulletSpawnPoint;
-    
+    [HideInInspector]
     [SerializeField] GameObject enemyBullet;
     [HideInInspector]
     public int attackDelay;
-    [HideInInspector]
+    //[HideInInspector]
     [SerializeField] Animator cannonAnimator;
 
     
@@ -31,7 +31,7 @@ public class EnemySingleShoot : MonoBehaviour
     private void Awake()
     {
         sFXManager = FindObjectOfType<SFXManager>();
-        attackDelay = startAttackDealy;
+        attackDelay = startAttackDelay;
     }
 
     public void EnemySingleShootAction()

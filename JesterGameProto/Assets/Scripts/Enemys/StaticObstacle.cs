@@ -7,7 +7,7 @@ public class StaticObstacle : MonoBehaviour
     [Header("Level designer use!!!")]
 
     [Tooltip("Amount that obstacle has HEALTH! ")] [SerializeField] int obstacleStartHealth;
-    [Tooltip("Amount that player causes damage with one shot! ")] [SerializeField] int normalHitDamage;
+    [HideInInspector][Tooltip("Amount that player causes damage with one shot! ")] [SerializeField] int normalHitDamage;
 
 
     [HideInInspector]
@@ -15,13 +15,16 @@ public class StaticObstacle : MonoBehaviour
     [HideInInspector]
     [SerializeField] HealthBar obstacleHealthbar;
     [HideInInspector]
-    [SerializeField] int obstacleHealt;
+    [SerializeField] float obstacleHealt;
     [HideInInspector]
     [SerializeField] Transform destroyedObstacleSpawnPoint;
+
+    BattleSystem battleSystem;
 
     private void Awake()
     {
         obstacleHealt = obstacleStartHealth;
+        battleSystem = FindObjectOfType<BattleSystem>();
     }
 
     private void Start()
@@ -46,11 +49,13 @@ public class StaticObstacle : MonoBehaviour
     {        
         if (collision.gameObject.tag == "Bullet")
         {
-            ObstacleDamage(normalHitDamage);
+            ObstacleDamage(battleSystem.attackOneDamage);
+            //ObstacleDamage(normalHitDamage);
+
         }
     }
     
-    public void ObstacleDamage(int damage)
+    public void ObstacleDamage(float damage)
     {
         obstacleHealt -= damage;
         obstacleHealthbar.SetHealth(obstacleHealt);

@@ -83,6 +83,7 @@ public class PlayerMovementGrid : MonoBehaviour
     EnemyProto enemyProto;
     [HideInInspector]
     [SerializeField] Animator playerAnimator;
+    [HideInInspector]
     [Tooltip("Just drag this characters canvas in here!")] [SerializeField] Animator canvasAnimator;
 
 

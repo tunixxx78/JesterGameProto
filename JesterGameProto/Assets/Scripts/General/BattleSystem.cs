@@ -169,7 +169,7 @@ public class BattleSystem : MonoBehaviour
             }
             else if(enemys[i].GetComponent<EnemySingleShoot>().attackDelay <= 0)
             {
-                enemys[i].GetComponent<EnemySingleShoot>().attackDelay = enemys[i].GetComponent<EnemySingleShoot>().startAttackDealy;
+                enemys[i].GetComponent<EnemySingleShoot>().attackDelay = enemys[i].GetComponent<EnemySingleShoot>().startAttackDelay;
             }
             
         }    

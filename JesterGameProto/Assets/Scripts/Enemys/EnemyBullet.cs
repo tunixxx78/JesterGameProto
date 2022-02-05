@@ -56,7 +56,18 @@ public class EnemyBullet : MonoBehaviour
         if(collision.gameObject.tag == "EnemyBulletDestroyer")
         {
             Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            this.enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this.gameObject, 2);
+            Destroy(this.hitParticle, 2f);
+        }
+        if(collision.gameObject.tag == "DummuObstacle")
+        {
+            Instantiate(hitParticle, collision.transform.position, Quaternion.identity);
+            this.enabled = false;
+            this.GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(this.gameObject, 2);
+            Destroy(this.hitParticle, 2f);
         }
     }
 

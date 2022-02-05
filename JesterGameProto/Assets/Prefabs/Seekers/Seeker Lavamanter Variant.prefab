@@ -359,6 +359,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8326227733534867365, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+      propertyPath: canvasAnimator
+      value: 
+      objectReference: {fileID: 1804983280927284385}
     - target: {fileID: 8326227733534867366, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
       propertyPath: m_Name
       value: Seeker Lavamanter Variant
@@ -385,3 +389,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+--- !u!95 &1804983280927284385 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7721043202259394458, guid: 475369af287f6cb4fa7f5bc00fb21512, type: 3}
+  m_PrefabInstance: {fileID: 8226441929331376955}
+  m_PrefabAsset: {fileID: 0}
