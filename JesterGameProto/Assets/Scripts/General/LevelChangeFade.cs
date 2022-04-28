@@ -5,10 +5,10 @@ using UnityEngine;
 public class LevelChangeFade : MonoBehaviour
 {
 
-    [SerializeField] GameObject fadeImage;
-    [SerializeField] Transform ImageSpawnPosition, targetFolder;
+    [SerializeField] GameObject fadeImage; //Image what gets instantiated and moved(this is prefab, with animation builded in)
+    [SerializeField] Transform ImageSpawnPosition, targetFolder; //Spawnposition for fadeImage and target folder for instatiated fadeimage
     //[SerializeField] float speed = 5;
-    public bool canMove = false, outOfWay = false;
+    public bool canMove = false, outOfWay = false; //Boolian variables for main functionalitys - moving image.
 
 
     private void Start()
@@ -39,7 +39,7 @@ public class LevelChangeFade : MonoBehaviour
             outOfWay = false;
             // This instantiate fadeImage to scene, animation kicks in and moves that to wanted position. When wanted position is reached, image will be destroyed.
             GameObject movingImage = Instantiate(fadeImage, ImageSpawnPosition.position, Quaternion.identity, targetFolder.transform);
-
+            //Destroying image
             Destroy(movingImage, 2f);
         }
     }
@@ -47,6 +47,7 @@ public class LevelChangeFade : MonoBehaviour
 //This is called from game manager script when current battle has ended and its time to change scene
     public void MoveImage()
     {
+    // canMove variable is turned True and endFade is possible
         canMove = true;
     }
 }
