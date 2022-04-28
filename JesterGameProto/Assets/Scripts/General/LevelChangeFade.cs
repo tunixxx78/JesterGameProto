@@ -19,30 +19,32 @@ public class LevelChangeFade : MonoBehaviour
 
     private void Update()
     {
+        //This happens when current match has ended and canMove variable has turned to True.
+        
         if(canMove == true)
         {
+            //canMove variable turn to False, so following instantiate will happens only once.
             canMove = false;
-            //transform.position = Vector3.MoveTowards(this.transform.position, ImageEndPosition.position, speed * Time.deltaTime);
-
+           
+           //This instantiate fadeImage to scene, animation kicks in and moves that to wanted position.
             GameObject movingImage = Instantiate(fadeImage, ImageSpawnPosition.position, Quaternion.identity, targetFolder.transform);
 
             
             
         }
-
+        //This happens every time you enter into new scene -> it removes scenechange-panel out of the way. 
         else if (outOfWay == true)
         {
+            // outOfWay variable turns to False so following instantiate will happens only once
             outOfWay = false;
-            //transform.position = Vector3.MoveTowards(this.transform.position, ImageEndPosition.position, speed * Time.deltaTime);
-
-            //Destroy(this.gameObject, 1f);
-
+            // This instantiate fadeImage to scene, animation kicks in and moves that to wanted position. When wanted position is reached, image will be destroyed.
             GameObject movingImage = Instantiate(fadeImage, ImageSpawnPosition.position, Quaternion.identity, targetFolder.transform);
 
             Destroy(movingImage, 2f);
         }
     }
 
+//This is called from game manager script when current battle has ended and its time to change scene
     public void MoveImage()
     {
         canMove = true;
