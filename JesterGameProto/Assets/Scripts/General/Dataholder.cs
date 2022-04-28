@@ -12,7 +12,7 @@ public class Dataholder : MonoBehaviour
 {
     public static Dataholder dataInstance;
 
-    public bool levelOne, levelTwo, levelThree, levelFour, levelFive;
+    public bool levelOne, levelTwo, levelThree, levelFour, levelFive; //variables for data that will be saved at some point in game
 
     private void Awake()
     {
@@ -30,6 +30,7 @@ public class Dataholder : MonoBehaviour
 
     private void Update()
     {
+    //Only development use! Resets all saving sata.
         if (Input.GetKeyDown(KeyCode.R))
         {
             levelOne = false;
@@ -44,6 +45,8 @@ public class Dataholder : MonoBehaviour
 
     public void SaveData()
     {
+    //Creates saving file and saves data in binary format
+    
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/SaveGame.dat");
         LevelData data = new LevelData();
@@ -60,8 +63,11 @@ public class Dataholder : MonoBehaviour
 
     public void LoadData()
     {
+    // checks if there is saved data
         if(File.Exists(Application.persistentDataPath + "/SaveGame.dat"))
         {
+        // if data can be found, this get it out from saved file
+        
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Open(Application.persistentDataPath + "/SaveGame.dat", FileMode.Open);
             LevelData data = (LevelData)bf.Deserialize(file);
